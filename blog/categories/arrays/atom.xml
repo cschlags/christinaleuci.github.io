@@ -4,7 +4,7 @@
   <title><![CDATA[Category: arrays, | ChristinaLeuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/arrays/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2014-06-13T09:12:10-04:00</updated>
+  <updated>2014-06-13T09:17:56-04:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -21,6 +21,9 @@
     <content type="html"><![CDATA[<p>Nested arrays were a big problem for me even in Java. I understood the concept that there was an array inside an array but the syntax and use never really connected. The NYC Pigeon Lab was pretty difficult for me. Taking one nested array and translating it into another was like climbing Mount Everest in under a minute.</p>
 
 <p>I have found that explaining programs (or trying to) has helped me greatly in understanding the use of syntax. So let me teach you about these little nuisances called Nested Arrays.</p>
+
+<!--more-->
+
 
 <p>The direction for the NYC Pigeon Lab were define a method called nyc_pigeon_organizer and take in an array called pigeon_data. Take the names of the pigeon&rsquo;s first, a general attribute and the attribute specific to them. Easy in theory, hard in practice.</p>
 
@@ -65,6 +68,9 @@ This is the complete code:</p>
     <content type="html"><![CDATA[<p>Nested arrays were a big problem for me even in Java. I understood the concept that there was an array inside an array but the syntax and use never really connected. The NYC Pigeon Lab was pretty difficult for me. Taking one nested array and translating it into another was like climbing Mount Everest in under a minute.</p>
 
 <p>I have found that explaining programs (or trying to) has helped me greatly in understanding the use of syntax. So let me teach you about these little nuisances called Nested Arrays.</p>
+
+<!--more-->
+
 
 <p>The direction for the NYC Pigeon Lab were define a method called nyc_pigeon_organizer and take in an array called pigeon_data. Take the names of the pigeon&rsquo;s first, a general attribute and the attribute specific to them. Easy in theory, hard in practice.</p>
 

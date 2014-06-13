@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[ChristinaLeuci]]></title>
-  <link href="http://ChristinaLeuci.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Nested | ChristinaLeuci]]></title>
+  <link href="http://ChristinaLeuci.github.io/blog/categories/nested/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
   <updated>2014-06-13T08:46:52-04:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
@@ -24,45 +24,36 @@
 
 <p>The direction for the NYC Pigeon Lab were define a method called nyc_pigeon_organizer and take in an array called pigeon_data. Take the names of the pigeon&rsquo;s first, a general attribute and the attribute specific to them. Easy in theory, hard in practice.</p>
 
-<p><img src="http://ChristinaLeuci.github.io/images/pigeondata.png" /></p>
+<p><img src="/images/pigeondata.png" /></p>
 
 <p>Pigeon Data is a nested array so to get to the names you need to go through :color, then through :purple, then take each index in the name_array and put that into another array while deleting any repeats. But wait? Doesn&rsquo;t gender only have one list of names? If I put those names into an array then I wouldn&rsquo;t have to delete any repeats.</p>
 
 <p>Well I tried that. Yes, I did get an array of names without complications and there were no repetitions but where could I go from there? I was completely lost. I had gotten into the gender hash and completely by-passed all that other information. What could I do now?</p>
 
-<p><img src="http://ChristinaLeuci.github.io/images/genderproblem.png" /></p>
+<p><img src="/images/genderproblem.png" /></p>
 
 <p>So I ultimately scrapped that and started out with a new method. This time I decided to take the long, multi-step path. I retrospect going through the pigeon_data array as a whole helped me learn more than just trying to go through the :gender hash.</p>
 
 <p>So my new method went through the entire pigeon_data array, first the attributes like :color and :gender, then through their descriptive attirbutes like :purple and :male. Finally I was at the names but it was obvious I would have somewhere around five of each name in my new organized_pigeon array.</p>
 
-<p><img src="http://ChristinaLeuci.github.io/images/nameinarray.png" /></p>
+<p><img src="/images/nameinarray.png" /></p>
 
 <p>My first thought was to go through everything in an if loop and figure out if that name was already in the array or if it wasn&rsquo;t that I could add it. But I remembered, isn&rsquo;t there a way to see if there&rsquo;s already a hash in an array just like how you can see if the same string is in an array?</p>
 
 <p>There is</p>
 
-<p><img src="http://ChristinaLeuci.github.io/images/fixingname.png" /></p>
+<p><img src="/images/fixingname.png" /></p>
 
 <p>Let&rsquo;s go through the top parts of these if methods. In the first one I&rsquo;m asking that if the pigeon_list[name] is already in use if it&rsquo;s not I create a new hasg through the use of Hash.new. If the name is new then I begin to add the attribute hashes that are connected to that name. I specified attribute == :color because that was a larger nested array than :gender or :lives. So whatever the attribute may be the attribute_specific (ie. the :purple, :male, or &ldquo;Subway&rdquo;) is being changed into a string and added to that name-attribute array.</p>
 
 <p>Very similarly the first if method is checking to see if that name is already a hash. If it is then it goes through the same process as the else that created a new hash.
 This is the complete code:</p>
 
-<p><img src="http://ChristinaLeuci.github.io/images/maincode.png" /></p>
+<p><img src="/images/maincode.png" /></p>
 
 <p>When I first checked out this lab and read through it I thought it was impossible. In retrospect is was moderately complicated but easier now that I&rsquo;ve gone through it and explained it to myself.</p>
 
 <p>So if you ever find yourself walking past me and you hear me talking to myself while staring at my computer just know I&rsquo;m not crazy, I&rsquo;m just trying to figure out this code :]</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[My First Post on Octopress]]></title>
-    <link href="http://ChristinaLeuci.github.io/blog/2014/06/12/my-first-post-on-octopress/"/>
-    <updated>2014-06-12T20:20:39-04:00</updated>
-    <id>http://ChristinaLeuci.github.io/blog/2014/06/12/my-first-post-on-octopress</id>
-    <content type="html"><![CDATA[<p>Hello World!</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[ChristinaLeuci]]></title>
   <link href="http://ChristinaLeuci.github.io/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2014-06-13T08:46:52-04:00</updated>
+  <updated>2014-06-13T09:12:10-04:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -54,15 +54,6 @@ This is the complete code:</p>
 <p>When I first checked out this lab and read through it I thought it was impossible. In retrospect is was moderately complicated but easier now that I&rsquo;ve gone through it and explained it to myself.</p>
 
 <p>So if you ever find yourself walking past me and you hear me talking to myself while staring at my computer just know I&rsquo;m not crazy, I&rsquo;m just trying to figure out this code :]</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[My First Post on Octopress]]></title>
-    <link href="http://ChristinaLeuci.github.io/blog/2014/06/12/my-first-post-on-octopress/"/>
-    <updated>2014-06-12T20:20:39-04:00</updated>
-    <id>http://ChristinaLeuci.github.io/blog/2014/06/12/my-first-post-on-octopress</id>
-    <content type="html"><![CDATA[<p>Hello World!</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: hashes | ChristinaLeuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/hashes/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2014-06-13T09:17:56-04:00</updated>
+  <updated>2014-06-13T09:57:53-04:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -25,7 +25,7 @@
 <!--more-->
 
 
-<p>The direction for the NYC Pigeon Lab were define a method called nyc_pigeon_organizer and take in an array called pigeon_data. Take the names of the pigeon&rsquo;s first, a general attribute and the attribute specific to them. Easy in theory, hard in practice.</p>
+<p>The instructions for the NYC Pigeon Lab were define a method called nyc_pigeon_organizer and take in an array called pigeon_data. Take the names of the pigeon&rsquo;s first, a general attribute and the attribute specific to them. Easy in theory, hard in practice.</p>
 
 <p><img src="/images/pigeondata.png" /></p>
 

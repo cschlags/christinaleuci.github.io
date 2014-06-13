@@ -12,7 +12,7 @@ I have found that explaining programs (or trying to) has helped me greatly in un
 
 <!--more-->
 
-The direction for the NYC Pigeon Lab were define a method called nyc_pigeon_organizer and take in an array called pigeon_data. Take the names of the pigeon's first, a general attribute and the attribute specific to them. Easy in theory, hard in practice. 
+The instructions for the NYC Pigeon Lab were define a method called nyc_pigeon_organizer and take in an array called pigeon_data. Take the names of the pigeon's first, a general attribute and the attribute specific to them. Easy in theory, hard in practice. 
 
 <img src="{{ root_url }}/images/pigeondata.png" />
 

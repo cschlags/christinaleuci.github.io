@@ -3,7 +3,7 @@ layout: post
 title: "Arrays of a Feather Flock Together"
 date: 2014-06-13 05:21:18 -0400
 comments: true
-categories: arrays, nested arrays, hashes
+categories: [Data Structures, Technical]
 ---
 
 Nested arrays were a big problem for me even in Java. I understood the concept that there was an array inside an array but the syntax and use never really connected. The NYC Pigeon Lab was pretty difficult for me. Taking one nested array and translating it into another was like climbing Mount Everest in under a minute.

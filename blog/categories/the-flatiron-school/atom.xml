@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[ChristinaLeuci]]></title>
-  <link href="http://ChristinaLeuci.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: The Flatiron School | ChristinaLeuci]]></title>
+  <link href="http://ChristinaLeuci.github.io/blog/categories/the-flatiron-school/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
   <updated>2014-09-04T15:22:20-04:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
@@ -23,7 +23,7 @@
 <!--more-->
 
 
-<p><img src="http://ChristinaLeuci.github.io/images/FlatironBeg.png" /></p>
+<p><img src="/images/FlatironBeg.png" /></p>
 
 <p>My first serious taste of programming and computers started during my second year of college. I took an Intro to Computer Science course and although I fell in love with programming it left me voracious for the creative side of the subject. About halfway through that course I attended a Hackathon and I felt like a complete noob (thank god my group was so understanding) but it was so worth it, I learned that I could create anything I wanted through programming. When I took a break from college I dabbled into Code Academy and online resources but they never gave me that inspiration that I had found during that Hackathon.</p>
 
@@ -37,7 +37,7 @@
 
 <p>The first week of Flatiron was a soft introduction into what we would be doing and what we could expect from the course. I had completed the pre-work from the course but things were still new to me and I felt a little lost. That seemed to be a common thought among the class.</p>
 
-<p><img src="http://ChristinaLeuci.github.io/images/FlatironStudents.png" /></p>
+<p><img src="/images/FlatironStudents.png" /></p>
 
 <p>The second week started picking up and from there we were in full-coursework mode. There were times I didn’t think I could keep up or that I just couldn’t get a topic. It was really helpful for me that our class had a Feeling’s Friday. Those sessions really helped me get a notion of what everyone else was thinking and just how grateful I was to be at the school. At one point, during a really tough week Avi took me aside and talked with me about what I was feeling. It was nice knowing that although we were adults and were meant to look for help if we needed it, the staff would still check in on us. He ended up giving me a lot of great advice and honestly it made me feel a lot better.</p>
 
@@ -47,65 +47,18 @@
 
 <p>For some reason the Tuesday of my meet-up I was completely calm. I had always worried about public speaking but something about knowing the code in’s and out’s of our code made talking to a group of my peers not as terrifying as I thought it would be. It was a really fun experience going through the project and showing off our hard work. By the end of our talk I was more excited about the Science Fair in the next two days.</p>
 
-<p><img src="http://ChristinaLeuci.github.io/images/sciencefair.png" /></p>
+<p><img src="/images/sciencefair.png" /></p>
 
 <p>Talk about the calm before the storm; I don’t know about the rest of my class but the morning of our Science Fair was the calmest moment I experienced during the project mode weeks. Everyone’s project’s were finished and ready for presenting so there was little to do but relax, something that was really helpful prior to the Fair. At 3, we started getting situated at our tables within an hour we had our first companies coming in.</p>
 
 <p>The school had 250 companies attend the fair, and some companies had two or three recruiters; it was a really intense and talk-filled three hours. Recruiters, employees, and programmers came and went and the questions ranged from technical topics to simple “what does this button do”. I found it really helpful to change up my list of projects every twenty minutes and keep my mind active. The three hours came and went quickly, it was surprising how talking constantly made the time fly. Although I didn’t stick around for the after-party with the students and staff I knew that we had all had a successful fair.</p>
 
-<p><img src="http://ChristinaLeuci.github.io/images/flatirongraduation.png" /></p>
+<p><img src="/images/flatirongraduation.png" /></p>
 
 <p>Last Friday, the 22nd, was our last day. Although I’m sad that the journey is over a new one is beginning and I’m terribly excited for it. I wish all the luck in the world to the Ruby 005, iOS 002, and Brooklyn 001 classes. It’s been a wonderful experience and we’re going to do amazingly. We’ve gotten through Flatiron, we can do anything!</p>
 
 <p>And the best thing about programming is now I can understand the Programmer Ryan Gosling memes!
-<img src="http://ChristinaLeuci.github.io/images/RyanGoslingProgram.png" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Arrays of a Feather Flock Together]]></title>
-    <link href="http://ChristinaLeuci.github.io/blog/2014/06/13/arrays-of-a-feather-flock-together/"/>
-    <updated>2014-06-13T05:21:18-04:00</updated>
-    <id>http://ChristinaLeuci.github.io/blog/2014/06/13/arrays-of-a-feather-flock-together</id>
-    <content type="html"><![CDATA[<p>Nested arrays were a big problem for me even in Java. I understood the concept that there was an array inside an array but the syntax and use never really connected. The NYC Pigeon Lab was pretty difficult for me. Taking one nested array and translating it into another was like climbing Mount Everest in under a minute.</p>
-
-<p>I have found that explaining programs (or trying to) has helped me greatly in understanding the use of syntax. So let me teach you about these little nuisances called Nested Arrays.</p>
-
-<!--more-->
-
-
-<p>The instructions for the NYC Pigeon Lab were define a method called nyc_pigeon_organizer and take in an array called pigeon_data. Take the names of the pigeon&rsquo;s first, a general attribute and the attribute specific to them. Easy in theory, hard in practice.</p>
-
-<p><img src="http://ChristinaLeuci.github.io/images/pigeondata.png" /></p>
-
-<p>Pigeon Data is a nested array so to get to the names you need to go through :color, then through :purple, then take each index in the name_array and put that into another array while deleting any repeats. But wait? Doesn&rsquo;t gender only have one list of names? If I put those names into an array then I wouldn&rsquo;t have to delete any repeats.</p>
-
-<p>Well I tried that. Yes, I did get an array of names without complications and there were no repetitions but where could I go from there? I was completely lost. I had gotten into the gender hash and completely by-passed all that other information. What could I do now?</p>
-
-<p><img src="http://ChristinaLeuci.github.io/images/genderproblem.png" /></p>
-
-<p>So I ultimately scrapped that and started out with a new method. This time I decided to take the long, multi-step path. I retrospect going through the pigeon_data array as a whole helped me learn more than just trying to go through the :gender hash.</p>
-
-<p>So my new method went through the entire pigeon_data array, first the attributes like :color and :gender, then through their descriptive attirbutes like :purple and :male. Finally I was at the names but it was obvious I would have somewhere around five of each name in my new organized_pigeon array.</p>
-
-<p><img src="http://ChristinaLeuci.github.io/images/nameinarray.png" /></p>
-
-<p>My first thought was to go through everything in an if loop and figure out if that name was already in the array or if it wasn&rsquo;t that I could add it. But I remembered, isn&rsquo;t there a way to see if there&rsquo;s already a hash in an array just like how you can see if the same string is in an array?</p>
-
-<p>There is</p>
-
-<p><img src="http://ChristinaLeuci.github.io/images/fixingname.png" /></p>
-
-<p>Let&rsquo;s go through the top parts of these if methods. In the first one I&rsquo;m asking that if the pigeon_list[name] is already in use if it&rsquo;s not I create a new hasg through the use of Hash.new. If the name is new then I begin to add the attribute hashes that are connected to that name. I specified attribute == :color because that was a larger nested array than :gender or :lives. So whatever the attribute may be the attribute_specific (ie. the :purple, :male, or &ldquo;Subway&rdquo;) is being changed into a string and added to that name-attribute array.</p>
-
-<p>Very similarly the first if method is checking to see if that name is already a hash. If it is then it goes through the same process as the else that created a new hash.
-This is the complete code:</p>
-
-<p><img src="http://ChristinaLeuci.github.io/images/maincode.png" /></p>
-
-<p>When I first checked out this lab and read through it I thought it was impossible. In retrospect is was moderately complicated but easier now that I&rsquo;ve gone through it and explained it to myself.</p>
-
-<p>So if you ever find yourself walking past me and you hear me talking to myself while staring at my computer just know I&rsquo;m not crazy, I&rsquo;m just trying to figure out this code :]</p>
+<img src="/images/RyanGoslingProgram.png" /></p>
 ]]></content>
   </entry>
   

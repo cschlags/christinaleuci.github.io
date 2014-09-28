@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Technical Interviews, Oh My! - Christina Leuci</title>
+  <meta name="author" content="Christina Leuci">
+
+  
+  <meta name="description" content="So far my mentorship at Stack Exchange has been amazing. I’ve been working with Max Horstmann, a Senior Developer on their Careers 2.0 team. We’ve &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ChristinaLeuci.github.io/blog/2014/09/22/technical-interviews">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Christina Leuci" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Christina Leuci</a></h1>
+  
+    <h2>I pity the &#8220;foo&#8221;</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:ChristinaLeuci.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Technical Interviews, Oh My!</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-09-22T09:21:02-04:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>9:21 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>So far my mentorship at Stack Exchange has been amazing. I’ve been working with Max Horstmann, a Senior Developer on their Careers 2.0 team. We’ve mainly been going over mock interviews and how I should properly conduct myself in interviews. Of all the information I’ve taken away from our meetings has been the process for dealing with technical practices. As Max has said, “Repeat, Clarify, make examples, pseudo-code, code, and finally run it”.</p>
+
+<!--more-->
+
+
+<p>Many times an employer will give you a general question, check to see if a point falls inside a box. Now this may seem like a very simple question, just draw a box and see if the point falls inside those parameters; sadly it’s a little more complicated. One of the first things you should do is repeat the question to make sure you have haven’t missed anything. Many times you may mis-hear the employer and do something completely different than what you were expected to.
+Clarify by checking to see if you’re taking in user data, and if you need to check to see if that data is correct. Another good question would be to check if “a point inside a box” means that the point falls on a box’s line or literally inside the lines. Lastly, another good question is if the box follows a simple x&amp;y graph. It’s really helpful to write down these tidbits of information. By clarifying with your interviewer you show that you’re not just a robot, you’re capable of finding the loopholes inside a problem before coding. Generally an employer is just trying to gage your intelligence and won’t make it too complicated but it’s still smart to ask these questions and not get caught clueless.
+Once you’re positive of the question and what path you should follow, you should begin making examples. If we’re following the problem earlier of a point inside a box, one path you could take is drawing an x&amp;y graph with a box. A quick aside: if they are asking for user input, yes it would be simple for you to ask for each point of the box but would it be as simple for the user? NO.
+In this situation the simplest group of inputs would be two diagonal points, for example let’s pick the bottom left and the top right points. This way you know the dimensions of the box by using basic math with the points.
+Now that we have a diagram of the box and it’s points finished let’s move through the example. Let’s say we have the top right point as (8, 9), the bottom right point as (2, 1), and the singular point as (4,5). Your drawing should look like this:</p>
+
+<p><img class="center" src="/images/box.jpg" title="image" alt="images"></p>
+
+<p>Now it’s obvious by your drawing that this point is inside the box, but your computer where you’ll be coding doesn’t know. What you’ll need to do is use simple math to see if this point (4,5) falls inside the dimensions of this rectangle.</p>
+
+<p><img class="center" src="/images/pseudo.jpg" title="image" alt="images"></p>
+
+<p>Here you can see that you do solve the problem and that it gives the correct answer. What you need to do now is put it into code that can be used. If you’re using Ruby like me, then simply create a new class, that can be instantiated in your IRB and create a method that you can plug your data into.</p>
+
+<p><img class="center" src="/images/quicky.jpg" title="image" alt="images"></p>
+
+<p>And you’re finished! Although the question may seem simple, there is a complicated process to it. At this point what you could do is, further optimize your code or run it to see if it works. If we were to optimize this could what we could do is take out the if statement. By doing something like this:</p>
+
+<p><img class="center" src="/images/final.jpg" title="image" alt="images"></p>
+
+<p>it shows that you can solve a simple problem while optimizing your code.
+Remember to check your code. It’s impressive to interviewers if you can catch your mistakes before presenting your code. Now at this point, an interviewer will either tell you good job or they will ask if it works. If they ask you the latter the best thing you can say is “I think it does, let’s check”. This shows confidence and that you’re willing to show you’re work.
+If for some crazy reason your code doesn’t work, don’t worry, continue working on it and perfect it. Just rinse and repeat, if you can understand why it’s not working then you interviewer will still be impressed.
+Congratulations you’ve completed your interview! Good luck to anyone who is hoping to do a technical interview!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Christina Leuci</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-09-22T09:21:02-04:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>9:21 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/advice/'>advice</a>, <a class='category' href='/blog/categories/technical/'>technical</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://ChristinaLeuci.github.io/blog/2014/09/22/technical-interviews/" data-via="" data-counturl="http://ChristinaLeuci.github.io/blog/2014/09/22/technical-interviews/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/09/04/an-unexpected-adventure-my-flatiron-experience/" title="Previous Post: An Unexpected Adventure: My Flatiron Experience">&laquo; An Unexpected Adventure: My Flatiron Experience</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/09/22/technical-interviews/">Technical Interviews, Oh My!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/04/an-unexpected-adventure-my-flatiron-experience/">An Unexpected Adventure: My Flatiron Experience</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/13/arrays-of-a-feather-flock-together/">Arrays of a Feather Flock Together</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Christina Leuci -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

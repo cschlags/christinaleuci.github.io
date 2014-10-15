@@ -6,7 +6,7 @@ comments: true
 categories: [Technical, Advice]
 ---
 
-So far my mentorship at Stack Exchange has been amazing. I’ve been working with Max Horstmann, a Senior Developer on their Careers 2.0 team. We’ve mainly been going over mock interviews and how I should properly conduct myself in interviews. Of all the information I’ve taken away from our meetings has been the process for dealing with technical practices. As Max has said, “Repeat, Clarify, make examples, pseudo-code, code, and finally run it”.
+So far my mentorship  at Stack Exchange has been amazing. I’ve been working with Max Horstmann, a Senior Developer on their Careers 2.0 team. We’ve mainly been going over mock interviews and how I should properly conduct myself in interviews. Of all the information I’ve taken away from our meetings has been the process for dealing with technical practices. As Max has said, “Repeat, Clarify, make examples, pseudo-code, code, and finally run it”.
 <!--more-->
 
 Many times an employer will give you a general question, check to see if a point falls inside a box. Now this may seem like a very simple question, just draw a box and see if the point falls inside those parameters; sadly it’s a little more complicated. One of the first things you should do is repeat the question to make sure you have haven’t missed anything. Many times you may mis-hear the employer and do something completely different than what you were expected to.

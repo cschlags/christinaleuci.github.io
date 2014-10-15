@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Technical | Christina Leuci]]></title>
+  <link href="http://ChristinaLeuci.github.io/blog/categories/technical/atom.xml" rel="self"/>
+  <link href="http://ChristinaLeuci.github.io/"/>
+  <updated>2014-09-28T10:39:41-04:00</updated>
+  <id>http://ChristinaLeuci.github.io/</id>
+  <author>
+    <name><![CDATA[Christina Leuci]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Technical Interviews, Oh My!]]></title>
+    <link href="http://ChristinaLeuci.github.io/blog/2014/09/22/technical-interviews/"/>
+    <updated>2014-09-22T09:21:02-04:00</updated>
+    <id>http://ChristinaLeuci.github.io/blog/2014/09/22/technical-interviews</id>
+    <content type="html"><![CDATA[<p>So far my mentorship at Stack Exchange has been amazing. I’ve been working with Max Horstmann, a Senior Developer on their Careers 2.0 team. We’ve mainly been going over mock interviews and how I should properly conduct myself in interviews. Of all the information I’ve taken away from our meetings has been the process for dealing with technical practices. As Max has said, “Repeat, Clarify, make examples, pseudo-code, code, and finally run it”.</p>
+
+<!--more-->
+
+
+<p>Many times an employer will give you a general question, check to see if a point falls inside a box. Now this may seem like a very simple question, just draw a box and see if the point falls inside those parameters; sadly it’s a little more complicated. One of the first things you should do is repeat the question to make sure you have haven’t missed anything. Many times you may mis-hear the employer and do something completely different than what you were expected to.
+Clarify by checking to see if you’re taking in user data, and if you need to check to see if that data is correct. Another good question would be to check if “a point inside a box” means that the point falls on a box’s line or literally inside the lines. Lastly, another good question is if the box follows a simple x&amp;y graph. It’s really helpful to write down these tidbits of information. By clarifying with your interviewer you show that you’re not just a robot, you’re capable of finding the loopholes inside a problem before coding. Generally an employer is just trying to gage your intelligence and won’t make it too complicated but it’s still smart to ask these questions and not get caught clueless.
+Once you’re positive of the question and what path you should follow, you should begin making examples. If we’re following the problem earlier of a point inside a box, one path you could take is drawing an x&amp;y graph with a box. A quick aside: if they are asking for user input, yes it would be simple for you to ask for each point of the box but would it be as simple for the user? NO.
+In this situation the simplest group of inputs would be two diagonal points, for example let’s pick the bottom left and the top right points. This way you know the dimensions of the box by using basic math with the points.
+Now that we have a diagram of the box and it’s points finished let’s move through the example. Let’s say we have the top right point as (8, 9), the bottom right point as (2, 1), and the singular point as (4,5). Your drawing should look like this:</p>
+
+<p><img class="center" src="/images/box.jpg" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" ></p>
+
+<p>Now it’s obvious by your drawing that this point is inside the box, but your computer where you’ll be coding doesn’t know. What you’ll need to do is use simple math to see if this point (4,5) falls inside the dimensions of this rectangle.</p>
+
+<p><img class="center" src="/images/pseudo.jpg" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" ></p>
+
+<p>Here you can see that you do solve the problem and that it gives the correct answer. What you need to do now is put it into code that can be used. If you’re using Ruby like me, then simply create a new class, that can be instantiated in your IRB and create a method that you can plug your data into.</p>
+
+<p><img class="center" src="/images/quicky.jpg" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" ></p>
+
+<p>And you’re finished! Although the question may seem simple, there is a complicated process to it. At this point what you could do is, further optimize your code or run it to see if it works. If we were to optimize this could what we could do is take out the if statement. By doing something like this:</p>
+
+<p><img class="center" src="/images/final.jpg" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" ></p>
+
+<p>it shows that you can solve a simple problem while optimizing your code.
+Remember to check your code. It’s impressive to interviewers if you can catch your mistakes before presenting your code. Now at this point, an interviewer will either tell you good job or they will ask if it works. If they ask you the latter the best thing you can say is “I think it does, let’s check”. This shows confidence and that you’re willing to show you’re work.
+If for some crazy reason your code doesn’t work, don’t worry, continue working on it and perfect it. Just rinse and repeat, if you can understand why it’s not working then you interviewer will still be impressed.
+Congratulations you’ve completed your interview! Good luck to anyone who is hoping to do a technical interview!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Arrays of a Feather Flock Together]]></title>
+    <link href="http://ChristinaLeuci.github.io/blog/2014/06/13/arrays-of-a-feather-flock-together/"/>
+    <updated>2014-06-13T08:52:33-04:00</updated>
+    <id>http://ChristinaLeuci.github.io/blog/2014/06/13/arrays-of-a-feather-flock-together</id>
+    <content type="html"><![CDATA[<p>Nested arrays were a big problem for me even in Java. I understood the concept that there was an array inside an array but the syntax and use never really connected. The NYC Pigeon Lab was pretty difficult for me. Taking one nested array and translating it into another was like climbing Mount Everest in under a minute.
+I have found that explaining programs (or trying to) has helped me greatly in understanding the use of syntax. So let me teach you about these little nuisances called Nested Arrays.
+The instructions for the NYC Pigeon Lab were define a method called nyc_pigeon_organizer and take in an array called pigeon_data. Take the names of the pigeon’s first, a general attribute and the attribute specific to them. Easy in theory, hard in practice.</p>
+
+<!-- more -->
+
+
+<p><img class="center" src="/images/first.jpg" width="770" height="510"></p>
+
+<p>Pigeon Data is a nested array so to get to the names you need to go through :color, then through :purple, then take each index in the name_array and put that into another array while deleting any repeats. But wait? Doesn’t gender only have one list of names? If I put those names into an array then I wouldn’t have to delete any repeats.
+Well I tried that. Yes, I did get an array of names without complications and there were no repetitions but where could I go from there? I was completely lost. I had gotten into the gender hash and completely by-passed all that other information. What could I do now?
+<img class="center" src="/images/second.jpg" width="770" height="510"></p>
+
+<p>So I ultimately scrapped that and started out with a new method. This time I decided to take the long, multi-step path. I retrospect going through the pigeon_data array as a whole helped me learn more than just trying to go through the :gender hash.
+So my new method went through the entire pigeon_data array, first the attributes like :color and :gender, then through their descriptive attirbutes like :purple and :male. Finally I was at the names but it was obvious I would have somewhere around five of each name in my new organized_pigeon array.
+<img class="center" src="/images/third.jpg" width="770" height="510"></p>
+
+<p>My first thought was to go through everything in an if loop and figure out if that name was already in the array or if it wasn’t that I could add it. But I remembered, isn’t there a way to see if there’s already a hash in an array just like how you can see if the same string is in an array?
+There is
+<img class="center" src="/images/fourth.jpg" width="770" height="510"></p>
+
+<p>Let’s go through the top parts of these if methods. In the first one I’m asking that if the pigeon_list[name] is already in use if it’s not I create a new hasg through the use of Hash.new. If the name is new then I begin to add the attribute hashes that are connected to that name. I specified attribute == :color because that was a larger nested array than :gender or :lives. So whatever the attribute may be the attribute_specific (ie. the :purple, :male, or “Subway”) is being changed into a string and added to that name-attribute array.
+Very similarly the first if method is checking to see if that name is already a hash. If it is then it goes through the same process as the else that created a new hash. This is the complete code:
+<img class="center" src="/images/fifth.jpg" width="770" height="510"></p>
+
+<p>When I first checked out this lab and read through it I thought it was impossible. In retrospect is was moderately complicated but easier now that I’ve gone through it and explained it to myself.
+So if you ever find yourself walking past me and you hear me talking to myself while staring at my computer just know I’m not crazy, I’m just trying to figure out this code :]</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -15,19 +15,19 @@ Once you’re positive of the question and what path you should follow, you shou
 In this situation the simplest group of inputs would be two diagonal points, for example let’s pick the bottom left and the top right points. This way you know the dimensions of the box by using basic math with the points.
 Now that we have a diagram of the box and it’s points finished let’s move through the example. Let’s say we have the top right point as (8, 9), the bottom right point as (2, 1), and the singular point as (4,5). Your drawing should look like this:
 
-<img src="{{ root_url }}/images/box.jpg" width="90%"/>
+<img src="{{ root_url }}/images/interview/box.jpg" width="90%"/>
 
 Now it’s obvious by your drawing that this point is inside the box, but your computer where you’ll be coding doesn’t know. What you’ll need to do is use simple math to see if this point (4,5) falls inside the dimensions of this rectangle.
 
-<img src="{{ root_url }}/images/psuedo.jpg" width="90%"/>
+<img src="{{ root_url }}/images/interview/psuedo.jpg" width="90%"/>
 
 Here you can see that you do solve the problem and that it gives the correct answer. What you need to do now is put it into code that can be used. If you’re using Ruby like me, then simply create a new class, that can be instantiated in your IRB and create a method that you can plug your data into.
 
-<img src="{{ root_url }}/images/quicky.jpg" width="90%"/>
+<img src="{{ root_url }}/images/interview/quicky.jpg" width="90%"/>
 
 And you’re finished! Although the question may seem simple, there is a complicated process to it. At this point what you could do is, further optimize your code or run it to see if it works. If we were to optimize this could what we could do is take out the if statement. By doing something like this:
 
-<img src="{{ root_url }}/images/final.jpg" width="90%"/>
+<img src="{{ root_url }}/images/interview/final.jpg" width="90%"/>
 
 it shows that you can solve a simple problem while optimizing your code.
 Remember to check your code. It’s impressive to interviewers if you can catch your mistakes before presenting your code. Now at this point, an interviewer will either tell you good job or they will ask if it works. If they ask you the latter the best thing you can say is “I think it does, let’s check”. This shows confidence and that you’re willing to show you’re work.

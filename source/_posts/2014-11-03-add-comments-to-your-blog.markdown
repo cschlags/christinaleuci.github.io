@@ -14,16 +14,16 @@ Today we'll be using <a href="http://disqus.com">Disqus</a>, this is something t
 ## Step 1
 Once you've signed up for your Disqus account go to the icon at the top right of your page. In the drop down menu click on the My Home button.
 
-<img src="{{ root_url }}/images/start.png" width="90%"/>
+<img src="{{ root_url }}/images/disqus/start.png" width="90%"/>
 
 ## Step 2
 At this point you will have come to your Disqus homepage, for your purposes of using Disqus as a comment feed you won't need the homepage much. If you go again to the top right of the screen and click on the gear it will show you another drop down menu. In this menu click on the Add Disqus to Site button.
 
-<img src="{{ root_url }}/images/homemenu.png"/>
+<img src="{{ root_url }}/images/disqus/homemenu.png"/>
 
 ## Step 3
 Fill out the form like so:
-<img src="{{ root_url }}/images/siteprofile.png" width="90%"/>
+<img src="{{ root_url }}/images/disqus/siteprofile.png" width="90%"/>
 
 Make sure that when you choose your Unique Disqus URL you are sure of it. So far Disqus has not given user's the option of changing it.
 

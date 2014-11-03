@@ -9,7 +9,7 @@ categories: [Technical, Github]
 Have you ever wanted to add comments to you github pages blog? It will take a quick two minutes and you'll be ready for feedback!
 <!--more-->
 
-Today we'll be using <a href="http://disqus.com">Disqus</a>, this is something that's already implemented in the current update of Octopress. The first thing you'll need to do is signup for a Disqus account. If you already have an account you can skip down to <span style="font-weight: 600">Step 2</span>.
+Today we'll be using <a href="http://disqus.com">Disqus</a>, this is something that's already implemented in the current update of Octopress. The first thing you'll need to do is signup for a Disqus account. If you already have an account you can skip down to <span style="font-weight: 500">Step 2</span>.
 
 ## Step 1
 Once you've signed up for your Disqus account go to the icon at the top right of your page. In the drop down menu click on the My Home button.
@@ -28,9 +28,9 @@ Fill out the form like so:
 Make sure that when you choose your Unique Disqus URL you are sure of it. So far Disqus has not given user's the option of changing it.
 
 ## Step 4
-At this point in the game you can actually start working with your blog's source code. If you're up to date with Octopress you should already have the call to the Disqus partial inside your <span style="font-weight: 600">_layouts/post.html</span> partial.
+At this point in the game you can actually start working with your blog's source code. If you're up to date with Octopress you should already have the call to the Disqus partial inside your <span style="font-weight: 500">_layouts/post.html</span> partial.
 
-The only thing you will need to change is inside the _includes/disqus.html partial. On line 4 you will need to put your Disqus <span  style="font-weight: 600">Short Name</span>
+The only thing you will need to change is inside the _includes/disqus.html partial. On line 4 you will need to put your unique short name for the site. If you can't remember it go to the admin page of your Disqus account, choose the unique site, and select the <span style="font-weight: 500">Settings</span> tab.
 
 {% codeblock [disqus.html] %}
 <script type="text/javascript">

@@ -5,9 +5,10 @@ date: 2014-09-22 09:21:02 -0400
 comments: true
 categories: [Technical, Interview]
 ---
-
-So far my mentorship  at Stack Exchange has been amazing. I’ve been working with Max Horstmann, a Senior Developer on their Careers 2.0 team. We’ve mainly been going over mock interviews and how I should properly conduct myself in interviews. Of all the information I’ve taken away from our meetings has been the process for dealing with technical practices. As Max has said, “Repeat, Clarify, make examples, pseudo-code, code, and finally run it”.
+"Repeat, Clarify, make examples, pseudo-code, code, and finally run it"...
 <!--more-->
+
+That is what my mentor, Max, from Stack Exchange has told me time and again to succeed in technical interviews. This is actually useful in any situation in life where you must prove your worth.
 
 Many times an employer will give you a general question, check to see if a point falls inside a box. Now this may seem like a very simple question, just draw a box and see if the point falls inside those parameters; sadly it’s a little more complicated. One of the first things you should do is repeat the question to make sure you have haven’t missed anything. Many times you may mis-hear the employer and do something completely different than what you were expected to.
 Clarify by checking to see if you’re taking in user data, and if you need to check to see if that data is correct. Another good question would be to check if “a point inside a box” means that the point falls on a box’s line or literally inside the lines. Lastly, another good question is if the box follows a simple x&y graph. It’s really helpful to write down these tidbits of information. By clarifying with your interviewer you show that you’re not just a robot, you’re capable of finding the loopholes inside a problem before coding. Generally an employer is just trying to gage your intelligence and won’t make it too complicated but it’s still smart to ask these questions and not get caught clueless.

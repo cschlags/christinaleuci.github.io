@@ -6,9 +6,10 @@ comments: true
 categories: [The Flatiron School, Non-Technical]
 ---
 
-This past summer I attended The Flatiron School in New York City for their Ruby summer intensive course. It was a roller coaster of emotions and learning but I wouldn’t give up those memories for anything. Through tears and laughter I have made life-long friends, found a dazzling confidence I never knew I had, and of course learned a mountain of programming material.
-
+This past summer I attended The Flatiron School in New York City for their Ruby summer intensive course.
 <!--more-->
+It was a roller coaster of emotions and learning but I wouldn’t give up those memories for anything. Through tears and laughter I have made life-long friends, found a dazzling confidence I never knew I had, and of course learned a mountain of programming material.
+
 
 <img src="{{ root_url }}/images/flatiron/FlatironBeg.png" width="90%"/>
 

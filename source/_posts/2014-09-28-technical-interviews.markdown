@@ -19,15 +19,54 @@ Now that we have a diagram of the box and it’s points finished let’s move th
 
 Now it’s obvious by your drawing that this point is inside the box, but your computer where you’ll be coding doesn’t know. What you’ll need to do is use simple math to see if this point (4,5) falls inside the dimensions of this rectangle.
 
-<img src="{{ root_url }}/images/interview/psuedo.jpg" width="90%"/>
+{%codeblock [psuedocode.rb]%}
+Psuedo Code
+
+point_x < top_right_x?
+point_y < top_right_y?
+point_x < bottom_right_x?
+point_y < bottom_right_y?
+
+Test this out with your points!
+
+4 < 8? Yes!
+5 < 9? Yes!
+4 > 2? Yes!
+5 > 1? Yes!
+
+Congratulations your code works with one set of points.
+You should do this with points inside the box, on the line, and outside of the box.
+{%endcodeblock%}
 
 Here you can see that you do solve the problem and that it gives the correct answer. What you need to do now is put it into code that can be used. If you’re using Ruby like me, then simply create a new class, that can be instantiated in your IRB and create a method that you can plug your data into.
 
-<img src="{{ root_url }}/images/interview/quicky.jpg" width="90%"/>
+{%codeblock [QuickInterviewProblem.rb]%}
+class QuickInterviewProblem
+  def inside?(top_right_x, top_right_y, bottom_left_x, bottom_left_y, 
+    point_x, point_y)
+    # let's say the user puts in (8, 9, 2, 1, 4, 5)
+    if point_x < top_right_x && point_y < top_right_y && point_x > 
+      bottom_left_x && point_y > bottom_left_y
+      return true
+    else
+      return false
+    end
+  end
+end
+{%endcodeblock%}
 
 And you’re finished! Although the question may seem simple, there is a complicated process to it. At this point what you could do is, further optimize your code or run it to see if it works. If we were to optimize this could what we could do is take out the if statement. By doing something like this:
 
-<img src="{{ root_url }}/images/interview/final.jpg" width="90%"/>
+{%codeblock [QuickInterviewProblem.rb]%}
+class QuickInterviewProblem
+  def inside?(top_right_x, top_right_y, bottom_left_x, bottom_left_y, 
+    point_x, point_y)
+    #let's say the user puts in (8, 9, 2, 1, 4, 5)
+    return (point_x < top_right_x && point_y < top_right_y && 
+      point_x > bottom_left_x && point_y > bottom_left_y)
+  end
+end
+{%endcodeblock%}
 
 it shows that you can solve a simple problem while optimizing your code.
 Remember to check your code. It’s impressive to interviewers if you can catch your mistakes before presenting your code. Now at this point, an interviewer will either tell you good job or they will ask if it works. If they ask you the latter the best thing you can say is “I think it does, let’s check”. This shows confidence and that you’re willing to show you’re work.

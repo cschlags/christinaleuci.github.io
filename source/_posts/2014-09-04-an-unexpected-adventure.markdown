@@ -45,4 +45,4 @@ The school had 250 companies attend the fair, and some companies had two or thre
 Last Friday, the 22nd, was our last day. Although I’m sad that the journey is over a new one is beginning and I’m terribly excited for it. I wish all the luck in the world to the Ruby 005, iOS 002, and Brooklyn 001 classes. It’s been a wonderful experience and we’re going to do amazingly. We’ve gotten through Flatiron, we can do anything!
 
 And the best thing about programming is now I can understand the Programmer Ryan Gosling memes!
-<img src="{{ root_url }}/images/flatiron/RyanGoslingProgram.png" width="90%"/>
+<img src="{{ root_url }}/images/flatiron/ryan.png" width="90%"/>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Technical | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/technical/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2014-11-02T22:42:21-05:00</updated>
+  <updated>2014-11-02T22:48:54-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -23,7 +23,7 @@
 <!--more-->
 
 
-<p>Today we&rsquo;ll be using <a href="http://disqus.com">Disqus</a>, this is something that&rsquo;s already implemented in the current update of Octopress. The first thing you&rsquo;ll need to do is signup for a Disqus account. If you already have an account you can skip down to <span style="font-weight: 600">Step 2</span>.</p>
+<p>Today we&rsquo;ll be using <a href="http://disqus.com">Disqus</a>, this is something that&rsquo;s already implemented in the current update of Octopress. The first thing you&rsquo;ll need to do is signup for a Disqus account. If you already have an account you can skip down to <span style="font-weight: 500">Step 2</span>.</p>
 
 <h2>Step 1</h2>
 
@@ -46,9 +46,9 @@
 
 <h2>Step 4</h2>
 
-<p>At this point in the game you can actually start working with your blog&rsquo;s source code. If you&rsquo;re up to date with Octopress you should already have the call to the Disqus partial inside your <span style="font-weight: 600">_layouts/post.html</span> partial.</p>
+<p>At this point in the game you can actually start working with your blog&rsquo;s source code. If you&rsquo;re up to date with Octopress you should already have the call to the Disqus partial inside your <span style="font-weight: 500">_layouts/post.html</span> partial.</p>
 
-<p>The only thing you will need to change is inside the _includes/disqus.html partial. On line 4 you will need to put your Disqus <span  style="font-weight: 600">Short Name</span></p>
+<p>The only thing you will need to change is inside the _includes/disqus.html partial. On line 4 you will need to put your unique short name for the site. If you can&rsquo;t remember it go to the admin page of your Disqus account, choose the unique site, and select the <span style="font-weight: 500">Settings</span> tab.</p>
 
 <p><figure class='code'><figcaption><span>[disqus.html] </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>

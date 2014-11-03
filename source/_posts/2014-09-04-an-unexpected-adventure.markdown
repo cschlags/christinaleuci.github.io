@@ -10,7 +10,7 @@ This past summer I attended The Flatiron School in New York City for their Ruby 
 
 <!--more-->
 
-<img src="{{ root_url }}/images/FlatironBeg.png" />
+<img src="{{ root_url }}/images/FlatironBeg.png" width="90%"/>
 
 My first serious taste of programming and computers started during my second year of college. I took an Intro to Computer Science course and although I fell in love with programming it left me voracious for the creative side of the subject. About halfway through that course I attended a Hackathon and I felt like a complete noob (thank god my group was so understanding) but it was so worth it, I learned that I could create anything I wanted through programming. When I took a break from college I dabbled into Code Academy and online resources but they never gave me that inspiration that I had found during that Hackathon.
 
@@ -24,7 +24,7 @@ Within an hour I heard back from Adam that I had been accepted for the summer co
 
 The first week of Flatiron was a soft introduction into what we would be doing and what we could expect from the course. I had completed the pre-work from the course but things were still new to me and I felt a little lost. That seemed to be a common thought among the class.
 
-<img src="{{ root_url }}/images/FlatironStudents.png" />
+<img src="{{ root_url }}/images/FlatironStudents.png" width="90%"/>
 
 The second week started picking up and from there we were in full-coursework mode. There were times I didn’t think I could keep up or that I just couldn’t get a topic. It was really helpful for me that our class had a Feeling’s Friday. Those sessions really helped me get a notion of what everyone else was thinking and just how grateful I was to be at the school. At one point, during a really tough week Avi took me aside and talked with me about what I was feeling. It was nice knowing that although we were adults and were meant to look for help if we needed it, the staff would still check in on us. He ended up giving me a lot of great advice and honestly it made me feel a lot better.
 
@@ -34,15 +34,15 @@ The next week was much more intense, we had to choose our group and create a muc
 
 For some reason the Tuesday of my meet-up I was completely calm. I had always worried about public speaking but something about knowing the code in’s and out’s of our code made talking to a group of my peers not as terrifying as I thought it would be. It was a really fun experience going through the project and showing off our hard work. By the end of our talk I was more excited about the Science Fair in the next two days.
 
-<img src="{{ root_url }}/images/sciencefair.png" />
+<img src="{{ root_url }}/images/sciencefair.png" width="90%"/>
 
 Talk about the calm before the storm; I don’t know about the rest of my class but the morning of our Science Fair was the calmest moment I experienced during the project mode weeks. Everyone’s project’s were finished and ready for presenting so there was little to do but relax, something that was really helpful prior to the Fair. At 3, we started getting situated at our tables within an hour we had our first companies coming in.
 
 The school had 250 companies attend the fair, and some companies had two or three recruiters; it was a really intense and talk-filled three hours. Recruiters, employees, and programmers came and went and the questions ranged from technical topics to simple “what does this button do”. I found it really helpful to change up my list of projects every twenty minutes and keep my mind active. The three hours came and went quickly, it was surprising how talking constantly made the time fly. Although I didn’t stick around for the after-party with the students and staff I knew that we had all had a successful fair.
 
-<img src="{{ root_url }}/images/flatirongraduation.png" />
+<img src="{{ root_url }}/images/flatirongraduation.png" width="90%"/>
 
 Last Friday, the 22nd, was our last day. Although I’m sad that the journey is over a new one is beginning and I’m terribly excited for it. I wish all the luck in the world to the Ruby 005, iOS 002, and Brooklyn 001 classes. It’s been a wonderful experience and we’re going to do amazingly. We’ve gotten through Flatiron, we can do anything!
 
 And the best thing about programming is now I can understand the Programmer Ryan Gosling memes!
-<img src="{{ root_url }}/images/RyanGoslingProgram.png" />
+<img src="{{ root_url }}/images/RyanGoslingProgram.png" width="90%"/>

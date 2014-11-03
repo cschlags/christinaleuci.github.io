@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Add Comments To a Github Blog"
+title: "Add Comments To a Octopress Blog"
 date: 2014-10-28 23:14:56 -0400
 comments: true
-categories: [Technical, Github]
+categories: [Technical, Octopress]
 ---
 
 Have you ever wanted to add comments to you github pages blog? It will take a quick two minutes and you'll be ready for feedback!

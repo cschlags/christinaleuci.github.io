@@ -13,7 +13,7 @@ single: true
           {% include post/categories.html %}
         </div>
         {{ content }}
-
+        {% include disqus.html %}
         <hr class="divider-short"/>
         
         {% if site.disqus_short_name and page.comments == true %}

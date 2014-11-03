@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2014-11-03T12:22:31-05:00</updated>
+  <updated>2014-11-03T13:51:37-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -29,18 +29,18 @@
 
 <p>Once you&rsquo;ve signed up for your Disqus account go to the icon at the top right of your page. In the drop down menu click on the My Home button.</p>
 
-<p><img src="/images/start.png" width="90%"/></p>
+<p><img src="/images/disqus/start.png" width="90%"/></p>
 
 <h2>Step 2</h2>
 
 <p>At this point you will have come to your Disqus homepage, for your purposes of using Disqus as a comment feed you won&rsquo;t need the homepage much. If you go again to the top right of the screen and click on the gear it will show you another drop down menu. In this menu click on the Add Disqus to Site button.</p>
 
-<p><img src="/images/homemenu.png"/></p>
+<p><img src="/images/disqus/homemenu.png"/></p>
 
 <h2>Step 3</h2>
 
 <p>Fill out the form like so:
-<img src="/images/siteprofile.png" width="90%"/></p>
+<img src="/images/disqus/siteprofile.png" width="90%"/></p>
 
 <p>Make sure that when you choose your Unique Disqus URL you are sure of it. So far Disqus has not given user&rsquo;s the option of changing it.</p>
 

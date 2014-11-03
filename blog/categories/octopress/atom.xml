@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Octopress | Christina Leuci]]></title>
+  <title><![CDATA[Category: octopress | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2014-11-03T16:25:07-05:00</updated>
+  <updated>2014-11-03T17:28:17-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Add Comments to a Octopress Blog]]></title>
+    <title type="html"><![CDATA[Add Comments To a Octopress Blog]]></title>
     <link href="http://ChristinaLeuci.github.io/blog/2014/10/28/add-comments-to-your-blog/"/>
     <updated>2014-10-28T23:14:56-04:00</updated>
     <id>http://ChristinaLeuci.github.io/blog/2014/10/28/add-comments-to-your-blog</id>

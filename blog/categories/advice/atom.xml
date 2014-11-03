@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Advice | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/advice/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2014-11-03T12:21:08-05:00</updated>
+  <updated>2014-11-03T12:22:31-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -41,7 +41,7 @@ Now that we have a diagram of the box and it’s points finished let’s move th
 
 <p>And you’re finished! Although the question may seem simple, there is a complicated process to it. At this point what you could do is, further optimize your code or run it to see if it works. If we were to optimize this could what we could do is take out the if statement. By doing something like this:</p>
 
-<p><img src="/images/fina.jpg" width="90%"/></p>
+<p><img src="/images/final.jpg" width="90%"/></p>
 
 <p>it shows that you can solve a simple problem while optimizing your code.
 Remember to check your code. It’s impressive to interviewers if you can catch your mistakes before presenting your code. Now at this point, an interviewer will either tell you good job or they will ask if it works. If they ask you the latter the best thing you can say is “I think it does, let’s check”. This shows confidence and that you’re willing to show you’re work.

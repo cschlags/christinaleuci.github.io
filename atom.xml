@@ -4,7 +4,7 @@
   <title><![CDATA[Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2014-11-02T22:18:49-05:00</updated>
+  <updated>2014-11-02T22:32:19-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -23,7 +23,7 @@
 <!--more-->
 
 
-<p>Today we&rsquo;ll be using <a href="http://disqus.com">Disqus</a>, this is something that&rsquo;s already implemented in the current update of Octopress. The first thing you&rsquo;ll need to do is signup for a Disqus account. If you already have an account you can skip down to <span style="font-weight:800">Step 2</span>.</p>
+<p>Today we&rsquo;ll be using <a href="http://disqus.com">Disqus</a>, this is something that&rsquo;s already implemented in the current update of Octopress. The first thing you&rsquo;ll need to do is signup for a Disqus account. If you already have an account you can skip down to <span style="font-weight: 600">Step 2</span>.</p>
 
 <h2>Step 1</h2>
 
@@ -46,13 +46,35 @@
 
 <h2>Step 4</h2>
 
-<p>At this point in the game you can actually start working with your blog&rsquo;s source code. If you&rsquo;re up to date with Octopress you should already have the call to the Disqus partial inside your _layouts/post.html partial.</p>
+<p>At this point in the game you can actually start working with your blog&rsquo;s source code. If you&rsquo;re up to date with Octopress you should already have the call to the Disqus partial inside your <span style="font-weight: 600">_layouts/post.html</span> partial.</p>
 
-<p>{include_code source/<em>includes/</em>layouts/post.html}</p>
+<p>The only thing you will need to change is inside the _includes/disqus.html partial. On line 4 you will need to put your Disqus <span  style="font-weight: 600">Short Name</span></p>
 
-<p>The only thing you will need to change is inside the _includes/disqus.html partial. On line 4 you will need to put your <span  style="font-weight: 800">Short Name</span></p>
+<figure class='code'><figcaption><span>[disqus.html] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="cm">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">disqus_shortname</span> <span class="o">=</span> <span class="s1">&#39;YOUR_SHORTNAME_HERE&#39;</span><span class="p">;</span> <span class="c1">// required: replace example with your forum shortname</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="cm">/* * * DON&#39;T EDIT BELOW THIS LINE * * */</span>
+</span><span class='line'>    <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">dsq</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span> <span class="nx">dsq</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span> <span class="nx">dsq</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class='line'>        <span class="nx">dsq</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;//&#39;</span> <span class="o">+</span> <span class="nx">disqus_shortname</span> <span class="o">+</span> <span class="s1">&#39;.disqus.com/embed.js&#39;</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">dsq</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">})();</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>{include_code source/_includes/disqus.html}</p>
 
 <p>And that&rsquo;s it! When you deploy your Octopress blog there will now be a comment section at the end of your blog posts.</p>
 ]]></content>

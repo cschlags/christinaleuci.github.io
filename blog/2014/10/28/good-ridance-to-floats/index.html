@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Good Ridance to Floats - Christina Leuci</title>
+  <meta name="author" content="Christina Leuci">
+
+  
+  <meta name="description" content="Good Ridance to Floats written in front-end, technical As much as I have liked using floats in the past I have to recognize that there are much &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ChristinaLeuci.github.io/blog/2014/10/28/good-ridance-to-floats">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Christina Leuci" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+
+</head>
+
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
+
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Good Ridance to Floats</h1>
+        <div class="meta">
+          written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-10-28T23:14:56-04:00" pubdate data-updated="true"></time>
+          
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/front-end/'>front-end</a>, <a class='category' href='/blog/categories/technical/'>technical</a>
+  
+</span>
+
+
+        </div>
+        <p>As much as I have liked using floats in the past I have to recognize that there are much better substitutes to floats out there. Much of the Front-End programming world right now:</p>
+
+<!--more-->
+
+
+<p><img class="center" src="/images/floatsmeangirls.png" title="image" alt="images"></p>
+
+<p>Not so long ago programmers mainly used HTML tables to design complicated websites. Over the years the up and coming CSS has taken a hold of the layout scene. One of the most popular and most difficult positioning properties to master are floats. Many programmers can surely admit that although they have become accustomed to using floats in my css files they are buggy, awkward, and pretty difficult to learn.</p>
+
+<h2>What Are Floats?</h2>
+
+<p>Let&rsquo;s do a quick overview of what floats are. Floated elements are a part of the web page, they are different than page elements that use absolute positioning. Absolute positioned elements are removed from the flow of the webpage, this means that they no longer affect other elements regardless of if they touch.</p>
+
+<p>There are four valid values for the float property. The default property is None, this means that the element will not float. Inherit will assume the float value of it&rsquo;s parent element. Left and Right are directional float values.
+{float properties}</p>
+
+<h2>Clearfix to the Rescue</h2>
+
+<p>The problem with floats is that they don&rsquo;t work well with their container elements. If you want your parent element to look as if it&rsquo;s holding floated elements what you need to do is put a &ldquo;clear:both&rdquo; inside the container on the last line.</p>
+
+<p>Of course programmers have hacked this nuance. Instead of possibly having single-lined css classes for parent elements to show their floated children.</p>
+
+<p>Floats aren&rsquo;t entirely bad, they are fantastic at wrapping text around images so that the text does not overlay on top of the image. They have been used in creating large website layouts to smaller instances where reflow is needed.</p>
+
+<h2>Inline-Blocks</h2>
+
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'christinaleucigithubio'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <hr class="divider-short"/>
+        
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+          <a class="pull-left" href="/blog/2014/09/22/technical-interviews/" title="Previous Post: Technical Interviews, Oh My!">&laquo; Previous: Technical Interviews, Oh My!</a>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="/"><h4>Home</h4></a>
+</div>
+
+<div class="col-md-2">
+  <div class="social-icon-list">
+    
+
+    
+
+    
+
+    
+  </div>
+</div>
+
+<div class="pull-right">
+  <h4>Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

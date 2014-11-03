@@ -7,7 +7,13 @@ title: Christina Leuci
 subtitle: I pity the "foo"
 author: Christina Leuci
 simple_search: https://www.google.com/search
-description: A really cool tech blog
+description: I’m a full-stack ruby dev from New Jersey now working in New York. I build apps and products, such as <a href="peliculapicker.herokuapp.com">Pelicula Picker</a>, an app that rates how well a user will like a movie in theaters , and <a href="mytraveljournal.me">My Travel Journal</a>, an app to keep track of trips.
+
+    Here I am rambling about me. Check out my blogs down below!
+twitter_user: ChristinaLeuci
+github_user: christinaleuci
+linkedin_user: christina-leuci/78/756/a57
+email: christinaleuci@gmail.com
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in

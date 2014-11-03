@@ -5,7 +5,11 @@ date: 2014-11-03 14:20:03 -0500
 comments: true
 categories: [Technical, Ruby]
 ---
-This is a really quick Ruby program that really feels like it's playing against you. I created this a couple of months ago so it may not be the most optimized it can be but it works which is the important thing. What you must first do is define the parameters of the board
+This is a really quick Ruby tictactoe program that really feels like it's playing against you. 
+
+<!--more-->
+
+I created this a couple of months ago so it may not be the most optimized it can be but it works which is the important thing. What you must first do is define the parameters of the board
 
 {%codeblock%}
 #all the different slots that you can play

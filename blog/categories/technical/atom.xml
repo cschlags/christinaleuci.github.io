@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Technical | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/technical/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2014-11-02T20:27:30-05:00</updated>
+  <updated>2014-11-02T22:18:49-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -14,35 +14,47 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Good Ridance to Floats]]></title>
+    <title type="html"><![CDATA[Add Comments to a Github Blog]]></title>
     <link href="http://ChristinaLeuci.github.io/blog/2014/10/28/good-ridance-to-floats/"/>
     <updated>2014-10-28T23:14:56-04:00</updated>
     <id>http://ChristinaLeuci.github.io/blog/2014/10/28/good-ridance-to-floats</id>
-    <content type="html"><![CDATA[<p>As much as I have liked using floats in the past I have to recognize that there are much better substitutes to floats out there. Much of the Front-End programming world right now:</p>
+    <content type="html"><![CDATA[<p>Have you ever wanted to add comments to you github pages blog? It will take a quick two minutes and you&rsquo;ll be ready for feedback!</p>
 
 <!--more-->
 
 
-<p><img class="center" src="/images/floatsmeangirls.png" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" ></p>
+<p>Today we&rsquo;ll be using <a href="http://disqus.com">Disqus</a>, this is something that&rsquo;s already implemented in the current update of Octopress. The first thing you&rsquo;ll need to do is signup for a Disqus account. If you already have an account you can skip down to <span style="font-weight:800">Step 2</span>.</p>
 
-<p>Not so long ago programmers mainly used HTML tables to design complicated websites. Over the years the up and coming CSS has taken a hold of the layout scene. One of the most popular and most difficult positioning properties to master are floats. Many programmers can surely admit that although they have become accustomed to using floats in my css files they are buggy, awkward, and pretty difficult to learn.</p>
+<h2>Step 1</h2>
 
-<h2>What Are Floats?</h2>
+<p>Once you&rsquo;ve signed up for your Disqus account go to the icon at the top right of your page. In the drop down menu click on the My Home button.</p>
 
-<p>Let&rsquo;s do a quick overview of what floats are. Floated elements are a part of the web page, they are different than page elements that use absolute positioning. Absolute positioned elements are removed from the flow of the webpage, this means that they no longer affect other elements regardless of if they touch.</p>
+<p><img src="/images/start.png"/></p>
 
-<p>There are four valid values for the float property. The default property is None, this means that the element will not float. Inherit will assume the float value of it&rsquo;s parent element. Left and Right are directional float values.
-{float properties}</p>
+<h2>Step 2</h2>
 
-<h2>Clearfix to the Rescue</h2>
+<p>At this point you will have come to your Disqus homepage, for your purposes of using Disqus as a comment feed you won&rsquo;t need the homepage much. If you go again to the top right of the screen and click on the gear it will show you another drop down menu. In this menu click on the Add Disqus to Site button.</p>
 
-<p>The problem with floats is that they don&rsquo;t work well with their container elements. If you want your parent element to look as if it&rsquo;s holding floated elements what you need to do is put a &ldquo;clear:both&rdquo; inside the container on the last line.</p>
+<p><img src="/images/homemenu.png"/></p>
 
-<p>Of course programmers have hacked this nuance. Instead of possibly having single-lined css classes for parent elements to show their floated children.</p>
+<h2>Step 3</h2>
 
-<p>Floats aren&rsquo;t entirely bad, they are fantastic at wrapping text around images so that the text does not overlay on top of the image. They have been used in creating large website layouts to smaller instances where reflow is needed.</p>
+<p>Fill out the form like so:
+<img src="/images/siteprofile.png"/></p>
 
-<h2>Inline-Blocks</h2>
+<p>Make sure that when you choose your Unique Disqus URL you are sure of it. So far Disqus has not given user&rsquo;s the option of changing it.</p>
+
+<h2>Step 4</h2>
+
+<p>At this point in the game you can actually start working with your blog&rsquo;s source code. If you&rsquo;re up to date with Octopress you should already have the call to the Disqus partial inside your _layouts/post.html partial.</p>
+
+<p>{include_code source/<em>includes/</em>layouts/post.html}</p>
+
+<p>The only thing you will need to change is inside the _includes/disqus.html partial. On line 4 you will need to put your <span  style="font-weight: 800">Short Name</span></p>
+
+<p>{include_code source/_includes/disqus.html}</p>
+
+<p>And that&rsquo;s it! When you deploy your Octopress blog there will now be a comment section at the end of your blog posts.</p>
 ]]></content>
   </entry>
   

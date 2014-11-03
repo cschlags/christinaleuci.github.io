@@ -9,12 +9,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Christina Leuci</title>
+  <title>Tictactoe in Ruby - Christina Leuci</title>
   <meta name="author" content="Christina Leuci">
 
   
-  <meta name="description" content="Christina Leuci
-I pity the "foo" about me I’m a full-stack ruby dev from New Jersey now working in New York. I build apps and products, such as &hellip;">
+  <meta name="description" content="Tictactoe in Ruby written in ruby, technical This is a really quick Ruby program that really feels like it&rsquo;s playing against you. I created &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -23,7 +22,7 @@ I pity the "foo" about me I’m a full-stack ruby dev from New Jersey now workin
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ChristinaLeuci.github.io">
+  <link rel="canonical" href="http://ChristinaLeuci.github.io/blog/2014/11/03/tictactoe-in-ruby">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Christina Leuci" type="application/atom+xml">
@@ -40,48 +39,38 @@ I pity the "foo" about me I’m a full-stack ruby dev from New Jersey now workin
       <img src="/images/home.png"/>
     </a>
 
-    <div class="home-page">
-  <div class="hero">
-    <h1>Christina Leuci</h1>
-<p>I pity the &#8220;foo&#8221;</p>
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Tictactoe in Ruby</h1>
+        <div class="meta">
+          written 
 
-  </div>
 
-  <div class="home-field">
-    <div class="home-landing her-row">
-      <div class="container">
-        <div class="row">
-          <div id="about-me" class="col-md-offset-3 col-md-6">
-  <h4>about me</h4>
-  <p>I’m a full-stack ruby dev from New Jersey now working in New York. I build apps and products, such as <a href="peliculapicker.herokuapp.com">Pelicula Picker</a>, an app that rates how well a user will like a movie in theaters , and <a href="mytraveljournal.me">My Travel Journal</a>, an app to keep track of trips. Check out my blogs down below!</p>
-  <div class="social-icon-list">
-  	
-    
-    
-    <a title="LinkedIn" href="https://www.linkedin.com/pub/christina-leuci/78/756/a57"><img src="/images/glyphicons_social_17_linked_in.png"/></a>
-    
-    
-  </div>
-</div>
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-11-03T14:20:03-05:00" pubdate data-updated="true"></time>
+          
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/technical/'>technical</a>
+  
+</span>
+
 
         </div>
-      </div>
-    </div>
-
-    <div class="article-list">
-      <div class="container">
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2014/11/03/tictactoe-in-ruby/">Tictactoe in Ruby</a></h2>
-  
-  <p>
-    <p>This is a really quick Ruby program that really feels like it&rsquo;s playing against you. I created this a couple of months ago so it may not be the most optimized it can be but it works which is the important thing. What you must first do is define the parameters of the board</p>
-
-
-
+        <p>This is a really quick Ruby program that really feels like it&rsquo;s playing against you. I created this a couple of months ago so it may not be the most optimized it can be but it works which is the important thing. What you must first do is define the parameters of the board</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -121,12 +110,7 @@ I pity the "foo" about me I’m a full-stack ruby dev from New Jersey now workin
 </span><span class='line'>]</span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>The next thing you need to do is initialize the players, you and the computer. In the method below we define the computer&rsquo;s name as Computer and prints out the lines before taking in a user&rsquo;s name.</p>
-
-
-
 
 <figure class='code'><figcaption><span>tictactoe.rb</span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -144,12 +128,7 @@ I pity the "foo" about me I’m a full-stack ruby dev from New Jersey now workin
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>What we must now decide is who&rsquo;s turn it will be. I decided to create some logic that randomnly selects who will go first.</p>
-
-
-
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -183,12 +162,7 @@ I pity the "foo" about me I’m a full-stack ruby dev from New Jersey now workin
 </span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>At this point we have defined the parameters of the game, who the players are, and who will go first. What we must do now is draw the game and figure out the logic that allows the computer to be a worthy opponent. Let&rsquo;s start with an easy method to draw the board.</p>
-
-
-
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -226,17 +200,9 @@ I pity the "foo" about me I’m a full-stack ruby dev from New Jersey now workin
 </span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>What this will print out is a board that contains the slot names ie. &ldquo;a1&hellip;a2&rdquo; in their slots. At this point we can start dealing with the more complicated logic. Let&rsquo;s begin by starting with the two methods we defined earlier when we figured out which player would go first.</p>
 
-
-
-
 <p>Let&rsquo;s walk through the player_turn method. It begins by drawing the game and then asks the player to make a move by typing in a slot. Inside the method we check if the slot the user inputted is legitimate. If it&rsquo;s not we call the wrong_move or wrong_input method&rsquo;s but we&rsquo;ll cover that in just a second.</p>
-
-
-
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -298,12 +264,7 @@ I pity the "foo" about me I’m a full-stack ruby dev from New Jersey now workin
 </span><span class='line'> end</span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>The wrong_move and wrong_input methods are very simple. If the input the user gives is wrong then the program prints out that the player inputed the wrong string. It calls the player_turn method again for the player to pick another turn.</p>
-
-
-
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -329,12 +290,7 @@ I pity the "foo" about me I’m a full-stack ruby dev from New Jersey now workin
 </span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>If we walk through the code at this point as a player we find ourselves at the check_game method. This is a main method in our program so let&rsquo;s take a break from the player path and delve more into the computer path so we can find ourselves again at the check_game method.</p>
-
-
-
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -352,12 +308,7 @@ I pity the "foo" about me I’m a full-stack ruby dev from New Jersey now workin
 </span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>The first method we encounter here is the comp_find_move method. This will decide the next move that the computer will take before we check the game for a winner or loser. Let&rsquo;s go over the comp_find_move method now to go over the logic involved in the computer finding it&rsquo;s next move.</p>
-
-
-
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -425,17 +376,9 @@ I pity the "foo" about me I’m a full-stack ruby dev from New Jersey now workin
 </span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>This method figures out the best moves the computer can make to make sure it beats the player. The first if clause chooses a slot if the computer already has two slots in a line. The next if clause chooses a slot to defend against the player. The last if clause chooses a slot if the computer already has one slot in a row on the board. If all these if clauses have failed then the computer chooses an empty slot.</p>
 
-
-
-
 <p>Let&rsquo;s go over the times_in_column and empty_in_column methods before we go over the check_game method.</p>
-
-
-
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -481,17 +424,9 @@ I pity the "foo" about me I’m a full-stack ruby dev from New Jersey now workin
 </span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>These two methods are very simple. The times_in_column method count the slots that are in a column. So if there were three slots in a column it would return three. Similarly the empty_in_column method returns if there is an empty space in that column.</p>
 
-
-
-
 <p>At this point we&rsquo;ve handled all the minor methods, we have one more method to go, the check_game method. This will essentially tell us if there is a winner, a tie, or if the game needs to continue.</p>
-
-
-
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -563,22 +498,11 @@ I pity the "foo" about me I’m a full-stack ruby dev from New Jersey now workin
 </span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>This method begins by setting a game_over value to false. In the first if loop we figure out if the computer has three slots in a row, if that&rsquo;s true the program outputs that the computer has won and the program stops. If the player has three slots in a row then the program outputs that the player has won and the program stops.</p>
-
-
-
 
 <p>The final if statement checks to make sure that there are no more moves left. If there are more moves left then it figures out who has the next move. If there are no more moves left it outputs that the game has ended in a draw and the program stops.</p>
 
-
-
-
 <p>If you haven&rsquo;t noticed we have one small problem, we still need to define the moves_left method. This last piece completes the program. This method goes through the board to see if there is another slot open for a move to be completed.</p>
-
-
-
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -596,249 +520,41 @@ I pity the "foo" about me I’m a full-stack ruby dev from New Jersey now workin
 </span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>Congratulations you&rsquo;ve completed a Ruby Tictactoe program! As with any good program there are always ways to optimize the code. Let me know what you think of the code.</p>
 
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'christinaleucigithubio'; // required: replace example with your forum shortname
 
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-11-03T14:20:03-05:00" pubdate data-updated="true"></time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/technical/'>technical</a>
-  
-</span>
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <hr class="divider-short"/>
         
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2014/10/28/add-comments-to-your-blog/">Add Comments to a Octopress Blog</a></h2>
-  
-  <p>
-    <p>Have you ever wanted to add comments to you github pages blog? It will take a quick two minutes and you&rsquo;ll be ready for feedback!</p>
-
-
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-10-28T23:14:56-04:00" pubdate data-updated="true"></time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/technical/'>technical</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/10/28/add-comments-to-your-blog/">Read on &rarr;</a>
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2014/09/22/technical-interviews/">Technical Interviews, Oh My!</a></h2>
-  
-  <p>
-    <p>So far my mentorship  at Stack Exchange has been amazing. I’ve been working with Max Horstmann, a Senior Developer on their Careers 2.0 team. We’ve mainly been going over mock interviews and how I should properly conduct myself in interviews. Of all the information I’ve taken away from our meetings has been the process for dealing with technical practices. As Max has said, “Repeat, Clarify, make examples, pseudo-code, code, and finally run it”.</p>
-
-
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-09-22T09:21:02-04:00" pubdate data-updated="true"></time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/interview/'>interview</a>, <a class='category' href='/blog/categories/technical/'>technical</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/09/22/technical-interviews/">Read on &rarr;</a>
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2014/09/04/an-unexpected-adventure/">An Unexpected Adventure: My Flatiron Experience</a></h2>
-  
-  <p>
-    <p>This past summer I attended The Flatiron School in New York City for their Ruby summer intensive course. It was a roller coaster of emotions and learning but I wouldn’t give up those memories for anything. Through tears and laughter I have made life-long friends, found a dazzling confidence I never knew I had, and of course learned a mountain of programming material.</p>
-
-
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-09-04T14:16:55-04:00" pubdate data-updated="true"></time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/non-technical/'>non-technical</a>, <a class='category' href='/blog/categories/the-flatiron-school/'>the flatiron school</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/09/04/an-unexpected-adventure/">Read on &rarr;</a>
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2014/06/13/arrays-of-a-feather-flock-together/">Arrays of a Feather Flock Together</a></h2>
-  
-  <p>
-    <p>Nested arrays were a big problem for me even in Java. I understood the concept that there was an array inside an array but the syntax and use never really connected. The NYC Pigeon Lab was pretty difficult for me. Taking one nested array and translating it into another was like climbing Mount Everest in under a minute.</p>
-
-
-
-
-<p>I have found that explaining programs (or trying to) has helped me greatly in understanding the use of syntax. So let me teach you about these little nuisances called Nested Arrays.</p>
-
-
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-06-13T05:21:18-04:00" pubdate data-updated="true"></time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/data-structures/'>data structures</a>, <a class='category' href='/blog/categories/technical/'>technical</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/06/13/arrays-of-a-feather-flock-together/">Read on &rarr;</a>
-  
-</article>
-
-            </div>
-          </div>
         
       </div>
     </div>
+  </div>
+</article>
 
-    <hr class="divider-short"/>
+<hr class="divider-short"/>
 
-    <div class="archive-link">
-      <h3><a href="/posts/">All Posts</a></h3>
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+          <a class="pull-left" href="/blog/2014/10/28/add-comments-to-your-blog/" title="Previous Post: Add Comments To a Octopress Blog">&laquo; Previous: Add Comments To a Octopress Blog</a>
+        
+
+        
+      </div>
     </div>
   </div>
 </div>

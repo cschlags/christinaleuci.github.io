@@ -13,7 +13,7 @@
   <meta name="author" content="Christina Leuci">
 
   
-  <meta name="description" content="All Posts Add Comments to a Octopress Blog Have you ever wanted to add comments to you github pages blog? It will take a quick two minutes and you& &hellip;">
+  <meta name="description" content="All Posts Tictactoe in Ruby This is a really quick Ruby program that really feels like it&rsquo;s playing against you. I created this a couple of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -50,6 +50,570 @@
 
   <div class="article-list">
     <div class="container">
+      
+      
+      <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+          <article>
+  <h2><a href="/blog/2014/11/03/tictactoe-in-ruby/">Tictactoe in Ruby</a></h2>
+  
+  <p>
+    <p>This is a really quick Ruby program that really feels like it&rsquo;s playing against you. I created this a couple of months ago so it may not be the most optimized it can be but it works which is the important thing. What you must first do is define the parameters of the board</p>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#all the different slots that you can play
+</span><span class='line'>@slots = { 
+</span><span class='line'>  "a1"=>" ","a2"=>" ","a3"=>" ",
+</span><span class='line'>  "b1"=>" ","b2"=>" ","b3"=>" ",
+</span><span class='line'>  "c1"=>" ","c2"=>" ","c3"=>" "
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>#all 8 winning matches
+</span><span class='line'>@winning = [ 
+</span><span class='line'>  ['a1', 'a2', 'a3'],
+</span><span class='line'>  ['b1', 'b2', 'b3'],
+</span><span class='line'>  ['c1', 'c2', 'c3'],
+</span><span class='line'>  ['a1', 'b1', 'c1'],
+</span><span class='line'>  ['a2', 'b2', 'c2'],
+</span><span class='line'>  ['a3', 'b3', 'c3'],
+</span><span class='line'>  ['a1', 'b2', 'c3'],
+</span><span class='line'>  ['c1', 'b2', 'a3']
+</span><span class='line'>]</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>The next thing you need to do is initialize the players, you and the computer. In the method below we define the computer&rsquo;s name as Computer and prints out the lines before taking in a user&rsquo;s name.</p>
+
+
+
+
+<figure class='code'><figcaption><span>tictactoe.rb</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="c1"># player names; introduction</span>
+</span><span class='line'><span class="vi">@comp_name</span> <span class="o">=</span> <span class="s2">&quot;Computer&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;TIC TAC TOE&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;Player, what is your name?&quot;</span>
+</span><span class='line'><span class="no">STDOUT</span><span class="o">.</span><span class="n">flush</span>
+</span><span class='line'><span class="vi">@player_name</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">chomp</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>What we must now decide is who&rsquo;s turn it will be. I decided to create some logic that randomnly selects who will go first.</p>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># determine who is X or O
+</span><span class='line'># use .5 because only 2 options [x or o]
+</span><span class='line'>@comp = rand() > 0.5 ? 'X' : 'O'
+</span><span class='line'>@player = @comp == 'X' ? 'O' : 'X'
+</span><span class='line'>
+</span><span class='line'>#actually initiating the methods
+</span><span class='line'> if(@player == 'X')
+</span><span class='line'>  puts ''
+</span><span class='line'>  puts "#{@player_name} has the first turn"
+</span><span class='line'>  player_turn
+</span><span class='line'>else
+</span><span class='line'>  puts ''
+</span><span class='line'>  puts "#{@comp_name} has the first turn"
+</span><span class='line'>  comp_turn
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>At this point we have defined the parameters of the game, who the players are, and who will go first. What we must do now is draw the game and figure out the logic that allows the computer to be a worthy opponent. Let&rsquo;s start with an easy method to draw the board.</p>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#draw game method shows slots, empty and full
+</span><span class='line'>def draw_game
+</span><span class='line'>  puts "-----------------------------------------------------------------------------"
+</span><span class='line'>
+</span><span class='line'>  puts "TIC TAC TOE"
+</span><span class='line'>  puts "#{@comp_name}: #{@comp}"
+</span><span class='line'>  puts "#{@player_name}: #{@player}"
+</span><span class='line'>  puts ""
+</span><span class='line'>  puts "   a   b   c"
+</span><span class='line'>  puts ""
+</span><span class='line'>  puts " 1 #{@slots["a1"]} | #{@slots["b1"]} | #{@slots["c1"]}"
+</span><span class='line'>  puts "   ---------"
+</span><span class='line'>  puts " 2 #{@slots["a2"]} | #{@slots["b2"]} | #{@slots["c2"]}"
+</span><span class='line'>  puts "   ---------"
+</span><span class='line'>  puts " 3 #{@slots["a3"]} | #{@slots["b3"]} | #{@slots["c3"]}"
+</span><span class='line'>  puts ""
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>What this will print out is a board that contains the slot names ie. &ldquo;a1&hellip;a2&rdquo; in their slots. At this point we can start dealing with the more complicated logic. Let&rsquo;s begin by starting with the two methods we defined earlier when we figured out which player would go first.</p>
+
+
+
+
+<p>Let&rsquo;s walk through the player_turn method. It begins by drawing the game and then asks the player to make a move by typing in a slot. Inside the method we check if the slot the user inputted is legitimate. If it&rsquo;s not we call the wrong_move or wrong_input method&rsquo;s but we&rsquo;ll cover that in just a second.</p>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def player_turn
+</span><span class='line'>  puts ""
+</span><span class='line'>  draw_game
+</span><span class='line'>  puts "#{@player_name}, please make a move or type 'exit' to quit"
+</span><span class='line'>  STDOUT.flush
+</span><span class='line'>  input = gets.chomp.downcase
+</span><span class='line'>  if input.length == 2
+</span><span class='line'>    a = input.split("")
+</span><span class='line'>    if(['a','b','c'].include? a[0])
+</span><span class='line'>      if(['1','2','3'].include? a[1])
+</span><span class='line'>        if @slots[input] == " "
+</span><span class='line'>          @slots[input] = @player
+</span><span class='line'>          puts ""
+</span><span class='line'>          puts "#{@player_name} marks #{input.upcase}"
+</span><span class='line'>      #puts times.times_in_column
+</span><span class='line'>          check_game(@comp)
+</span><span class='line'>        else
+</span><span class='line'>          wrong_move
+</span><span class='line'>        end
+</span><span class='line'>      else
+</span><span class='line'>        wrong_input
+</span><span class='line'>      end
+</span><span class='line'>    else
+</span><span class='line'>      wrong_input
+</span><span class='line'>    end
+</span><span class='line'>  else
+</span><span class='line'>    wrong_input unless input == 'exit'
+</span><span class='line'>  end
+</span><span class='line'> end</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>The wrong_move and wrong_input methods are very simple. If the input the user gives is wrong then the program prints out that the player inputed the wrong string. It calls the player_turn method again for the player to pick another turn.</p>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def wrong_move
+</span><span class='line'>  puts ""
+</span><span class='line'>  puts "You must choose an empty slot"
+</span><span class='line'>  player_turn
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'>def wrong_input
+</span><span class='line'>  puts ""
+</span><span class='line'>  puts "Please specify a move with the format 'A3' , 'B1' , 'C2' etc."
+</span><span class='line'>  player_turn
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>If we walk through the code at this point as a player we find ourselves at the check_game method. This is a main method in our program so let&rsquo;s take a break from the player path and delve more into the computer path so we can find ourselves again at the check_game method.</p>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def comp_turn
+</span><span class='line'>  move = comp_find_move
+</span><span class='line'>  @slots[move] = @comp
+</span><span class='line'>  puts ""
+</span><span class='line'>  puts "#{@comp_name} marks #{move.upcase}"
+</span><span class='line'>  check_game(@player)
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>The first method we encounter here is the comp_find_move method. This will decide the next move that the computer will take before we check the game for a winner or loser. Let&rsquo;s go over the comp_find_move method now to go over the logic involved in the computer finding it&rsquo;s next move.</p>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def comp_find_move
+</span><span class='line'>  #choosing best comp choice 2 in column
+</span><span class='line'>  for column in [@winnings] do
+</span><span class='line'>    if times_in_column(column, @comp) == 2
+</span><span class='line'>      return empty_in_column column
+</span><span class='line'>    end
+</span><span class='line'>  end
+</span><span class='line'>
+</span><span class='line'>  #defending against the player first
+</span><span class='line'>  for column in [@winnings] do
+</span><span class='line'>    if times_in_column(column, @player) == 2
+</span><span class='line'>      return empty_in_column column
+</span><span class='line'>    end
+</span><span class='line'>  end
+</span><span class='line'>
+</span><span class='line'>  #third best comp choice only one in column
+</span><span class='line'>  for column in [@winnings] do
+</span><span class='line'>    if times_in_column(column, @comp) == 1
+</span><span class='line'>      return empty_in_column column
+</span><span class='line'>    end
+</span><span class='line'>  end
+</span><span class='line'>
+</span><span class='line'>  #choosing an empty slot
+</span><span class='line'>  k = @slots.keys;
+</span><span class='line'>  j = rand(k.length)
+</span><span class='line'>  if @slots[k[j]] == " "
+</span><span class='line'>    return k[j]
+</span><span class='line'>  else
+</span><span class='line'>    #first empty slot
+</span><span class='line'>    @slots.each { |k,m| return k if m == " " }
+</span><span class='line'>  end
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>This method figures out the best moves the computer can make to make sure it beats the player. The first if clause chooses a slot if the computer already has two slots in a line. The next if clause chooses a slot to defend against the player. The last if clause chooses a slot if the computer already has one slot in a row on the board. If all these if clauses have failed then the computer chooses an empty slot.</p>
+
+
+
+
+<p>Let&rsquo;s go over the times_in_column and empty_in_column methods before we go over the check_game method.</p>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def times_in_column arr, item
+</span><span class='line'>  times = 0
+</span><span class='line'> #arr.each do |i|
+</span><span class='line'> for i in [arr] do
+</span><span class='line'>    if @slots[i] != " "
+</span><span class='line'>    times += 1
+</span><span class='line'>    unless @slots[i] == item || @slots[i] == " "
+</span><span class='line'>      return 0
+</span><span class='line'>    end
+</span><span class='line'>  end
+</span><span class='line'>  return times
+</span><span class='line'>  end
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'>def empty_in_column arr
+</span><span class='line'>  arr.each do |i|
+</span><span class='line'>    if @slots[i] == " "
+</span><span class='line'>      return i
+</span><span class='line'>    end
+</span><span class='line'>  end
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>These two methods are very simple. The times_in_column method count the slots that are in a column. So if there were three slots in a column it would return three. Similarly the empty_in_column method returns if there is an empty space in that column.</p>
+
+
+
+
+<p>At this point we&rsquo;ve handled all the minor methods, we have one more method to go, the check_game method. This will essentially tell us if there is a winner, a tie, or if the game needs to continue.</p>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#checking winnings or loses or continuings
+</span><span class='line'>def check_game(next_turn)
+</span><span class='line'>  game_over = false
+</span><span class='line'>  #@winnings.each do |column|
+</span><span class='line'>  for column in [@winnings] do
+</span><span class='line'>    #comp has won?
+</span><span class='line'>    if times_in_column(column, @comp) == 3 #three in a row
+</span><span class='line'>    puts ""
+</span><span class='line'>      puts "Game Over Dude, the Computer won!!!"
+</span><span class='line'>      game_over = true
+</span><span class='line'>    end
+</span><span class='line'>  
+</span><span class='line'>    #player has won?
+</span><span class='line'>    if times_in_column(column, @player) == 3 #three in a row
+</span><span class='line'>    puts ""
+</span><span class='line'>      puts "Game Over YOU win!!!"
+</span><span class='line'>      game_over = true
+</span><span class='line'>    end
+</span><span class='line'>  end
+</span><span class='line'>  unless game_over
+</span><span class='line'>    if(moves_left > 0) #no moves left
+</span><span class='line'>      if(next_turn == @player) #from comp_turn method
+</span><span class='line'>        player_turn
+</span><span class='line'>      else
+</span><span class='line'>        comp_turn #from player_turn method
+</span><span class='line'>    end
+</span><span class='line'>  
+</span><span class='line'>    else
+</span><span class='line'>      puts ""
+</span><span class='line'>      puts "Game Over -- DRAW!"
+</span><span class='line'>    game_over = true
+</span><span class='line'>    end
+</span><span class='line'>  end
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>This method begins by setting a game_over value to false. In the first if loop we figure out if the computer has three slots in a row, if that&rsquo;s true the program outputs that the computer has won and the program stops. If the player has three slots in a row then the program outputs that the player has won and the program stops.</p>
+
+
+
+
+<p>The final if statement checks to make sure that there are no more moves left. If there are more moves left then it figures out who has the next move. If there are no more moves left it outputs that the game has ended in a draw and the program stops.</p>
+
+
+
+
+<p>If you haven&rsquo;t noticed we have one small problem, we still need to define the moves_left method. This last piece completes the program. This method goes through the board to see if there is another slot open for a move to be completed.</p>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def moves_left
+</span><span class='line'>  slots = 0
+</span><span class='line'>  @slots.each do |k, v|
+</span><span class='line'>    slots += 1 if v == " "
+</span><span class='line'>  end
+</span><span class='line'>  slots
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Congratulations you&rsquo;ve completed a Ruby Tictactoe program! As with any good program there are always ways to optimize the code. Let me know what you think of the code.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-11-03T14:20:03-05:00" pubdate data-updated="true"></time>
+    
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/technical/'>technical</a>
+  
+</span>
+
+
+  </span>
+
+  
+</article>
+
+        </div>
+      </div>
       
       
       <div class="row">

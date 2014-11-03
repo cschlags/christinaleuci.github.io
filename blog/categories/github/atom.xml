@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Github | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/github/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2014-11-02T22:35:56-05:00</updated>
+  <updated>2014-11-02T22:42:21-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -29,18 +29,18 @@
 
 <p>Once you&rsquo;ve signed up for your Disqus account go to the icon at the top right of your page. In the drop down menu click on the My Home button.</p>
 
-<p><img src="{{ root_url }}/images/start.png"/></p>
+<p><img src="/images/start.png"/></p>
 
 <h2>Step 2</h2>
 
 <p>At this point you will have come to your Disqus homepage, for your purposes of using Disqus as a comment feed you won&rsquo;t need the homepage much. If you go again to the top right of the screen and click on the gear it will show you another drop down menu. In this menu click on the Add Disqus to Site button.</p>
 
-<p><img src="{{ root_url }}/images/homemenu.png"/></p>
+<p><img src="/images/homemenu.png"/></p>
 
 <h2>Step 3</h2>
 
 <p>Fill out the form like so:
-<img src="{{ root_url }}/images/siteprofile.png"/></p>
+<img src="/images/siteprofile.png"/></p>
 
 <p>Make sure that when you choose your Unique Disqus URL you are sure of it. So far Disqus has not given user&rsquo;s the option of changing it.</p>
 
@@ -50,22 +50,40 @@
 
 <p>The only thing you will need to change is inside the _includes/disqus.html partial. On line 4 you will need to put your Disqus <span  style="font-weight: 600">Short Name</span></p>
 
-<p>{% codeblock [disqus.html] %}</p>
-
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'YOUR_SHORTNAME_HERE'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><figcaption><span>[disqus.html] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="cm">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">disqus_shortname</span> <span class="o">=</span> <span class="s1">&#39;YOUR_SHORTNAME_HERE&#39;</span><span class="p">;</span> <span class="c1">// required: replace example with your forum shortname</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="cm">/* * * DON&#39;T EDIT BELOW THIS LINE * * */</span>
+</span><span class='line'>    <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">dsq</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span> <span class="nx">dsq</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span> <span class="nx">dsq</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class='line'>        <span class="nx">dsq</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;//&#39;</span> <span class="o">+</span> <span class="nx">disqus_shortname</span> <span class="o">+</span> <span class="s1">&#39;.disqus.com/embed.js&#39;</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">dsq</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">})();</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>And that&rsquo;s it! When you deploy your Octopress blog there will now be a comment section at the end of your blog posts.</p>
 ]]></content>

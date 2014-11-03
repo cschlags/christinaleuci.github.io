@@ -27,7 +27,7 @@ Here you can see that you do solve the problem and that it gives the correct ans
 
 And you’re finished! Although the question may seem simple, there is a complicated process to it. At this point what you could do is, further optimize your code or run it to see if it works. If we were to optimize this could what we could do is take out the if statement. By doing something like this:
 
-<img src="{{ root_url }}/images/fina.jpg" width="90%"/>
+<img src="{{ root_url }}/images/final.jpg" width="90%"/>
 
 it shows that you can solve a simple problem while optimizing your code.
 Remember to check your code. It’s impressive to interviewers if you can catch your mistakes before presenting your code. Now at this point, an interviewer will either tell you good job or they will ask if it works. If they ask you the latter the best thing you can say is “I think it does, let’s check”. This shows confidence and that you’re willing to show you’re work.

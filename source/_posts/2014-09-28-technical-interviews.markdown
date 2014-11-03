@@ -3,7 +3,7 @@ layout: post
 title: "Technical Interviews, Oh My!"
 date: 2014-09-22 09:21:02 -0400
 comments: true
-categories: [Technical, Advice]
+categories: [Technical, Interview]
 ---
 
 So far my mentorship  at Stack Exchange has been amazing. I’ve been working with Max Horstmann, a Senior Developer on their Careers 2.0 team. We’ve mainly been going over mock interviews and how I should properly conduct myself in interviews. Of all the information I’ve taken away from our meetings has been the process for dealing with technical practices. As Max has said, “Repeat, Clarify, make examples, pseudo-code, code, and finally run it”.

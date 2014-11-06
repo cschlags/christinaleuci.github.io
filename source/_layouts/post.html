@@ -1,54 +1,46 @@
 ---
 layout: default
 single: true
-header: false
 ---
 
-<article class="hentry span10 offset1" role="article">
-  {% include article.html %}
-  <footer>
-    <p class="meta">
-      {% include post/author.html %}
-      {% include post/date.html %}{% if updated %}{{ updated }}{% else %}{{ time }}{% endif %}
-      {% include post/categories.html %}
-    </p>
-    <p class="meta">
-      {% if site.pagination_older_right %}
-        {% if page.next.url %}
-          <a class="basic-alignment left" href="{{page.next.url}}" title="Next Post: {{page.next.title}}">&larr;<span class="hide-mobile">&nbsp;{{page.next.title}}</span></a>
+<article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>{% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %}</h1>
+        <div class="meta">
+          written {% include post/date.html %}{% if updated %}{{ updated }}{% else %}{{ time }}{% endif %}
+          {% include post/categories.html %}
+        </div>
+        {{ content }}
+
+        <hr class="divider-short"/>
+
+        {% if site.disqus_short_name and page.comments == true %}
+        <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
+        </section>
         {% endif %}
-        {% if page.previous.url %}
-          <a class="basic-alignment right" href="{{page.previous.url}}" title="Previous Post: {{page.previous.title}}"><span class="hide-mobile">{{page.previous.title}}&nbsp;</span>&rarr;</a>
-        {% endif %}
-      {% else %}
-        {% if page.previous.url %}
-          <a class="basic-alignment left" href="{{page.previous.url}}" title="Previous Post: {{page.previous.title}}">&larr;<span class="hide-mobile">&nbsp;{{page.previous.title}}</span></a>
-        {% endif %}
-        {% if page.next.url %}
-          <a class="basic-alignment right" href="{{page.next.url}}" title="Next Post: {{page.next.title}}"><span class="hide-mobile">{{page.next.title}}&nbsp;</span>&rarr;</a>
-        {% endif %}
-      {% endif %}
-    </p>
-  </footer>
-	{% if site.disqus_short_name or site.google_plus_comments and page.comments == true %}
-	<section id="comments">
-		<h1>Comments</h1>
-		{% if site.google_plus_comments %}
-		<div class="g-comments"
-			data-href="{{ site.url }}{{ page.url }}"
-			data-width="642"
-			data-first_party_property="BLOGGER"
-			data-view_type="FILTERED_POSTMOD"
-			id="google_plus_thread"
-			aria-live="polite">
-			{% include post/google_plus_thread.html %}
-		</div>
-		{% endif %}
-		{% if site.disqus_short_name %}
-		<div id="disqus_thread" aria-live="polite">
-			{% include post/disqus_thread.html %}
-		</div>
-		{% endif %}
-	</section>
-	{% endif %}
+      </div>
+    </div>
+  </div>
 </article>
+
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        {% if page.previous.url %}
+          <a class="pull-left" href="{{page.previous.url}}" title="Previous Post: {{page.previous.title}}">&laquo; Previous: {{page.previous.title}}</a>
+        {% endif %}
+
+        {% if page.next.url %}
+          <a class="pull-right" href="{{page.next.url}}" title="Next Post: {{page.next.title}}">Next: {{page.next.title}} &raquo;</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,31 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
-  <meta charset="utf-8"/>
-  <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
-  <meta name="author" content="{{ site.author }}"/>
+  <meta charset="utf-8">
+  <title>{% if page.title %}{% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %} - {% endif %}{{ site.title }}</title>
+  <meta name="author" content="{{ site.author }}">
 
-  {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}{% endcapture %}
-  {% if description %}<meta name="description" content="{{ description | strip_html | condense_spaces | truncate:150 }}"/>{% endif %}
-  {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}"/>{% endif %}
+  {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
+  <meta name="description" content="{{ description | strip_html | condense_spaces | truncate:150 }}">
+  {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {% capture canonical %}{{ site.url }}{% if site.permalink contains '.html' %}{{ page.url }}{% else %}{{ page.url | remove:'index.html' | strip_slash }}{% endif %}{% endcapture %}
-  <link rel="canonical" href="{{ canonical }}"/>
-  <link href="{{ root_url }}/favicon.png" rel="icon"/>
-  <link href="{{ root_url }}/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-  <link href="{{ root_url }}/stylesheets/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
-  <link href="{{ root_url }}/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css"/>
-  <link href="{{ site.subscribe_rss }}" rel="alternate" title="{{site.title}}" type="application/atom+xml"/>
-  <script src="//cdn.jsdelivr.net/jquery/1.11/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.min.js"><\/script>')</script>
-  {% if site.typekit_kitid %}
-  <script type="text/javascript" src="//use.typekit.net/{{ site.typekit_kitid }}.js"></script>
-  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-  {% endif %}
-  {% if site.search_posts %}<style id="search-style"></style>{% endif %}
-  {% include mapbox.html %}
+  <link rel="canonical" href="{{ canonical }}">
+  <link href="{{ root_url }}/favicon.png" rel="icon">
+  <link href="{{ root_url }}/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="{{ site.subscribe_rss }}" rel="alternate" title="{{site.title}}" type="application/atom+xml">
+  <script src="{{ root_url }}/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="{{ root_url }}/javascripts/octopress.js" type="text/javascript"></script>
   {% include google_analytics.html %}
-  {% include custom/head.html %}
 </head>

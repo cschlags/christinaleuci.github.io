@@ -8,10 +8,7 @@ subtitle: I pity the "foo"
 author: Christina Leuci
 simple_search: https://www.google.com/search
 description: I’m a full-stack ruby dev from New Jersey now working in New York. I build apps and products, such as <a href="peliculapicker.herokuapp.com">Pelicula Picker</a>, an app that rates how well a user will like a movie in theaters , and <a href="mytraveljournal.me">My Travel Journal</a>, an app to keep track of trips. Check out my blogs down below!
-twitter_user: https://twitter.com/ChristinaLeuci
-github_user: https://github.com/christinaleuci
 linkedin_user: https://www.linkedin.com/pub/christina-leuci/78/756/a57
-email: christinaleuci@gmail.com
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -23,7 +20,7 @@ date_format: "ordinal"
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email:
+email: christinaleuci@gmail.com
 
 # ----------------------- #
 #    Jekyll & Plugins     #
@@ -68,13 +65,13 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.
 # ----------------------- #
 
 # Github repositories
-github_user:
+github_user: christinaleuci
 github_repo_count: 0
 github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user:
+twitter_user: ChristinaLeuci
 twitter_tweet_button: true
 
 # Google +1
@@ -95,7 +92,7 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
+disqus_short_name: christinaleucigithubio
 disqus_show_comment_count: false
 
 # Google Analytics

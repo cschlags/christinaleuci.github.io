@@ -4,7 +4,7 @@
   <title><![CDATA[Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2014-12-18T14:06:44-05:00</updated>
+  <updated>2014-12-18T14:22:32-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Setting Up An API On An Existing Rails Application]]></title>
+    <title type="html"><![CDATA[Setting Up an API on an Existing Rails Application]]></title>
     <link href="http://ChristinaLeuci.github.io/blog/2014/12/18/setting-up-an-api-on-an-existing-rails-application/"/>
     <updated>2014-12-18T12:48:34-05:00</updated>
     <id>http://ChristinaLeuci.github.io/blog/2014/12/18/setting-up-an-api-on-an-existing-rails-application</id>
@@ -619,7 +619,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Add Comments To a Octopress Blog]]></title>
+    <title type="html"><![CDATA[Add Comments to a Octopress Blog]]></title>
     <link href="http://ChristinaLeuci.github.io/blog/2014/10/28/add-comments-to-your-blog/"/>
     <updated>2014-10-28T23:14:56-04:00</updated>
     <id>http://ChristinaLeuci.github.io/blog/2014/10/28/add-comments-to-your-blog</id>

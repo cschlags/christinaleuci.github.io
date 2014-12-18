@@ -4,7 +4,7 @@
   <title><![CDATA[Category: interview | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/interview/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2014-11-06T18:36:18-05:00</updated>
+  <updated>2014-12-18T14:02:50-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -20,10 +20,18 @@
     <id>http://ChristinaLeuci.github.io/blog/2014/09/22/technical-interviews</id>
     <content type="html"><![CDATA[<p>&ldquo;Repeat, Clarify, make examples, pseudo-code, code, and finally run it&rdquo;&hellip;</p>
 
+
+
+
 <!--more-->
 
 
+
+
 <p>That is what my mentor, Max, from Stack Exchange has told me time and again to succeed in technical interviews. This is actually useful in any situation in life where you must prove your worth.</p>
+
+
+
 
 <p>Many times an employer will give you a general question, check to see if a point falls inside a box. Now this may seem like a very simple question, just draw a box and see if the point falls inside those parameters; sadly it’s a little more complicated. One of the first things you should do is repeat the question to make sure you have haven’t missed anything. Many times you may mis-hear the employer and do something completely different than what you were expected to.
 Clarify by checking to see if you’re taking in user data, and if you need to check to see if that data is correct. Another good question would be to check if “a point inside a box” means that the point falls on a box’s line or literally inside the lines. Lastly, another good question is if the box follows a simple x&amp;y graph. It’s really helpful to write down these tidbits of information. By clarifying with your interviewer you show that you’re not just a robot, you’re capable of finding the loopholes inside a problem before coding. Generally an employer is just trying to gage your intelligence and won’t make it too complicated but it’s still smart to ask these questions and not get caught clueless.
@@ -31,11 +39,20 @@ Once you’re positive of the question and what path you should follow, you shou
 In this situation the simplest group of inputs would be two diagonal points, for example let’s pick the bottom left and the top right points. This way you know the dimensions of the box by using basic math with the points.
 Now that we have a diagram of the box and it’s points finished let’s move through the example. Let’s say we have the top right point as (8, 9), the bottom right point as (2, 1), and the singular point as (4,5). Your drawing should look like this:</p>
 
-<p><img src="/images/interview/box.jpg" width="90%"/></p>
+
+
+
+<p><img src="http://ChristinaLeuci.github.io/images/interview/box.jpg" width="90%"/></p>
+
+
+
 
 <p>Now it’s obvious by your drawing that this point is inside the box, but your computer where you’ll be coding doesn’t know. What you’ll need to do is use simple math to see if this point (4,5) falls inside the dimensions of this rectangle.</p>
 
-<p><figure class='code'><figcaption><span>[psuedocode.rb]</span></figcaption>
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>[psuedocode.rb]</span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -52,27 +69,33 @@ Now that we have a diagram of the box and it’s points finished let’s move th
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="no">Psuedo</span> <span class="no">Code</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="no">Psuedo</span> <span class="no">Code</span>
 </span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;point_x &amp;lt; top_right_x?</span>
-</span><span class='line'><span class="sr">point_y &amp;lt; top_right_y?</span>
-</span><span class='line'><span class="sr">point_x &amp;lt; bottom_right_x?</span>
-</span><span class='line'><span class="sr">point_y &amp;lt; bottom_right_y?&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="n">point_x</span> <span class="o">&lt;</span> <span class="n">top_right_x?</span>
+</span><span class='line'><span class="n">point_y</span> <span class="o">&lt;</span> <span class="n">top_right_y?</span>
+</span><span class='line'><span class="n">point_x</span> <span class="o">&lt;</span> <span class="n">bottom_right_x?</span>
+</span><span class='line'><span class="n">point_y</span> <span class="o">&lt;</span> <span class="n">bottom_right_y?</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">Test</span> <span class="n">this</span> <span class="n">out</span> <span class="n">with</span> <span class="n">your</span> <span class="n">points!</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'><span class="no">Test</span> <span class="n">this</span> <span class="n">out</span> <span class="n">with</span> <span class="n">your</span> <span class="n">points!</span>
 </span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;4 &amp;lt; 8? Yes!</span>
-</span><span class='line'><span class="sr">5 &amp;lt; 9? Yes!</span>
-</span><span class='line'><span class="sr">4 &gt; 2? Yes!</span>
-</span><span class='line'><span class="sr">5 &gt; 1? Yes!&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="mi">4</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="o">?</span> <span class="no">Yes</span><span class="o">!</span>
+</span><span class='line'><span class="mi">5</span> <span class="o">&lt;</span> <span class="mi">9</span><span class="o">?</span> <span class="no">Yes</span><span class="o">!</span>
+</span><span class='line'><span class="mi">4</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="o">?</span> <span class="no">Yes</span><span class="o">!</span>
+</span><span class='line'><span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">?</span> <span class="no">Yes</span><span class="o">!</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">Congratulations</span> <span class="n">your</span> <span class="n">code</span> <span class="n">works</span> <span class="n">with</span> <span class="n">one</span> <span class="n">set</span> <span class="n">of</span> <span class="n">points</span><span class="o">.</span>
+</span><span class='line'><span class="no">Congratulations</span> <span class="n">your</span> <span class="n">code</span> <span class="n">works</span> <span class="n">with</span> <span class="n">one</span> <span class="n">set</span> <span class="n">of</span> <span class="n">points</span><span class="o">.</span>
 </span><span class='line'><span class="no">You</span> <span class="n">should</span> <span class="k">do</span> <span class="n">this</span> <span class="n">with</span> <span class="n">points</span> <span class="n">inside</span> <span class="n">the</span> <span class="n">box</span><span class="p">,</span> <span class="n">on</span> <span class="n">the</span> <span class="n">line</span><span class="p">,</span> <span class="ow">and</span> <span class="n">outside</span> <span class="n">of</span> <span class="n">the</span> <span class="n">box</span><span class="o">.</span>
-</span></code></pre></td></tr></table></div></figure></p>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
 
 <p>Here you can see that you do solve the problem and that it gives the correct answer. What you need to do now is put it into code that can be used. If you’re using Ruby like me, then simply create a new class, that can be instantiated in your IRB and create a method that you can plug your data into.</p>
 
-<p><figure class='code'><figcaption><span>[QuickInterviewProblem.rb]</span></figcaption>
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>[QuickInterviewProblem.rb]</span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -88,20 +111,26 @@ Now that we have a diagram of the box and it’s points finished let’s move th
 </pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">class</span> <span class="nc">QuickInterviewProblem</span>
 </span><span class='line'>  <span class="k">def</span> <span class="nf">inside?</span><span class="p">(</span><span class="n">top_right_x</span><span class="p">,</span> <span class="n">top_right_y</span><span class="p">,</span> <span class="n">bottom_left_x</span><span class="p">,</span> <span class="n">bottom_left_y</span><span class="p">,</span>
 </span><span class='line'>    <span class="n">point_x</span><span class="p">,</span> <span class="n">point_y</span><span class="p">)</span>
-</span><span class='line'>    <span class="c1"># let&amp;rsquo;s say the user puts in (8, 9, 2, 1, 4, 5)</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">point_x</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">top_right_x</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">point_y</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">top_right_y</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">point_x</span> <span class="o">&gt;</span>
-</span><span class='line'>      <span class="n">bottom_left_x</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">point_y</span> <span class="o">&gt;</span> <span class="n">bottom_left_y</span>
+</span><span class='line'>    <span class="c1"># let&#39;s say the user puts in (8, 9, 2, 1, 4, 5)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">point_x</span> <span class="o">&lt;</span> <span class="n">top_right_x</span> <span class="o">&amp;&amp;</span> <span class="n">point_y</span> <span class="o">&lt;</span> <span class="n">top_right_y</span> <span class="o">&amp;&amp;</span> <span class="n">point_x</span> <span class="o">&gt;</span>
+</span><span class='line'>      <span class="n">bottom_left_x</span> <span class="o">&amp;&amp;</span> <span class="n">point_y</span> <span class="o">&gt;</span> <span class="n">bottom_left_y</span>
 </span><span class='line'>      <span class="k">return</span> <span class="kp">true</span>
 </span><span class='line'>    <span class="k">else</span>
 </span><span class='line'>      <span class="k">return</span> <span class="kp">false</span>
 </span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></p>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
 
 <p>And you’re finished! Although the question may seem simple, there is a complicated process to it. At this point what you could do is, further optimize your code or run it to see if it works. If we were to optimize this could what we could do is take out the if statement. By doing something like this:</p>
 
-<p><figure class='code'><figcaption><span>[QuickInterviewProblem.rb]</span></figcaption>
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>[QuickInterviewProblem.rb]</span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -113,17 +142,21 @@ Now that we have a diagram of the box and it’s points finished let’s move th
 </pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">class</span> <span class="nc">QuickInterviewProblem</span>
 </span><span class='line'>  <span class="k">def</span> <span class="nf">inside?</span><span class="p">(</span><span class="n">top_right_x</span><span class="p">,</span> <span class="n">top_right_y</span><span class="p">,</span> <span class="n">bottom_left_x</span><span class="p">,</span> <span class="n">bottom_left_y</span><span class="p">,</span>
 </span><span class='line'>    <span class="n">point_x</span><span class="p">,</span> <span class="n">point_y</span><span class="p">)</span>
-</span><span class='line'>    <span class="c1">#let&amp;rsquo;s say the user puts in (8, 9, 2, 1, 4, 5)</span>
-</span><span class='line'>    <span class="k">return</span> <span class="p">(</span><span class="n">point_x</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">top_right_x</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">point_y</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">top_right_y</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span>
-</span><span class='line'>      <span class="n">point_x</span> <span class="o">&gt;</span> <span class="n">bottom_left_x</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">point_y</span> <span class="o">&gt;</span> <span class="n">bottom_left_y</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1">#let&#39;s say the user puts in (8, 9, 2, 1, 4, 5)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">(</span><span class="n">point_x</span> <span class="o">&lt;</span> <span class="n">top_right_x</span> <span class="o">&amp;&amp;</span> <span class="n">point_y</span> <span class="o">&lt;</span> <span class="n">top_right_y</span> <span class="o">&amp;&amp;</span>
+</span><span class='line'>      <span class="n">point_x</span> <span class="o">&gt;</span> <span class="n">bottom_left_x</span> <span class="o">&amp;&amp;</span> <span class="n">point_y</span> <span class="o">&gt;</span> <span class="n">bottom_left_y</span><span class="p">)</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></p>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
 
 <p>it shows that you can solve a simple problem while optimizing your code.
 Remember to check your code. It’s impressive to interviewers if you can catch your mistakes before presenting your code. Now at this point, an interviewer will either tell you good job or they will ask if it works. If they ask you the latter the best thing you can say is “I think it does, let’s check”. This shows confidence and that you’re willing to show you’re work.
 If for some crazy reason your code doesn’t work, don’t worry, continue working on it and perfect it. Just rinse and repeat, if you can understand why it’s not working then you interviewer will still be impressed.
 Congratulations you’ve completed your interview! Good luck to anyone who is hoping to do a technical interview!</p>
+
 ]]></content>
   </entry>
   

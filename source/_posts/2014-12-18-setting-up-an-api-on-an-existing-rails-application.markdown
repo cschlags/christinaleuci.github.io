@@ -7,9 +7,9 @@ categories: [Technical, Ruby, API]
 ---
 
 Hey y'all it's been a long time! Life has been a bit busy at the moment and I'll write a blog all about that in the non-technical session ASAP.
+<!--more-->
 
 Today I'm going to talk about setting up your current Rails application with an API. This is assuming that you have a working Rails application, preferably with data to see in the browser when you have it up and running through the rails server.
-<!--more-->
 
 ##The Pre-Coding Code
 So before we do any serious setup the first thing we will need to do is access the rails-api gem. To do this put this line inside your Gemfile file 

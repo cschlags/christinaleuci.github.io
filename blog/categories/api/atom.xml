@@ -4,7 +4,7 @@
   <title><![CDATA[Category: api | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/api/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2014-12-18T14:02:50-05:00</updated>
+  <updated>2014-12-18T14:06:44-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -20,111 +20,49 @@
     <id>http://ChristinaLeuci.github.io/blog/2014/12/18/setting-up-an-api-on-an-existing-rails-application</id>
     <content type="html"><![CDATA[<p>Hey y&#8217;all it&rsquo;s been a long time! Life has been a bit busy at the moment and I&rsquo;ll write a blog all about that in the non-technical session ASAP.</p>
 
-
+<!--more-->
 
 
 <p>Today I&rsquo;m going to talk about setting up your current Rails application with an API. This is assuming that you have a working Rails application, preferably with data to see in the browser when you have it up and running through the rails server.</p>
 
-
-
-
-<!--more-->
-
-
-
-
 <h2>The Pre-Coding Code</h2>
-
-
-
 
 <p>So before we do any serious setup the first thing we will need to do is access the rails-api gem. To do this put this line inside your Gemfile file</p>
 
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>[Gemfile] </span></figcaption>
+<p><figure class='code'><figcaption><span>[Gemfile] </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem 'rails-api' , require: 'rails-api/action_controller/api'</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem &lsquo;rails-api&rsquo; , require: &lsquo;rails-api/action_controller/api&rsquo;</span></code></pre></td></tr></table></div></figure></p>
 
 <p>and bundle install.</p>
 
-
-
-
 <h2>Ain&rsquo;t No Basic Controller</h2>
-
-
-
 
 <p>At this point you will have access to the API Action Controller which I suggest you read up on in the <a href="http://api.rubyonrails.org/">Ruby on Rails API docs</a>. So now that your application is ready for API goodness you&rsquo;ll want to create a sub-folder underneath your <span font-style="italics">app/controllers</span> titled <span style="font-weight: 500"> api </a>.</p>
 
-
-
-
 <p>At this point underneath <span font-style="italics">app/controllers</span> you should have your main controllers, ie. application_controller or user_controller, and your <span font-style="italics">api</span> folder.</p>
-
-
-
 
 <p>Now inside this api folder you will want to add an <span font-style="italics">api_controller.rb</span> file and an optional <span font-style="italics">v1</span> folder.</p>
 
-
-
-
-<p>The <span font-style="italics">api_controller.rb</span> will be your API controller, this is essentially the application controller for your API. Inside your api_controller you will want to set it up similarly to the application_controller <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>[api_controller.rb] </span></figcaption></p>
-
-
-
-
+<p>The <span font-style="italics">api_controller.rb</span> will be your API controller, this is essentially the application controller for your API. Inside your api_controller you will want to set it up similarly to the application_controller <figure class='code'><figcaption><span>[api_controller.rb] </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">class</span> <span class="nc">Api</span><span class="o">::</span><span class="no">ApiController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">API</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">class</span> <span class="nc">Api</span><span class="o">::</span><span class="no">ApiController</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">API</span>
 </span><span class='line'>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div>
-
-
-
-
-<p></figure></notextile></div></p>
-
-
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>As you can see we are no longer using the Base Action Controller, instead we&rsquo;re using the API Action Controller. This will be one of the sub controllers that will inherit from the Base Action Controller. If in the future you want to implement an API sign in option with a username and secret as many api&rsquo;s have now-a-days this if the file you would do this in.</p>
 
-
-
-
 <p>At this point you should have the <span font-style="italics">api_controller.rb</span> setup and hopefully, but not required, the <span font-style="italics">v1</span> folder setup.</p>
-
-
-
 
 <p>I suggest implement the <span font-style="italics">v1</span> folder incase you decide to create multiple versions of the api in the future.</p>
 
-
-
-
 <p>So let&rsquo;s say you have the <span font-style="italics">v1</span> setup. Inside this folder you will have all of the controllers you&rsquo;re find in the main controllers folder. Currently I am using an api user_controller to allow api users to access the users in the system.</p>
-
-
-
 
 <h2>Get The Data You Want</h2>
 
-
-
-
 <p>Inside the <span font-style="italics">user_controller.rb</span> you will want to set it up depending on which information you want to be shown. Let&rsquo;s say that your application user_controller has both index and show methods, this will mean your API user_controller will also have index and show methods.</p>
 
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>[api/v1/user_controller.rb]</span></figcaption>
+<p><figure class='code'><figcaption><span>[api/v1/user_controller.rb]</span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -140,7 +78,7 @@
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">class</span> <span class="nc">Api</span><span class="o">::</span><span class="no">V1</span><span class="o">::</span><span class="no">UserController</span> <span class="o">&lt;</span> <span class="no">Api</span><span class="o">::</span><span class="no">ApiController</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">class</span> <span class="nc">Api</span><span class="o">::</span><span class="no">V1</span><span class="o">::</span><span class="no">UserController</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">Api</span><span class="o">::</span><span class="no">ApiController</span>
 </span><span class='line'>  <span class="kp">include</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">MimeResponds</span>
 </span><span class='line'>    <span class="k">def</span> <span class="nf">index</span>
 </span><span class='line'>      <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
@@ -155,62 +93,32 @@
 </span><span class='line'>      <span class="k">end</span>
 </span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Here I have set it up so that when the api user goes to <span font-style="italics">example.com/api/v1/users.json</span> they will see all the users in the database. As you can see I put &ldquo;.json&rdquo; at the end of the html address, this is because inside the api user_controller I specified the format I want to respond to. I you wanted the api to respond to an xml call then you would put</p>
 
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>[user_controller.rb] </span></figcaption>
+<p><figure class='code'><figcaption><span>[user_controller.rb] </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="nb">format</span><span class="o">.</span><span class="n">xml</span> <span class="p">{</span><span class="n">render</span> <span class="ss">xml</span><span class="p">:</span><span class="vi">@user</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p> or even allowing access to both json and xml calls</p>
 
-
-
-
-<p> <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>[user_controller.rb] </span></figcaption></p>
-
-
-
-
+<p> <figure class='code'><figcaption><span>[user_controller.rb] </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='rb'><span class='line'>    <span class="k">if</span> <span class="nb">format</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span><span class="n">render</span> <span class="ss">json</span><span class="p">:</span><span class="vi">@user</span><span class="p">}</span>
 </span><span class='line'>    <span class="k">if</span> <span class="nb">format</span><span class="o">.</span><span class="n">xml</span> <span class="p">{</span><span class="n">render</span> <span class="ss">xml</span><span class="p">:</span><span class="vi">@user</span><span class="p">}</span>
 </span><span class='line'>
-</span></code></pre></td></tr></table></div>
-
-
-
-
-<p></figure></notextile></div></p>
-
-
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p> I setup the user.show api call similarly. When an api user calls <span font-style="italics">example.com/api/v1/users/1.json</span> this will show that specific user&rsquo;s data.</p>
 
+<h2>Almost Done</h2>
 
-
-
-<p> ##Almost Done
-Awesome, you&rsquo;re almost done. Just like any other controller you will need to set up the routes.</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>[config/routes.rb] </span></figcaption>
+<p>Awesome, you&rsquo;re almost done. Just like any other controller you will need to set up the routes.
+<figure class='code'><figcaption><span>[config/routes.rb] </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -225,18 +133,11 @@ Awesome, you&rsquo;re almost done. Just like any other controller you will need 
 </span><span class='line'>      <span class="k">end</span>
 </span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>I chose to organize my api groups of controllers under a namespace and again under a v1 namespace. This allows me to organize my routes instead of searching for them through the document. Optionally I chose to make my <span font-style="italics">api/user_controller.rb</span> also a namespace. This requires me to access my other api controllers based on the user api controller.</p>
 
-
-
-
 <p>And that&rsquo;s it! You have successfully implemented your application with Rails API. Any advice or concerns are appreciated! &lt;3</p>
-
 ]]></content>
   </entry>
   

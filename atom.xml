@@ -4,7 +4,7 @@
   <title><![CDATA[Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2014-12-18T14:02:50-05:00</updated>
+  <updated>2014-12-18T14:06:44-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -20,10 +20,10 @@
     <id>http://ChristinaLeuci.github.io/blog/2014/12/18/setting-up-an-api-on-an-existing-rails-application</id>
     <content type="html"><![CDATA[<p>Hey y&#8217;all it&rsquo;s been a long time! Life has been a bit busy at the moment and I&rsquo;ll write a blog all about that in the non-technical session ASAP.</p>
 
-<p>Today I&rsquo;m going to talk about setting up your current Rails application with an API. This is assuming that you have a working Rails application, preferably with data to see in the browser when you have it up and running through the rails server.</p>
-
 <!--more-->
 
+
+<p>Today I&rsquo;m going to talk about setting up your current Rails application with an API. This is assuming that you have a working Rails application, preferably with data to see in the browser when you have it up and running through the rails server.</p>
 
 <h2>The Pre-Coding Code</h2>
 
@@ -126,8 +126,9 @@
 
 <p> I setup the user.show api call similarly. When an api user calls <span font-style="italics">example.com/api/v1/users/1.json</span> this will show that specific user&rsquo;s data.</p>
 
-<p> ##Almost Done
-Awesome, you&rsquo;re almost done. Just like any other controller you will need to set up the routes.</p>
+<h2>Almost Done</h2>
+
+<p>Awesome, you&rsquo;re almost done. Just like any other controller you will need to set up the routes.</p>
 
 <figure class='code'><figcaption><span>[config/routes.rb] </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>

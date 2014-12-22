@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2014-12-22T13:31:51-05:00</updated>
+  <updated>2014-12-22T13:53:51-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Add Arrays To Your Rails Database]]></title>
+    <link href="http://ChristinaLeuci.github.io/blog/2014/12/22/add-arrays-to-your-rails-database/"/>
+    <updated>2014-12-22T13:38:32-05:00</updated>
+    <id>http://ChristinaLeuci.github.io/blog/2014/12/22/add-arrays-to-your-rails-database</id>
+    <content type="html"><![CDATA[<p>Have you ever been looking at your database wondering how you can change that string or integer into an array or a hash?</p>
+
+<!--more-->
+
+
+<p>Before we start with the code make sure you have a database and it&rsquo;s model created in your Rails app.</p>
+
+<p>I currently have it setup so that my Wardrobe is initiaized upon a User&rsquo;s creation. For a usual serialization you will only need two lines of code and optionally a method.</p>
+
+<p><figure class='code'><figcaption><span>[wardrobe.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">class</span> <span class="nc">Wardrobe</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>    <span class="n">belongs_to</span> <span class="ss">:user</span>
+</span><span class='line'>    <span class="n">serialize</span> <span class="ss">:wardrobe</span>
+</span><span class='line'>    <span class="n">after_create</span> <span class="ss">:serialize_wardrobe</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;def serialize_wardrobe</span>
+</span><span class='line'><span class="sr">  self.wardrobe = {:tops =&amp;gt; [], :bottoms =&amp;gt; []}</span>
+</span><span class='line'><span class="sr">  self.save!</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>I used the serialize method that you can research more about <a href="http://apidock.com/rails/ActiveRecord/Base/serialize/class">here</a>. As a note although my class&rsquo;s name is Wardrobe I also have a param underneath that named wardrobe. You should use the param name you want to be serialized.</p>
+
+<p>After serializing the wardrobe, which happens upon initialization, I decided to specify what would be inside that serialized wardrobe param by using an <span style="font-style: italics">after_create</span> method. Inside my after_create method I described that the wardrobe param hash should contain two keys with their respective arrays and it should be saved.</p>
+
+<p>That&rsquo;s it! Keep on being badass programmers!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Using AWS Image Hosting for Rails]]></title>

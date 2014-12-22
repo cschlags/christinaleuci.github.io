@@ -3,7 +3,7 @@ layout: post
 title: "Setting Up An API On An Existing Rails Application"
 date: 2014-12-18 12:48:34 -0500
 comments: true
-categories: [Technical, Ruby, API]
+categories: [Technical, Rails, API]
 ---
 
 Hey y'all it's been a long time! Life has been a bit busy at the moment and I'll write a blog all about that in the non-technical session ASAP.

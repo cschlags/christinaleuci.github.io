@@ -4,7 +4,7 @@
   <title><![CDATA[Category: technical | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/technical/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2014-12-18T15:10:49-05:00</updated>
+  <updated>2014-12-22T13:31:51-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -12,6 +12,99 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Using AWS Image Hosting for Rails]]></title>
+    <link href="http://ChristinaLeuci.github.io/blog/2014/12/19/setting-up-aws-with-your-rails-app/"/>
+    <updated>2014-12-19T12:17:11-05:00</updated>
+    <id>http://ChristinaLeuci.github.io/blog/2014/12/19/setting-up-aws-with-your-rails-app</id>
+    <content type="html"><![CDATA[<p>If you&rsquo;re using only a couple of photos with your Rails application then it&rsquo;s pretty simple. If you&rsquo;re going to be using hundreds of thousands of photos you&rsquo;ll need a hosting site like Amazon S3.</p>
+
+<!--more-->
+
+
+<h2>Step 1 &ndash; Have An Account</h2>
+
+<p>If you don&rsquo;t have an account with Amazon&rsquo;s S3 hosting service this step is for you. If you already have an account already please go to <span style="font-style: italics"> Step 2 </a>. Fortunately <a href="http://aws.amazon.com/s3/">Amazon</a>&rsquo;s hosting services are free for the first 12-months. You will need to sign up for an account with your Amazon email and password. And that&rsquo;s it you&rsquo;re finished! You can now start integrating your Amazon S3 console with buckets and files. <span style="font-style: italics">A word to the wise: if you&rsquo;re new to Amazon S3 you should manually create a bucket inside your Amazon S3 account before accessing the AWS Client!</span></p>
+
+<h2>Step 3 &ndash; Create A Pretty Access Key</h2>
+
+<p>As with any API you will need an account access key and an account password. You will be able to access your Security Credentials by going to the nav bar on the top and clicking either on your name or &ldquo;My Account&rdquo; depending on what page you&rsquo;re on and selecting Security Credentials. Click &ldquo;Create New Key Access&rdquo;, this will show both your new access key and secret. You should download the Key and Secret file since your secret will no longer be available after you close the pop-up.</p>
+
+<p>Awesome, now you have your access key and secret! Almost done!</p>
+
+<h2>Step 2 &ndash; Client Interface Dawg</h2>
+
+<p>After much trial and error I found the best approach to accessing Amazon S3 was to download the <a href="http://docs.aws.amazon.com/cli/latest/userguide/installing.html">AWS Client Line Interface</a> and the add a Bucket Policy Editor to the bucket&rsquo;s properties. The AWS CLI has two installations options which covers Windows, Unix, and Unix clone systems and it&rsquo;s pretty straight forward. Once that is installed you will need to type &ldquo;aws configure&rdquo; in your terminal while you are inside your application&rsquo;s main folder. I&rsquo;m using Mac OSx so it may be alittle different for Windows based systems. This will prompt you for your access key, secret, region, and output format. I have found that the region and output format are not all too important for simple calls to the hosting site.</p>
+
+<h2>Step 3 &ndash; Super Cool Policy Creator</h2>
+
+<p>At this point your application now recognizes that AWS key and secret with it&rsquo;s config file. What you will now need to do is change the S3&rsquo;s bucket policy. By going into your Amazon S3 console and clicking on your bucket, the right side options <span style="font-style: italics">Properties</span> should light up. Click on this and click again on <span style="font-style: italics">Permissions</span>. Here you can see who has access to this bucket, if you haven&rsquo;t changed anything you should see only your username with all the following radio boxes checked.</p>
+
+<p>Right underneath your name is a button called <span style="font-style:italics">Edit Bucket Policy</span>, click that. Here you can describe what actions people accessing your bucket will be able to perform. You can choose to use the <span style="font-style:italics">AWS Policy Generator</span> button but I have found that process to be convoluted and it ended up not giving me the policy I wanted.</p>
+
+<p>Since this Bucket will only be used for the Curate Analytics site and no one else has access to the access key and secret I thought it best to allow all actions by placing a &ldquo;*&rdquo; for the AWS and Action lines. I may change this in the future but feel free to play around with actions. These Amazon S3 <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html">docs</a> are really great.</p>
+
+<p>Don&rsquo;t forget to add YOUR bucketname down there!
+<figure class='code'><figcaption><span>[AWS Bucket Policy] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>    &ldquo;Version&rdquo;: &ldquo;2008-10-17&rdquo;,
+</span><span class='line'>    &ldquo;Statement&rdquo;: [
+</span><span class='line'>      {
+</span><span class='line'>        &ldquo;Sid&rdquo;: &ldquo;Stmt1418573913031&rdquo;,
+</span><span class='line'>        &ldquo;Effect&rdquo;: &ldquo;Allow&rdquo;,
+</span><span class='line'>        &ldquo;Principal&rdquo;: {
+</span><span class='line'>          &ldquo;AWS&rdquo;: &ldquo;&lt;em>&rdquo;
+</span><span class='line'>        },
+</span><span class='line'>        &ldquo;Action&rdquo;: &ldquo;s3:&lt;/em>&rdquo;,
+</span><span class='line'>        &ldquo;Resource&rdquo;: &ldquo;arn:aws:s3:::&lt;bucket name>/*&rdquo;
+</span><span class='line'>      }
+</span><span class='line'>    ]
+</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>Step 4 &ndash; All About That Code</h2>
+
+<p>You can finally start adding code to your Rails app. Inside the models you want the bucket to be accessed through you can write this line of code</p>
+
+<p><figure class='code'><figcaption><span>[AWS Access Code] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>s3 = AWS::S3.new
+</span><span class='line'>    bucket = s3.buckets[&lsquo;&lt;bucket name>&rsquo;]
+</span><span class='line'>    bucket.objects.each do |obj|
+</span><span class='line'>      if obj =~ /swipe batches/i &amp;&amp; obj =~ /jpg/i
+</span><span class='line'>        self.sort_objs(obj.key)
+</span><span class='line'>      end
+</span><span class='line'>    end</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Like with any class you&rsquo;ve initialized a new connection to the Amazon S3. Since your AWS account keys and secrets are hooked to this application&rsquo;s config you can call your S3 bucket.</p>
+
+<p>Here I&rsquo;ve gone through each obj which will start with the top folders and travel down to the actual file. An example of some json feed would be <span style="font-style: italics">tops, tops/collars, tops/collar/image.jpg</span> It&rsquo;s a big of a hassle but you should be able to use regex like I used above to find all files with a certai word in it. The objects in the json feed are a little odd but this works for my purposes, you&rsquo;ll need to play around with loops and functions to see what works for your bucket.</p>
+
+<p>And you should have access to your S3 bucket and images inside it.</p>
+
+<p>Keep on being badass programmers!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Setting Up An API On An Existing Rails Application]]></title>
@@ -825,230 +918,6 @@ Now that we have a diagram of the box and it’s points finished let’s move th
 Remember to check your code. It’s impressive to interviewers if you can catch your mistakes before presenting your code. Now at this point, an interviewer will either tell you good job or they will ask if it works. If they ask you the latter the best thing you can say is “I think it does, let’s check”. This shows confidence and that you’re willing to show you’re work.
 If for some crazy reason your code doesn’t work, don’t worry, continue working on it and perfect it. Just rinse and repeat, if you can understand why it’s not working then you interviewer will still be impressed.
 Congratulations you’ve completed your interview! Good luck to anyone who is hoping to do a technical interview!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Arrays of a Feather Flock Together]]></title>
-    <link href="http://ChristinaLeuci.github.io/blog/2014/06/13/arrays-of-a-feather-flock-together/"/>
-    <updated>2014-06-13T05:21:18-04:00</updated>
-    <id>http://ChristinaLeuci.github.io/blog/2014/06/13/arrays-of-a-feather-flock-together</id>
-    <content type="html"><![CDATA[<p>I have found that explaining programs (or trying to) has helped me greatly in understanding the use of syntax. So let me teach you about these little nuisances called Nested Arrays.</p>
-
-<!--more-->
-
-
-<p>Nested arrays were a big problem for me even in Java. I understood the concept that there was an array inside an array but the syntax and use never really connected. The NYC Pigeon Lab was pretty difficult for me. Taking one nested array and translating it into another was like climbing Mount Everest in under a minute.</p>
-
-<p>The instructions for the NYC Pigeon Lab were define a method called nyc_pigeon_organizer and take in an array called pigeon_data. Take the names of the pigeon&rsquo;s first, a general attribute and the attribute specific to them. Easy in theory, hard in practice.</p>
-
-<p><figure class='code'><figcaption><span>[nyc_pigeon_organizer.rb] </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="ss">:color</span> <span class="o">=&gt;</span> <span class="p">{</span>
-</span><span class='line'>    <span class="ss">:purple</span> <span class="o">=&gt;</span> <span class="o">[&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Theo</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Peter</span> <span class="no">Jr</span><span class="o">.</span><span class="n">&amp;rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Lucky</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'>    <span class="ss">:grey</span> <span class="o">=&gt;</span> <span class="o">[&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Theo</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Peter</span> <span class="no">Jr</span><span class="o">.</span><span class="n">&amp;rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Ms</span> <span class="o">.</span><span class="n">K</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'>    <span class="ss">:white</span> <span class="o">=&gt;</span> <span class="o">[&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Queenie</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Andrew</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Ms</span> <span class="o">.</span><span class="n">K</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Alex</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'>    <span class="ss">:brown</span> <span class="o">=&gt;</span> <span class="o">[&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Queenie</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Alex</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">]</span>
-</span><span class='line'>  <span class="p">},</span>
-</span><span class='line'>  <span class="ss">:gender</span> <span class="o">=&gt;</span> <span class="p">{</span>
-</span><span class='line'>    <span class="ss">:male</span> <span class="o">=&gt;</span> <span class="o">[&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Alex</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Theo</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Peter</span> <span class="no">Jr</span><span class="o">.</span><span class="n">&amp;rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Andrew</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Lucky</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'>    <span class="ss">:female</span> <span class="o">=&gt;</span> <span class="o">[&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Queenie</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Ms</span> <span class="o">.</span><span class="n">K</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">]</span>
-</span><span class='line'>  <span class="p">},</span>
-</span><span class='line'>  <span class="ss">:lives</span><span class="p">{</span>
-</span><span class='line'>    <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Subway</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="o">[&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Theo</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Queenie</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'>    <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Central</span> <span class="no">Park</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="o">[&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Alex</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Ms</span> <span class="o">.</span><span class="n">K</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Lucky</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'>    <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Library</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="o">[&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Peter</span> <span class="no">Jr</span><span class="o">.</span><span class="n">&amp;rdquo</span><span class="p">;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'>    <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">City</span> <span class="no">Hall</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="o">[&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Andrew</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">]</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>Pigeon Data is a nested array so to get to the names you need to go through :color, then through :purple, then take each index in the name_array and put that into another array while deleting any repeats. But wait? Doesn&rsquo;t gender only have one list of names? If I put those names into an array then I wouldn&rsquo;t have to delete any repeats.</p>
-
-<p>Well I tried that. Yes, I did get an array of names without complications and there were no repetitions but where could I go from there? I was completely lost. I had gotten into the gender hash and completely by-passed all that other information. What could I do now?</p>
-
-<p><figure class='code'><figcaption><span>[nyc_pigeon_organizer.rb] </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">def</span> <span class="nf">nyc_pigeon_organizer</span><span class="p">(</span><span class="n">pigeon_data</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">pigeon_list</span><span class="o">=</span><span class="p">{}</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  :gender.each do |gender, name_array|</span>
-</span><span class='line'><span class="sr">    pigeon_list[name_array] ||= {}</span>
-</span><span class='line'><span class="sr">  end</span>
-</span><span class='line'><span class="sr">  pigeon_list</span>
-</span><span class='line'><span class="sr">end</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>So I ultimately scrapped that and started out with a new method. This time I decided to take the long, multi-step path. I retrospect going through the pigeon_data array as a whole helped me learn more than just trying to go through the :gender hash.</p>
-
-<p>So my new method went through the entire pigeon_data array, first the attributes like :color and :gender, then through their descriptive attirbutes like :purple and :male. Finally I was at the names but it was obvious I would have somewhere around five of each name in my new organized_pigeon array.</p>
-
-<p><figure class='code'><figcaption><span>[nyc_pigeon_organizer.rb]</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">def</span> <span class="nf">nyc_pigeon_organizer</span><span class="p">(</span><span class="n">pigeon_data</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">pigeon_list</span> <span class="o">=</span> <span class="p">{}</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  pigeon_data.each do |attribute, att_description|</span>
-</span><span class='line'><span class="sr">    att_description.each do |attribute_specific, name_array|</span>
-</span><span class='line'><span class="sr">      name_array.each do |name|&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'>  <span class="n">pigeon_list</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>My first thought was to go through everything in an if loop and figure out if that name was already in the array or if it wasn&rsquo;t that I could add it. But I remembered, isn&rsquo;t there a way to see if there&rsquo;s already a hash in an array just like how you can see if the same string is in an array?</p>
-
-<p>There is</p>
-
-<p><figure class='code'><figcaption><span>[nyc_pigeon_organizer.rb]</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">if</span> <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">]</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span>
-</span><span class='line'>      <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">attribute_specific</span><span class="o">.</span><span class="n">to_s</span>
-</span><span class='line'>    <span class="k">else</span> <span class="n">attribute</span> <span class="o">==</span> <span class="ss">:color</span>
-</span><span class='line'>      <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span> <span class="o">=</span> <span class="o">[</span><span class="n">attribute_specific</span><span class="o">.</span><span class="n">to_s</span><span class="o">]</span>
-</span><span class='line'>    <span class="k">else</span>
-</span><span class='line'>      <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span> <span class="o">=</span> <span class="n">attribute_specific</span><span class="o">.</span><span class="n">to_s</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>  <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">attribute</span> <span class="o">==</span> <span class="ss">:color</span>
-</span><span class='line'>    <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span> <span class="o">=</span> <span class="o">[</span><span class="n">attribute_specific</span><span class="o">.</span><span class="n">to_s</span><span class="o">]</span>
-</span><span class='line'>  <span class="k">else</span>
-</span><span class='line'>    <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span> <span class="o">=</span> <span class="n">attribute_specific</span><span class="o">.</span><span class="n">to_s</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>Let&rsquo;s go through the top parts of these if methods. In the first one I&rsquo;m asking that if the pigeon_list[name] is already in use if it&rsquo;s not I create a new hasg through the use of Hash.new. If the name is new then I begin to add the attribute hashes that are connected to that name. I specified attribute == :color because that was a larger nested array than :gender or :lives. So whatever the attribute may be the attribute_specific (ie. the :purple, :male, or &ldquo;Subway&rdquo;) is being changed into a string and added to that name-attribute array.</p>
-
-<p>Very similarly the first if method is checking to see if that name is already a hash. If it is then it goes through the same process as the else that created a new hash.
-This is the complete code:</p>
-
-<p><figure class='code'><figcaption><span>[nyc_pigeon_organizer.rb]</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">def</span> <span class="nf">nyc_pigeon_organizer</span><span class="p">(</span><span class="n">pigeon_data</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">pigeon_list</span> <span class="o">=</span> <span class="p">{}</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  pigeon_data.each do |attribute, att_description|</span>
-</span><span class='line'><span class="sr">    att_description.each do |attribute_specific, name_array|</span>
-</span><span class='line'><span class="sr">      name_array.each do |name|</span>
-</span><span class='line'><span class="sr">        if pigeon_list[name]</span>
-</span><span class='line'><span class="sr">          if pigeon_list[name][attribute]</span>
-</span><span class='line'><span class="sr">            pigeon_list[name][attribute] &amp;lt;&amp;lt; attribute_specific.to_s</span>
-</span><span class='line'><span class="sr">          else</span>
-</span><span class='line'><span class="sr">            if attribute == :color</span>
-</span><span class='line'><span class="sr">              pigeon_list[name][attribute] = [attribute_specific.to_s]</span>
-</span><span class='line'><span class="sr">            else</span>
-</span><span class='line'><span class="sr">              pigeon_list[name][attribute] = attribute_specific.to_s</span>
-</span><span class='line'><span class="sr">            end</span>
-</span><span class='line'><span class="sr">          end</span>
-</span><span class='line'><span class="sr">        else</span>
-</span><span class='line'><span class="sr">          pigeon_list[name] = Hash.new</span>
-</span><span class='line'><span class="sr">          if attribute == :color</span>
-</span><span class='line'><span class="sr">            pigeon_list[name][attribute] = [attribute_specific.to_s]</span>
-</span><span class='line'><span class="sr">          else</span>
-</span><span class='line'><span class="sr">            pigeon_list[name][attribute] = attribute_specific.to_s</span>
-</span><span class='line'><span class="sr">          end</span>
-</span><span class='line'><span class="sr">        end</span>
-</span><span class='line'><span class="sr">      end</span>
-</span><span class='line'><span class="sr">    end</span>
-</span><span class='line'><span class="sr">  end</span>
-</span><span class='line'><span class="sr">  pigeon_list</span>
-</span><span class='line'><span class="sr">end</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>When I first checked out this lab and read through it I thought it was impossible. In retrospect is was moderately complicated but easier now that I&rsquo;ve gone through it and explained it to myself.</p>
-
-<p>So if you ever find yourself walking past me and you hear me talking to myself while staring at my computer just know I&rsquo;m not crazy, I&rsquo;m just trying to figure out this code :]</p>
 ]]></content>
   </entry>
   

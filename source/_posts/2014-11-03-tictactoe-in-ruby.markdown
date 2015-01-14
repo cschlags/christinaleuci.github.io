@@ -271,5 +271,5 @@ def moves_left
 end
 {%endcodeblock%}
 
-Congratulations you've completed a Ruby Tictactoe program! As with any good program there are always ways to optimize the code. Let me know what you think of the code.
+As with any good program there are always ways to optimize the code, let me know what you think of the code. Keep on being badass!
 

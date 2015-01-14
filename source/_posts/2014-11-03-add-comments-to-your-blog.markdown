@@ -46,5 +46,5 @@ The only thing you will need to change is inside the _includes/disqus.html parti
 </script>
 {% endcodeblock %}
 
-And that's it! When you deploy your Octopress blog there will now be a comment section at the end of your blog posts.
+When you deploy your Octopress blog there will now be a comment section at the end of your blog posts. Keep on being badass!
 

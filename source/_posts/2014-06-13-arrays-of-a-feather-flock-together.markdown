@@ -132,5 +132,4 @@ end
 
 When I first checked out this lab and read through it I thought it was impossible. In retrospect is was moderately complicated but easier now that I've gone through it and explained it to myself.
 
-
-So if you ever find yourself walking past me and you hear me talking to myself while staring at my computer just know I'm not crazy, I'm just trying to figure out this code :]
+Keep on being badass!

@@ -90,4 +90,4 @@ Awesome, you're almost done. Just like any other controller you will need to set
 
 I chose to organize my api groups of controllers under a namespace and again under a v1 namespace. This allows me to organize my routes instead of searching for them through the document. Optionally I chose to make my <span font-style="italics">api/user_controller.rb</span> also a namespace. This requires me to access my other api controllers based on the user api controller.
 
-And that's it! You have successfully implemented your application with Rails API. Any advice or concerns are appreciated! <3
+And that's it! Keep on being badass! <3

@@ -3,7 +3,7 @@ layout: post
 title: "Uploading Javascript or HTML to Content Manager"
 date: 2015-01-14 12:09:49 -0500
 comments: true
-categories: [technical, tavascript, html, content manager]
+categories: [technical, javascript, html, content manager]
 ---
 
 Step by step of uploading your Javascript or HTML files to the Scala Content Manager.

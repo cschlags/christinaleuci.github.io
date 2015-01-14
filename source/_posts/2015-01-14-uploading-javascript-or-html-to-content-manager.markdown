@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Uploading Javascript or HTML to Content Manager"
+title: "Uploading Javascript or HTML to Scala Content Manager"
 date: 2015-01-14 12:09:49 -0500
 comments: true
 categories: [technical, javascript, html, content manager]

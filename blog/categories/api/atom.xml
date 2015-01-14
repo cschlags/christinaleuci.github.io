@@ -4,7 +4,7 @@
   <title><![CDATA[Category: api | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/api/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2015-01-14T11:40:52-05:00</updated>
+  <updated>2015-01-14T12:43:37-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -137,7 +137,7 @@
 
 <p>I chose to organize my api groups of controllers under a namespace and again under a v1 namespace. This allows me to organize my routes instead of searching for them through the document. Optionally I chose to make my <span font-style="italics">api/user_controller.rb</span> also a namespace. This requires me to access my other api controllers based on the user api controller.</p>
 
-<p>And that&rsquo;s it! You have successfully implemented your application with Rails API. Any advice or concerns are appreciated! &lt;3</p>
+<p>And that&rsquo;s it! Keep on being badass! &lt;3</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: technical | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/technical/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2015-01-14T11:40:52-05:00</updated>
+  <updated>2015-01-14T12:43:37-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Uploading Javascript or HTML to Content Manager]]></title>
+    <link href="http://ChristinaLeuci.github.io/blog/2015/01/14/uploading-javascript-or-html-to-content-manager/"/>
+    <updated>2015-01-14T12:09:49-05:00</updated>
+    <id>http://ChristinaLeuci.github.io/blog/2015/01/14/uploading-javascript-or-html-to-content-manager</id>
+    <content type="html"><![CDATA[<p>Step by step of uploading your Javascript or HTML files to the Scala Content Manager.</p>
+
+<!--more-->
+
+
+<p>To upload files like Javascript or HTML to the Scala Content Mangar you must create a widget. To do this your must put all your files into one folder as such</p>
+
+<p><img src="/images/widget/widget.jpg"/></p>
+
+<p>Once these files are all under the main folder you can then compress that folder, this creates a <span style="italics">.zip</span> file. Change the file extension to <span style="italics">.wgt</span>. Once this is done you can upload your widget to the Scala Content Manager.</p>
+
+<p>This file can then be uploaded to a player like an Intel Nook.</p>
+
+<p>Keep on being bad ass!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Add Arrays To Your Rails Database]]></title>
@@ -279,7 +301,7 @@
 
 <p>I chose to organize my api groups of controllers under a namespace and again under a v1 namespace. This allows me to organize my routes instead of searching for them through the document. Optionally I chose to make my <span font-style="italics">api/user_controller.rb</span> also a namespace. This requires me to access my other api controllers based on the user api controller.</p>
 
-<p>And that&rsquo;s it! You have successfully implemented your application with Rails API. Any advice or concerns are appreciated! &lt;3</p>
+<p>And that&rsquo;s it! Keep on being badass! &lt;3</p>
 ]]></content>
   </entry>
   
@@ -776,83 +798,7 @@
 </span><span class='line'>  slots
 </span><span class='line'>end</span></code></pre></td></tr></table></div></figure></p>
 
-<p>Congratulations you&rsquo;ve completed a Ruby Tictactoe program! As with any good program there are always ways to optimize the code. Let me know what you think of the code.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Add Comments To a Octopress Blog]]></title>
-    <link href="http://ChristinaLeuci.github.io/blog/2014/10/28/add-comments-to-your-blog/"/>
-    <updated>2014-10-28T23:14:56-04:00</updated>
-    <id>http://ChristinaLeuci.github.io/blog/2014/10/28/add-comments-to-your-blog</id>
-    <content type="html"><![CDATA[<p>Have you ever wanted to add comments to you github pages blog? It will take a quick two minutes and you&rsquo;ll be ready for feedback!</p>
-
-<!--more-->
-
-
-<p>Today we&rsquo;ll be using <a href="http://disqus.com">Disqus</a>, this is something that&rsquo;s already implemented in the current update of Octopress. The first thing you&rsquo;ll need to do is signup for a Disqus account. If you already have an account you can skip down to <span style="font-weight: 500">Step 2</span>.</p>
-
-<h2>Step 1</h2>
-
-<p>Once you&rsquo;ve signed up for your Disqus account go to the icon at the top right of your page. In the drop down menu click on the My Home button.</p>
-
-<p><img src="/images/disqus/start.png" width="90%"/></p>
-
-<h2>Step 2</h2>
-
-<p>At this point you will have come to your Disqus homepage, for your purposes of using Disqus as a comment feed you won&rsquo;t need the homepage much. If you go again to the top right of the screen and click on the gear it will show you another drop down menu. In this menu click on the Add Disqus to Site button.</p>
-
-<p><img src="/images/disqus/homemenu.png"/></p>
-
-<h2>Step 3</h2>
-
-<p>Fill out the form like so:
-<img src="/images/disqus/siteprofile.png" width="90%"/></p>
-
-<p>Make sure that when you choose your Unique Disqus URL you are sure of it. So far Disqus has not given user&rsquo;s the option of changing it.</p>
-
-<h2>Step 4</h2>
-
-<p>At this point in the game you can actually start working with your blog&rsquo;s source code. If you&rsquo;re up to date with Octopress you should already have the call to the Disqus partial inside your <span style="font-weight: 500">_layouts/post.html</span> partial.</p>
-
-<p>The only thing you will need to change is inside the _includes/disqus.html partial. On line 4 you will need to put your unique short name for the site. If you can&rsquo;t remember it go to the admin page of your Disqus account, choose the unique site, and select the <span style="font-weight: 500">Settings</span> tab.</p>
-
-<p><figure class='code'><figcaption><span>[disqus.html] </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="cm">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">disqus_shortname</span> <span class="o">=</span> <span class="s1">&#39;YOUR_SHORTNAME_HERE&#39;</span><span class="p">;</span> <span class="c1">// required: replace example with your forum shortname</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="cm">/* * * DON&#39;T EDIT BELOW THIS LINE * * */</span>
-</span><span class='line'>    <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">dsq</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span> <span class="nx">dsq</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span> <span class="nx">dsq</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-</span><span class='line'>        <span class="nx">dsq</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;//&#39;</span> <span class="o">+</span> <span class="nx">disqus_shortname</span> <span class="o">+</span> <span class="s1">&#39;.disqus.com/embed.js&#39;</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">dsq</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">})();</span>
-</span><span class='line'><span class="nt">&lt;/script&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>And that&rsquo;s it! When you deploy your Octopress blog there will now be a comment section at the end of your blog posts.</p>
+<p>As with any good program there are always ways to optimize the code, let me know what you think of the code. Keep on being badass!</p>
 ]]></content>
   </entry>
   

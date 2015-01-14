@@ -4,7 +4,7 @@
   <title><![CDATA[Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2015-01-14T11:40:52-05:00</updated>
+  <updated>2015-01-14T12:43:37-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Uploading Javascript or HTML to Content Manager]]></title>
+    <link href="http://ChristinaLeuci.github.io/blog/2015/01/14/uploading-javascript-or-html-to-content-manager/"/>
+    <updated>2015-01-14T12:09:49-05:00</updated>
+    <id>http://ChristinaLeuci.github.io/blog/2015/01/14/uploading-javascript-or-html-to-content-manager</id>
+    <content type="html"><![CDATA[<p>Step by step of uploading your Javascript or HTML files to the Scala Content Manager.</p>
+
+<!--more-->
+
+
+<p>To upload files like Javascript or HTML to the Scala Content Mangar you must create a widget. To do this your must put all your files into one folder as such</p>
+
+<p><img src="http://ChristinaLeuci.github.io/images/widget/widget.jpg"/></p>
+
+<p>Once these files are all under the main folder you can then compress that folder, this creates a <span style="italics">.zip</span> file. Change the file extension to <span style="italics">.wgt</span>. Once this is done you can upload your widget to the Scala Content Manager.</p>
+
+<p>This file can then be uploaded to a player like an Intel Nook.</p>
+
+<p>Keep on being bad ass!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Add Arrays to Your Rails Database]]></title>
@@ -292,7 +314,7 @@
 
 <p>I chose to organize my api groups of controllers under a namespace and again under a v1 namespace. This allows me to organize my routes instead of searching for them through the document. Optionally I chose to make my <span font-style="italics">api/user_controller.rb</span> also a namespace. This requires me to access my other api controllers based on the user api controller.</p>
 
-<p>And that&rsquo;s it! You have successfully implemented your application with Rails API. Any advice or concerns are appreciated! &lt;3</p>
+<p>And that&rsquo;s it! Keep on being badass! &lt;3</p>
 ]]></content>
   </entry>
   
@@ -756,7 +778,7 @@
 </span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Congratulations you&rsquo;ve completed a Ruby Tictactoe program! As with any good program there are always ways to optimize the code. Let me know what you think of the code.</p>
+<p>As with any good program there are always ways to optimize the code, let me know what you think of the code. Keep on being badass!</p>
 ]]></content>
   </entry>
   
@@ -823,7 +845,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>And that&rsquo;s it! When you deploy your Octopress blog there will now be a comment section at the end of your blog posts.</p>
+<p>When you deploy your Octopress blog there will now be a comment section at the end of your blog posts. Keep on being badass!</p>
 ]]></content>
   </entry>
   
@@ -939,8 +961,9 @@ Now that we have a diagram of the box and it’s points finished let’s move th
 
 <p>it shows that you can solve a simple problem while optimizing your code.
 Remember to check your code. It’s impressive to interviewers if you can catch your mistakes before presenting your code. Now at this point, an interviewer will either tell you good job or they will ask if it works. If they ask you the latter the best thing you can say is “I think it does, let’s check”. This shows confidence and that you’re willing to show you’re work.
-If for some crazy reason your code doesn’t work, don’t worry, continue working on it and perfect it. Just rinse and repeat, if you can understand why it’s not working then you interviewer will still be impressed.
-Congratulations you’ve completed your interview! Good luck to anyone who is hoping to do a technical interview!</p>
+If for some crazy reason your code doesn’t work, don’t worry, continue working on it and perfect it. Just rinse and repeat, if you can understand why it’s not working then you interviewer will still be impressed.</p>
+
+<p>Good luck to anyone who is hoping to do a technical interview! Keep on being badass!</p>
 ]]></content>
   </entry>
   
@@ -991,7 +1014,7 @@ Congratulations you’ve completed your interview! Good luck to anyone who is ho
 <p>Last Friday, the 22nd, was our last day. Although I’m sad that the journey is over a new one is beginning and I’m terribly excited for it. I wish all the luck in the world to the Ruby 005, iOS 002, and Brooklyn 001 classes. It’s been a wonderful experience and we’re going to do amazingly. We’ve gotten through Flatiron, we can do anything!</p>
 
 <p>And the best thing about programming is now I can understand the Programmer Ryan Gosling memes!
-<img src="http://ChristinaLeuci.github.io/images/flatiron/ryan.png" width="90%"/></p>
+<img src="http://ChristinaLeuci.github.io/images/flatiron/ryan.png" width="90%"/> Keep on being badass!</p>
 ]]></content>
   </entry>
   
@@ -1216,7 +1239,7 @@ This is the complete code:</p>
 
 <p>When I first checked out this lab and read through it I thought it was impossible. In retrospect is was moderately complicated but easier now that I&rsquo;ve gone through it and explained it to myself.</p>
 
-<p>So if you ever find yourself walking past me and you hear me talking to myself while staring at my computer just know I&rsquo;m not crazy, I&rsquo;m just trying to figure out this code :]</p>
+<p>Keep on being badass!</p>
 ]]></content>
   </entry>
   

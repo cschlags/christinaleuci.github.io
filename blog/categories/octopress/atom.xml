@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2015-01-14T11:40:52-05:00</updated>
+  <updated>2015-01-14T12:43:37-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -85,7 +85,7 @@
 </span><span class='line'><span class="nt">&lt;p&gt;</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
-<p>And that&rsquo;s it! When you deploy your Octopress blog there will now be a comment section at the end of your blog posts.</p>
+<p>When you deploy your Octopress blog there will now be a comment section at the end of your blog posts. Keep on being badass!</p>
 ]]></content>
   </entry>
   

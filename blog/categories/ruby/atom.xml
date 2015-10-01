@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2015-01-14T13:14:32-05:00</updated>
+  <updated>2015-10-01T14:39:27-04:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -12,6 +12,686 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[When Ruby sends you some X's and O's]]></title>
+    <link href="http://ChristinaLeuci.github.io/blog/2015/09/30/when-ruby-sends-you-some-xs-and-os/"/>
+    <updated>2015-09-30T15:37:10-04:00</updated>
+    <id>http://ChristinaLeuci.github.io/blog/2015/09/30/when-ruby-sends-you-some-xs-and-os</id>
+    <content type="html"><![CDATA[<p>New and improved Tic Tac Toe program! Now with Rails! Call now and receive a second one for 50% off!</p>
+
+<!--more-->
+
+
+<p>I recently interviewed at a company that asked that my first coding challenge assignment be an object-oriented Tic Tac Toe game. Good news I had a Tic Tac Toe game from when I applied to Flatiron. Bad news it wasn&rsquo;t object oriented. So it was time to map out how my new code was going to work, what new classes I would need to create, and what logic I would need to optimize. This will be a little longer than my current posts so you should probably grab a cup of hot chocolate and settle in for some intense programming and my subtle corny jokes.</p>
+
+<p>The first thing I did was map out what classes I would need because as an object-oriented program I would need to have one class interact with another class. I ultimately decided on having a Game, Player, and Computer class. The Game class is where I have all my intial setup like creating the board, creating the players, and accessing the player moves. The Player class is where I have the logic behind assigning a Player&rsquo;s move. Lastly, the Computer class is where I have the logic behind the Computer&rsquo;s move.</p>
+
+<h2>The Setup</h2>
+
+<p>Let me walk you through the Game class. Since this is the main class that will access the other classes I first required the Player and Computer classes using <code>require_relative</code>, then I created a game initialization at the bottom.</p>
+
+<p><figure class='code'><figcaption><span>[game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="n">require_relative</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="o">.</span><span class="n">/player</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">require_relative</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="o">.</span><span class="n">/computer</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  class Game</span>
+</span><span class='line'><span class="sr">    def initialize&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">end</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  game = Game.new</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>From there I created a <code>create_game</code> method that called on the setup methods and game play methods that the game would use. I called this method in the initialize method.</p>
+
+<p><figure class='code'><figcaption><span>[game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="n">require_relative</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="o">.</span><span class="n">/player</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">require_relative</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="o">.</span><span class="n">/computer</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  class Game</span>
+</span><span class='line'><span class="sr">    def initialize</span>
+</span><span class='line'><span class="sr">      create_game</span>
+</span><span class='line'><span class="sr">    end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">create_game</span>
+</span><span class='line'>  <span class="n">design_board</span>
+</span><span class='line'>  <span class="n">create_players</span>
+</span><span class='line'>  <span class="n">game_play</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">design_board</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">create_players</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">game_play</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  game = Game.new</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>I&rsquo;ll start with the board design method. Again I needed this to be a customizably sized board so I began by asking the user what size board they wanted. What I received was a string so I needed to change this string into an integer and I set that to @slots. The reason why I made slots an instance variable was because ultimately this variable was going to be shared between all the methods in this class and even outside the class in choosing a move. Now that slots was an instance variable I needed to created an attr_accessor at the beginning of the Game class. To ensure the user doesn&rsquo;t break the program I created an if clause that made sure @slots was between 3 and 5. If it wasn&rsquo;t then the <code>design_board</code> method was called again. If @slots was between 3 and 5 then I made @board, another instance variable, equal to <code>(1..@slots**2).to_a</code>. I made board an instance variable for the same reasons I made slots an instance variable.</p>
+
+<p>Let me explain the logic of why I did what I did. As a personal decision, I kept it between 3 and 5 because can you imagine playing a 20x20 slotted game? YEESH! For the @board logic I went through each number between 1 and however many slots the user wanted squared. Let&rsquo;s say the user put in &lsquo;4&rsquo; this would create an array of [1, 2, 3 &hellip; 15, 16]. I used this logic for the user when they end up seeing the board.</p>
+
+<p><figure class='code'><figcaption><span>[game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">class</span> <span class="nc">Game</span>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:board</span><span class="p">,</span> <span class="ss">:slots</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  ##code##&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">design_board</span>
+</span><span class='line'>    <span class="c1">#customizable board size</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">How</span> <span class="n">big</span> <span class="n">would</span> <span class="n">you</span> <span class="n">like</span> <span class="n">the</span> <span class="n">board</span> <span class="n">to</span> <span class="n">be?</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="mi">3</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">&gt;&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="c1">#changes slots size to integer</span>
+</span><span class='line'>    <span class="vi">@slots</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">to_i</span>
+</span><span class='line'>    <span class="k">if</span> <span class="vi">@slots</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="mi">0</span> <span class="o">||</span> <span class="vi">@slots</span> <span class="o">&gt;</span> <span class="mi">5</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">That</span> <span class="n">is</span> <span class="ow">not</span> <span class="n">valid</span><span class="o">.</span><span class="n">&amp;rdquo</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">design_board</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="c1">#creates array of slot ^ 2. eg. 5 becomes 1..25</span>
+</span><span class='line'>    <span class="vi">@board</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="vi">@slots</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>
+</span><span class='line'>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;   ##code##</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>Create Your Very Own Lvl. 60 Paladin</h2>
+
+<p>Next, I moved on to the <code>create_players</code> method. In the assignment guidelines it asked that I let the user choose between playing against another human or a computer. So the first line of business is asking the user that and taking in that response. I then created three if clauses, one for is the user wants a human, one for if the user wants a computer, and one if the user wants to break my program. If the user wants another human then that&rsquo;s simple, create two players using Player.new. Similarly simple, if the user puts in the wrong input then through recursion the method will be called again. For the moments when the user wants to play the computer I created another method called <code>random_start</code>; this method will end up asking the user who will play first.</p>
+
+<p><figure class='code'><figcaption><span>[game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">create_players</span>
+</span><span class='line'>    <span class="c1">#decides if you will play computer or human</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Would</span> <span class="n">you</span> <span class="n">like</span> <span class="n">your</span> <span class="n">opponent</span> <span class="n">to</span> <span class="n">be</span> <span class="n">a</span> <span class="n">human</span> <span class="ow">or</span> <span class="n">computer?</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">h</span> <span class="o">/</span> <span class="n">c</span><span class="o">&gt;&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">response</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">chomp</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">response</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">h</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>      <span class="vi">@player1</span> <span class="o">=</span> <span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+</span><span class='line'>      <span class="vi">@player2</span> <span class="o">=</span> <span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">elsif</span> <span class="n">response</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">c</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">random_start</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Invalid</span> <span class="n">input</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">create_players</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Now, for the <code>random_start</code> method. Like with the <code>create_player</code> method I asked the user who should go first and chomped that response. If the player said they wanted to play then Player 1 was the human and Player 2 was the computer, if they wanted the computer to start then Player 1 was the computer and Player 2 was the human. If the user wants to randomize then I decided on creating an if statement using the rand() Math method. This method will generate a float greater than or equal to 0.0 and less than 1.0, when compared to .5 this gives an equal 50/50 chance perfect for randomizing players.</p>
+
+<p><figure class='code'><figcaption><span>[game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">random_start</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Who</span> <span class="n">should</span> <span class="n">go</span> <span class="n">first?</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">you</span> <span class="o">/</span> <span class="n">computer</span> <span class="o">/</span> <span class="n">random</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">response</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">chomp</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">response</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">you</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>      <span class="vi">@player1</span> <span class="o">=</span> <span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+</span><span class='line'>      <span class="vi">@player2</span> <span class="o">=</span> <span class="no">Computer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">elsif</span> <span class="n">response</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">computer</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>      <span class="vi">@player1</span> <span class="o">=</span> <span class="no">Computer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+</span><span class='line'>      <span class="vi">@player2</span> <span class="o">=</span> <span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">elsif</span> <span class="n">response</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">random</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>      <span class="c1">#from past code</span>
+</span><span class='line'>      <span class="c1">#determine who is player1 and who is player2</span>
+</span><span class='line'>      <span class="vi">@player1</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">.</span><span class="mi">5</span> <span class="o">?</span> <span class="no">Computer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="p">:</span> <span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+</span><span class='line'>      <span class="vi">@player2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="c1">#{@player1.class}&amp;rdquo; == &amp;ldquo;Computer&amp;rdquo; ? Player.new(self) : Computer.new(self)</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Invalid</span> <span class="n">input</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">random_start</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>Deciding The Fate of the Universe</h2>
+
+<p>Right now we have completed the initial setup of the application and we move onto the game play. So let&rsquo;s finish that final method, <code>game_play</code> that&rsquo;s called in <code>create_game</code>. Game play will be where the actual game steps are accessed, this is will involve counting turns, the player moves, checking for a winner, and exiting or playing the game again. Let&rsquo;s create some variables with an intial value before we work on the logic. As I metioned earlier we need to track the turns so let&rsquo;s make @turn = 0 at the top of the <code>game_play</code> method. We will also need to check for a winner during the game so let&rsquo;s set the winner variable equal to false.</p>
+
+<p>To follow the logic we just put down let&rsquo;s create a while loop using both winner and @turn. We can continue playing the game if there is no winner and if @turn less than the amount of spaces on the board (remember @slots**2 is the number of spaces). If both of these comparisions are true then we can continue with the game. For an aethestic purpose we will need to print the board, so let&rsquo;s create a method <code>print_board</code>. To follow good programming practices leave the logic for the methods.</p>
+
+<p>Now that the user can see the board let&rsquo;s work on the logic of the game play. If @turn is one less than the amount of spaces on the board and a winner has not yet been found then that means the game is a time. Let&rsquo;s output a string to the user that it&rsquo;s a tie and ask them if they want to play again by calling the <code>play_again</code> method. If @turn is not equal to the amoutn of spaces then we should get the player moves by calling <code>get_player_moves</code>. To finish this game play logic let&rsquo;s increase @turn by 1 before the while loop ends.</p>
+
+<p><figure class='code'><figcaption><span>[game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">game_play</span>
+</span><span class='line'>    <span class="c1">#set turns equal to 0</span>
+</span><span class='line'>    <span class="vi">@turn</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="c1">#will need to check for winner in this method to ensure it does not contiue playing</span>
+</span><span class='line'>    <span class="n">winner</span> <span class="o">=</span> <span class="kp">false</span>
+</span><span class='line'>    <span class="c1">#if winner is false and turns are less than slots?</span>
+</span><span class='line'>    <span class="k">while</span> <span class="n">winner</span> <span class="o">==</span> <span class="kp">false</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="vi">@turn</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="vi">@slots</span><span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="mi">2</span>
+</span><span class='line'>      <span class="n">print_board</span>
+</span><span class='line'>      <span class="k">if</span> <span class="vi">@turn</span> <span class="o">==</span> <span class="p">(</span><span class="vi">@slots</span><span class="o">&lt;</span><span class="sr">/strong&gt;2)-1</span>
+</span><span class='line'><span class="sr">        #else if turns are equal to slots and no winner then draw</span>
+</span><span class='line'><span class="sr">        puts &amp;ldquo;It&amp;rsquo;s a tie!&amp;rdquo;</span>
+</span><span class='line'><span class="sr">        play_again</span>
+</span><span class='line'><span class="sr">      else</span>
+</span><span class='line'><span class="sr">        #get the player move</span>
+</span><span class='line'><span class="sr">        get_player_moves</span>
+</span><span class='line'><span class="sr">      end</span>
+</span><span class='line'><span class="sr">      #turns will need to be increased somewhere</span>
+</span><span class='line'><span class="sr">      @turn += 1</span>
+</span><span class='line'><span class="sr">    end</span>
+</span><span class='line'><span class="sr">  end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Before we move onto the the player move logic let&rsquo;s work on these two new methods <code>print_board</code> and <code>play_again</code>. The board printing method is formulating a large string for the user to see. Let&rsquo;s begin by making the board variable equal to @board.in_groups_of(@slots). If you remember from the <code>design_board</code> method earlier @board is an array from 1 to however many total spaces there are; using in_groups_of will divide that total number of spaces by the amount of slots. For instance if the number of @slots is 3 then @board is [1, 2, 3, 4, 5, 6, 7, 8, 9]. If you divide 9 by 3 then there will be 3 equal groups of 3 making board a multi-dimensional array, [[1, 2, 3],[4, 5, 6],[7, 8, 9]].</p>
+
+<p>We&rsquo;ll make printed_board equal to two new lines and then go through each value of the board arrays and add those values to that printed_board variable. Lastly to keep things neat we&rsquo;ll add an additional two new lines to printed_board and return that variable. This means each time the printed_board method is called then this board will print to the terminal.</p>
+
+<p><figure class='code'><figcaption><span>[game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">print_board</span>
+</span><span class='line'>    <span class="n">board</span> <span class="o">=</span> <span class="vi">@board</span><span class="o">.</span><span class="n">in_groups_of</span><span class="p">(</span><span class="vi">@slots</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">printed_board</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;\</span><span class="n">n</span><span class="p">\</span><span class="n">n</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">board</span><span class="o">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="p">,</span> <span class="n">i</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">row</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">char</span><span class="o">|</span>
+</span><span class='line'>        <span class="c1">#designing the actual board</span>
+</span><span class='line'>        <span class="n">printed_board</span> <span class="o">+=</span> <span class="n">char</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="vi">@slots</span><span class="o">**</span><span class="mi">2</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">length</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span> <span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="n">printed_board</span> <span class="o">+=</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;\</span><span class="n">n</span><span class="p">\</span><span class="n">n</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="n">printed_board</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The <code>play_again</code> method is very simple. We&rsquo;ll first ask if the user wants to play again and chomp that response. If the user answers &lsquo;y&rsquo; then a new game is created and the user can play again. If they don&rsquo;t answer &lsquo;y&rsquo; then the script is exited.</p>
+
+<p><figure class='code'><figcaption><span>[game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">play_again</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Play</span> <span class="n">again?</span> <span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">response</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">chomp</span>
+</span><span class='line'>    <span class="n">response</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">y</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="p">?</span> <span class="no">Game</span><span class="o">.</span><span class="n">new</span> <span class="p">:</span> <span class="nb">exit</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Now that our two side methods are finished let&rsquo;s move onto the <code>get_player_moves</code> method. We want to show who is currently moving so let&rsquo;s print that to the screen using the about of turns%2 + 1. The modulo division gives the remainder of an integer division which shows &ldquo;Player 1&rdquo; or &ldquo;Player 2&rdquo;. Depending on the @turn variable we decide who moves and pass along the type of mark, &lsquo;X&rsquo; or &lsquo;O&rsquo;. After the players have moved we check if someone has won in <code>winner_check</code>. For the sake of continuity let&rsquo;s work on the player moves in the next section.</p>
+
+<p><figure class='code'><figcaption><span>[game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">get_player_moves</span>
+</span><span class='line'>    <span class="c1">#players move after each other</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Player</span> <span class="c1">#{(@turn%2)+1}&amp;rdquo;</span>
+</span><span class='line'>    <span class="c1">#ie. if player1 moves then player2 will move</span>
+</span><span class='line'>    <span class="k">if</span> <span class="vi">@turn</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span class='line'>      <span class="vi">@player1</span><span class="o">.</span><span class="n">play_move</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">X</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;)</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="vi">@player2</span><span class="o">.</span><span class="n">play_move</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">O</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="c1">#check if someone has won</span>
+</span><span class='line'>    <span class="n">winner_check</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>Playah! Playah!</h2>
+
+<p>As you saw in the previous code block the <code>play_move</code> method is used in both the Player and Computer classes. We&rsquo;ll work with the Player class, let&rsquo;s initialize it with @game =  game. If you notice in the Game class when a player was initialize we passed along the current game using &lsquo;self&rsquo;.</p>
+
+<p>Let&rsquo;s work on that <code>play_move</code> method, the argument is mark and takes in that &lsquo;X&rsquo; or &lsquo;O&rsquo; passed along from when it&rsquo;s called in the Game class. We ask the user where they would like to move and pass that and the @game.board along to the <code>slot_play</code> method.  The return of the <code>slot_play</code> method returns the space number if it is correct. We then set that space number on the @game.board to the &lsquo;X&rsquo; or &lsquo;O&rsquo; mark.</p>
+
+<p>Before the codeblock let&rsquo;s go over the <code>slot_play</code> method, as seen in the <code>play_move</code> it takes in the current game board. We make a variable slot equal to that string we received from the user which has been converted into an integer. If slot is not between the range of the board spaces then the the user needs to input a number again. If the slot is between that board range but another play currently has a mark there then it asks the player to input another number. Finally, if the user has done things correctly then slot is decreased by 1.</p>
+
+<p><figure class='code'><figcaption><span>[Player.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">class</span> <span class="nc">Player</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">game</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@game</span> <span class="o">=</span> <span class="n">game</span>
+</span><span class='line'>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def play_move(mark)</span>
+</span><span class='line'><span class="sr">    puts &amp;ldquo;Where would you like to move?&amp;rdquo;</span>
+</span><span class='line'><span class="sr">    #need to get the board index that includes that number</span>
+</span><span class='line'><span class="sr">    slot = slot_play(@game.board)</span>
+</span><span class='line'><span class="sr">    @game.board[slot] = mark</span>
+</span><span class='line'><span class="sr">    #another method?</span>
+</span><span class='line'><span class="sr">  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">slot_play</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1">#needs to get the slot into a number</span>
+</span><span class='line'>    <span class="n">slot</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">to_i</span>
+</span><span class='line'>    <span class="c1"># if number is greater than the amount of slots</span>
+</span><span class='line'>    <span class="k">while</span> <span class="n">slot</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">slot</span> <span class="o">&gt;</span> <span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">**</span><span class="mi">2</span>
+</span><span class='line'>      <span class="c1">#return invalid input</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Invalid</span> <span class="n">game</span> <span class="n">slot</span><span class="o">.</span> <span class="no">Try</span> <span class="n">again</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">slot</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">to_i</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="c1">#if number is taken</span>
+</span><span class='line'>    <span class="k">if</span> <span class="vi">@game</span><span class="o">.</span><span class="n">board</span><span class="o">[</span><span class="n">slot</span><span class="o">-</span><span class="mi">1</span><span class="o">].</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">String</span><span class="p">)</span>
+</span><span class='line'>      <span class="c1">#return taken</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Someone</span> <span class="n">is</span> <span class="n">there</span><span class="o">.</span> <span class="no">Try</span> <span class="n">again</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">slot</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">to_i</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="c1">#redo</span>
+</span><span class='line'>    <span class="n">slot</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>I For One Welcome Our Computer Overlords</h2>
+
+<p>Let&rsquo;s move on to the Computer class and the logic behind that. Like the Player class when the Computer class is initialized it takes in the current game. Like the <code>play_move</code> method in Player thi one will take in the mark &lsquo;X&rsquo; or &lsquo;O&rsquo;. We let the human know that the computer is moving, we add an aethestic quality of a sleep command of two seconds to it appears the computer is thinking. We make move equal to the return of the <code>mark_move</code> method and on that sspace number on the game board we put the mark.</p>
+
+<p>The <code>mark_move</code> method is pure logic, although this program does not let the Computer just randomly pick a spot this is a simple slot selection process. Generally, the user will pick the @slot number as 3 so I used the logic based on that. The smartest move the computer can do is use the center of the board, if another mark is there then it moves to the next if clause. The next four if clauses test if a mark is in one of the fours corners of the board. From there we figured out if a mark is in the other slots of the 3 group board. If it still fails the previous if clauses then the computer will choose a random spot.</p>
+
+<p><figure class='code'><figcaption><span>[Computer.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">class</span> <span class="nc">Computer</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def initialize(game)</span>
+</span><span class='line'><span class="sr">    @game = game</span>
+</span><span class='line'><span class="sr">  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">play_move</span><span class="p">(</span><span class="n">mark</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1">#take the symbol &amp;ldquo;x&amp;rdquo; or &amp;ldquo;o&amp;rdquo;</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">The</span> <span class="n">computer</span> <span class="n">is</span> <span class="n">moving</span><span class="o">&amp;</span><span class="n">hellip</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="nb">sleep</span> <span class="mi">2</span>
+</span><span class='line'>    <span class="n">move</span> <span class="o">=</span> <span class="n">mark_move</span>
+</span><span class='line'>    <span class="c1">#the index of the game board gets that mark</span>
+</span><span class='line'>    <span class="vi">@game</span><span class="o">.</span><span class="n">board</span><span class="o">[</span><span class="n">move</span><span class="o">]</span> <span class="o">=</span> <span class="n">mark</span>
+</span><span class='line'>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def mark_move</span>
+</span><span class='line'><span class="sr">    if @game.board[4].is_a?(Integer)</span>
+</span><span class='line'><span class="sr">      4</span>
+</span><span class='line'><span class="sr">    elsif !@game.board[5].is_a?(Integer) &amp;amp;&amp;amp; @game.board[8].is_a?(Integer)</span>
+</span><span class='line'><span class="sr">      8</span>
+</span><span class='line'><span class="sr">    elsif @game.board[0].is_a?(Integer)</span>
+</span><span class='line'><span class="sr">      0</span>
+</span><span class='line'><span class="sr">    elsif @game.board[6].is_a?(Integer)</span>
+</span><span class='line'><span class="sr">      6</span>
+</span><span class='line'><span class="sr">    elsif @game.board[1].is_a?(Integer)</span>
+</span><span class='line'><span class="sr">      1</span>
+</span><span class='line'><span class="sr">    elsif !@game.board[1].is_a?(Integer) &amp;amp;&amp;amp; @game.board[2].is_a?(Integer)</span>
+</span><span class='line'><span class="sr">      2</span>
+</span><span class='line'><span class="sr">    elsif @game.board[3].is_a?(Integer)</span>
+</span><span class='line'><span class="sr">      3</span>
+</span><span class='line'><span class="sr">    elsif @game.board[5].is_a?(Integer)</span>
+</span><span class='line'><span class="sr">      5</span>
+</span><span class='line'><span class="sr">    elsif @game.board[7].is_a?(Integer)</span>
+</span><span class='line'><span class="sr">      7</span>
+</span><span class='line'><span class="sr">    else</span>
+</span><span class='line'><span class="sr">      @game.board.select { |i| i.is_a?(Integer) }.sample - 1</span>
+</span><span class='line'><span class="sr">    end</span>
+</span><span class='line'><span class="sr">  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>Checking Who&rsquo;s The Big Pumba</h2>
+
+<p>We&rsquo;ve just finished the Player and Computer classes! Tired yet? We&rsquo;re almost done. In the Game class we left off with the <code>winner_check</code> method, so let&rsquo;s create that. The <code>winner_check</code> method will access the methods that will test if there is a winner, if there is then the script will announce a winner and ask if the user wants to play again.</p>
+
+<p>There are three possible winning situations, a horizontal line, a vertical column, or a diagonal. I have a concise explanation on my <a href="">script&rsquo;s README</a> that describes the winning situations but let me go over these methods as I go over each one.</p>
+
+<p><figure class='code'><figcaption><span>[Game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">winner_check</span>
+</span><span class='line'>    <span class="c1">#since there are no hard-coded wins there should be a line/column/diagonal win</span>
+</span><span class='line'>    <span class="n">board</span> <span class="o">=</span> <span class="vi">@board</span><span class="o">.</span><span class="n">in_groups_of</span><span class="p">(</span><span class="n">slots</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1">#need to keep track of the players points</span>
+</span><span class='line'>    <span class="vi">@point</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">line</span><span class="p">(</span><span class="n">board</span><span class="p">)</span> <span class="o">||</span> <span class="n">column</span><span class="p">(</span><span class="n">board</span><span class="p">)</span> <span class="o">||</span> <span class="n">diagonal</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>
+</span><span class='line'>      <span class="vi">@winner</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Player</span> <span class="c1">#{(@turn%2)+1} wins!&amp;rdquo;</span>
+</span><span class='line'>      <span class="n">play_again</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The <code>line</code> method takes in the current game&rsquo;s board. We will go through each array of the board. Testing the values of each array in the second dimension, each time the same value is found then a point is added. We then call the <code>points</code> method which I will go over at the very end, if there are enough points then the <code>line</code> method returns true and a winner is announced. If there are not enough points then the method returns false and we move on to the <code>column</code> method.</p>
+
+<p><figure class='code'><figcaption><span>[Game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">line</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">(</span><span class="mi">0</span><span class="o">&amp;</span><span class="n">hellip</span><span class="p">;</span><span class="vi">@slots</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">y</span><span class="o">|</span>
+</span><span class='line'>      <span class="p">(</span><span class="mi">0</span><span class="o">&amp;</span><span class="n">hellip</span><span class="p">;(</span><span class="vi">@slots</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+</span><span class='line'>        <span class="c1">#if one slot is equal to the slot to the right add point</span>
+</span><span class='line'>        <span class="vi">@point</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">board</span><span class="o">[</span><span class="n">y</span><span class="o">][</span><span class="n">x</span><span class="o">]</span> <span class="o">==</span> <span class="n">board</span><span class="o">[</span><span class="n">y</span><span class="o">][</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">points</span> <span class="o">==</span> <span class="kp">true</span>
+</span><span class='line'>        <span class="k">return</span> <span class="kp">true</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="kp">false</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The <code>column</code> method takes in the current game&rsquo;s board. We will go through each array of the board. Testing the values of the board where the second array value is equal to another value in that same second array value. Each time the same value is found then a point is added. We then call the <code>points</code> method which I will go over at the very end, if there are enough points then the <code>column</code> method returns true and a winner is announced. If there are not enough points then the method returns false and we move on to the <code>diagonal</code> method.</p>
+
+<p><figure class='code'><figcaption><span>[Game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">column</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1">#going through each slot</span>
+</span><span class='line'>    <span class="p">(</span><span class="mi">0</span><span class="o">&amp;</span><span class="n">hellip</span><span class="p">;</span><span class="vi">@slots</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+</span><span class='line'>      <span class="c1">#going through each slot</span>
+</span><span class='line'>      <span class="p">(</span><span class="mi">0</span><span class="o">&amp;</span><span class="n">hellip</span><span class="p">;(</span><span class="vi">@slots</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">y</span><span class="o">|</span>
+</span><span class='line'>        <span class="c1">#if one slot is equal to the slot below it add point</span>
+</span><span class='line'>        <span class="vi">@point</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">board</span><span class="o">[</span><span class="n">y</span><span class="o">][</span><span class="n">x</span><span class="o">]</span> <span class="o">==</span> <span class="n">board</span><span class="o">[</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="o">][</span><span class="n">x</span><span class="o">]</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">points</span> <span class="o">==</span> <span class="kp">true</span>
+</span><span class='line'>        <span class="k">return</span> <span class="kp">true</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="kp">false</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The <code>column</code> method takes in the current game&rsquo;s board. We will go through each array of the board. First, if the values are equal to each other in a downward right fashion then a point is added. <code>Points</code> is then called and may or may not return true. If it does not return true then we check if the values are equal to each other in a downward left fashion then a point is added. <code>Points</code> is then called and may or may not return true. In this case if <code>points</code> returns false then the <code>check_winner</code> method also returns false.</p>
+
+<p><figure class='code'><figcaption><span>[Game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">diagonal</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">(</span><span class="mi">0</span><span class="o">&amp;</span><span class="n">hellip</span><span class="p">;(</span><span class="vi">@slots</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'>      <span class="c1">#if board slot is equal going in downward right fashion</span>
+</span><span class='line'>      <span class="vi">@point</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">board</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">board</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">][</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>    <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;if points == true</span>
+</span><span class='line'><span class="sr">  true</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">(0...(@slots-1)).each do |i|</span>
+</span><span class='line'><span class="sr">  #diagonal board slot is equal going in downward left fashion</span>
+</span><span class='line'><span class="sr">  @point += 1 if board[@slots-(i+1)][i] == board[@slots-(i+2)][i+1]</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">points == true ? true : false</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The <code>points</code> method compares the @point variable to the @slots variable. If they are not equal then @point returns to 1.</p>
+
+<p><figure class='code'><figcaption><span>[Game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">points</span>
+</span><span class='line'>    <span class="k">if</span> <span class="vi">@point</span> <span class="o">==</span> <span class="vi">@slots</span>
+</span><span class='line'>      <span class="kp">true</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="vi">@point</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>And that is the completion of the Tic Tac Toe Ruby script! For the future I&rsquo;m going to setup a difficulty setting for the computer, where beginner let&rsquo;s the Computer randomnly select a board space, medium selects the board space using the current logic, and extreme selects the board space depending on both the computer and the human player. I hope this walkthrough aids you in creating your own Tic Tac Toe Ruby script and that you enjoy playing this one.</p>
+
+<p>Keep on being badass programmers!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Tictactoe in Ruby]]></title>

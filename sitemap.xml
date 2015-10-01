@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://ChristinaLeuci.github.io/blog/2015/09/30/when-ruby-sends-you-some-xs-and-os/</loc>
+    <lastmod>2015-09-30T15:37:10-04:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>http://ChristinaLeuci.github.io/blog/2015/01/14/uploading-javascript-or-html-to-content-manager/</loc>
     <lastmod>2015-01-14T12:09:49-05:00</lastmod>
     <priority>0.8</priority>
@@ -47,19 +52,19 @@
   </url>
   <url>
     <loc>http://ChristinaLeuci.github.io/</loc>
-    <lastmod>2015-01-14T13:14:32-05:00</lastmod>
+    <lastmod>2015-10-01T14:39:27-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://ChristinaLeuci.github.io/blog/archives/</loc>
-    <lastmod>2015-01-14T13:14:32-05:00</lastmod>
+    <lastmod>2015-10-01T14:39:27-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>http://ChristinaLeuci.github.io/posts/</loc>
-    <lastmod>2015-01-14T13:14:32-05:00</lastmod>
+    <lastmod>2015-10-01T14:39:27-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

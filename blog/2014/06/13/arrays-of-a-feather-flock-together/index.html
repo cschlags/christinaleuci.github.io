@@ -11,9 +11,7 @@
   <meta charset="utf-8">
   <title>Arrays of a Feather Flock Together - Christina Leuci</title>
   <meta name="author" content="Christina Leuci">
-
-  
-  <meta name="description" content="Arrays of a Feather Flock Together written in data structures, technical Nested arrays were a big problem for me even in Java. I understood the &hellip;">
+  <meta name="description" content="Arrays of a Feather Flock Together written in data structures, technical I have found that explaining programs (or trying to) has helped me greatly &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -46,19 +44,7 @@
         <h1>Arrays of a Feather Flock Together</h1>
         <div class="meta">
           written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-06-13T08:52:33-04:00" pubdate data-updated="true"></time>
+<time datetime="2014-06-13T05:21:18-04:00" pubdate data-updated="true"></time>
           
 
 in
@@ -70,37 +56,233 @@ in
 
 
         </div>
-        <p>Nested arrays were a big problem for me even in Java. I understood the concept that there was an array inside an array but the syntax and use never really connected. The NYC Pigeon Lab was pretty difficult for me. Taking one nested array and translating it into another was like climbing Mount Everest in under a minute.
-I have found that explaining programs (or trying to) has helped me greatly in understanding the use of syntax. So let me teach you about these little nuisances called Nested Arrays.
-The instructions for the NYC Pigeon Lab were define a method called nyc_pigeon_organizer and take in an array called pigeon_data. Take the names of the pigeon’s first, a general attribute and the attribute specific to them. Easy in theory, hard in practice.</p>
+        <p>I have found that explaining programs (or trying to) has helped me greatly in understanding the use of syntax. So let me teach you about these little nuisances called Nested Arrays.</p>
 
-<!-- more -->
+<!--more-->
 
 
-<p><img class="center" src="/images/first.jpg" width="770" height="510"></p>
+<p>Nested arrays were a big problem for me even in Java. I understood the concept that there was an array inside an array but the syntax and use never really connected. The NYC Pigeon Lab was pretty difficult for me. Taking one nested array and translating it into another was like climbing Mount Everest in under a minute.</p>
 
-<p>Pigeon Data is a nested array so to get to the names you need to go through :color, then through :purple, then take each index in the name_array and put that into another array while deleting any repeats. But wait? Doesn’t gender only have one list of names? If I put those names into an array then I wouldn’t have to delete any repeats.
-Well I tried that. Yes, I did get an array of names without complications and there were no repetitions but where could I go from there? I was completely lost. I had gotten into the gender hash and completely by-passed all that other information. What could I do now?
-<img class="center" src="/images/second.jpg" width="770" height="510"></p>
+<p>The instructions for the NYC Pigeon Lab were define a method called nyc_pigeon_organizer and take in an array called pigeon_data. Take the names of the pigeon&rsquo;s first, a general attribute and the attribute specific to them. Easy in theory, hard in practice.</p>
 
-<p>So I ultimately scrapped that and started out with a new method. This time I decided to take the long, multi-step path. I retrospect going through the pigeon_data array as a whole helped me learn more than just trying to go through the :gender hash.
-So my new method went through the entire pigeon_data array, first the attributes like :color and :gender, then through their descriptive attirbutes like :purple and :male. Finally I was at the names but it was obvious I would have somewhere around five of each name in my new organized_pigeon array.
-<img class="center" src="/images/third.jpg" width="770" height="510"></p>
+<figure class='code'><figcaption><span>[nyc_pigeon_organizer.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="ss">:color</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>    <span class="ss">:purple</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;Theo&quot;</span><span class="p">,</span> <span class="s2">&quot;Peter Jr.&quot;</span><span class="p">,</span> <span class="s2">&quot;Lucky&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>    <span class="ss">:grey</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;Theo&quot;</span><span class="p">,</span> <span class="s2">&quot;Peter Jr.&quot;</span><span class="p">,</span> <span class="s2">&quot;Ms .K&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>    <span class="ss">:white</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;Queenie&quot;</span><span class="p">,</span> <span class="s2">&quot;Andrew&quot;</span><span class="p">,</span> <span class="s2">&quot;Ms .K&quot;</span><span class="p">,</span> <span class="s2">&quot;Alex&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>    <span class="ss">:brown</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;Queenie&quot;</span><span class="p">,</span> <span class="s2">&quot;Alex&quot;</span><span class="o">]</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="ss">:gender</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>    <span class="ss">:male</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;Alex&quot;</span><span class="p">,</span> <span class="s2">&quot;Theo&quot;</span><span class="p">,</span> <span class="s2">&quot;Peter Jr.&quot;</span><span class="p">,</span> <span class="s2">&quot;Andrew&quot;</span><span class="p">,</span> <span class="s2">&quot;Lucky&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>    <span class="ss">:female</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;Queenie&quot;</span><span class="p">,</span> <span class="s2">&quot;Ms .K&quot;</span><span class="o">]</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="ss">:lives</span><span class="p">{</span>
+</span><span class='line'>    <span class="s2">&quot;Subway&quot;</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;Theo&quot;</span><span class="p">,</span> <span class="s2">&quot;Queenie&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>    <span class="s2">&quot;Central Park&quot;</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;Alex&quot;</span><span class="p">,</span> <span class="s2">&quot;Ms .K&quot;</span><span class="p">,</span> <span class="s2">&quot;Lucky&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>    <span class="s2">&quot;Library&quot;</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;Peter Jr.&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>    <span class="s2">&quot;City Hall&quot;</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;Andrew&quot;</span><span class="o">]</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>My first thought was to go through everything in an if loop and figure out if that name was already in the array or if it wasn’t that I could add it. But I remembered, isn’t there a way to see if there’s already a hash in an array just like how you can see if the same string is in an array?
-There is
-<img class="center" src="/images/fourth.jpg" width="770" height="510"></p>
 
-<p>Let’s go through the top parts of these if methods. In the first one I’m asking that if the pigeon_list[name] is already in use if it’s not I create a new hasg through the use of Hash.new. If the name is new then I begin to add the attribute hashes that are connected to that name. I specified attribute == :color because that was a larger nested array than :gender or :lives. So whatever the attribute may be the attribute_specific (ie. the :purple, :male, or “Subway”) is being changed into a string and added to that name-attribute array.
-Very similarly the first if method is checking to see if that name is already a hash. If it is then it goes through the same process as the else that created a new hash. This is the complete code:
-<img class="center" src="/images/fifth.jpg" width="770" height="510"></p>
+<p>Pigeon Data is a nested array so to get to the names you need to go through :color, then through :purple, then take each index in the name_array and put that into another array while deleting any repeats. But wait? Doesn&rsquo;t gender only have one list of names? If I put those names into an array then I wouldn&rsquo;t have to delete any repeats.</p>
 
-<p>When I first checked out this lab and read through it I thought it was impossible. In retrospect is was moderately complicated but easier now that I’ve gone through it and explained it to myself.
-So if you ever find yourself walking past me and you hear me talking to myself while staring at my computer just know I’m not crazy, I’m just trying to figure out this code :]</p>
+<p>Well I tried that. Yes, I did get an array of names without complications and there were no repetitions but where could I go from there? I was completely lost. I had gotten into the gender hash and completely by-passed all that other information. What could I do now?</p>
+
+<figure class='code'><figcaption><span>[nyc_pigeon_organizer.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">def</span> <span class="nf">nyc_pigeon_organizer</span><span class="p">(</span><span class="n">pigeon_data</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">pigeon_list</span><span class="o">=</span><span class="p">{}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="ss">:gender</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">gender</span><span class="p">,</span> <span class="n">name_array</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">pigeon_list</span><span class="o">[</span><span class="n">name_array</span><span class="o">]</span> <span class="o">||=</span> <span class="p">{}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">pigeon_list</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So I ultimately scrapped that and started out with a new method. This time I decided to take the long, multi-step path. I retrospect going through the pigeon_data array as a whole helped me learn more than just trying to go through the :gender hash.</p>
+
+<p>So my new method went through the entire pigeon_data array, first the attributes like :color and :gender, then through their descriptive attirbutes like :purple and :male. Finally I was at the names but it was obvious I would have somewhere around five of each name in my new organized_pigeon array.</p>
+
+<figure class='code'><figcaption><span>[nyc_pigeon_organizer.rb]</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">def</span> <span class="nf">nyc_pigeon_organizer</span><span class="p">(</span><span class="n">pigeon_data</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">pigeon_list</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">pigeon_data</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">attribute</span><span class="p">,</span> <span class="n">att_description</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">att_description</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">attribute_specific</span><span class="p">,</span> <span class="n">name_array</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">name_array</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">pigeon_list</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>My first thought was to go through everything in an if loop and figure out if that name was already in the array or if it wasn&rsquo;t that I could add it. But I remembered, isn&rsquo;t there a way to see if there&rsquo;s already a hash in an array just like how you can see if the same string is in an array?</p>
+
+<p>There is</p>
+
+<figure class='code'><figcaption><span>[nyc_pigeon_organizer.rb]</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">if</span> <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">]</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span>
+</span><span class='line'>      <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span> <span class="o">&lt;&lt;</span> <span class="n">attribute_specific</span><span class="o">.</span><span class="n">to_s</span>
+</span><span class='line'>    <span class="k">else</span> <span class="n">attribute</span> <span class="o">==</span> <span class="ss">:color</span>
+</span><span class='line'>      <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span> <span class="o">=</span> <span class="o">[</span><span class="n">attribute_specific</span><span class="o">.</span><span class="n">to_s</span><span class="o">]</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span> <span class="o">=</span> <span class="n">attribute_specific</span><span class="o">.</span><span class="n">to_s</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">attribute</span> <span class="o">==</span> <span class="ss">:color</span>
+</span><span class='line'>    <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span> <span class="o">=</span> <span class="o">[</span><span class="n">attribute_specific</span><span class="o">.</span><span class="n">to_s</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span> <span class="o">=</span> <span class="n">attribute_specific</span><span class="o">.</span><span class="n">to_s</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Let&rsquo;s go through the top parts of these if methods. In the first one I&rsquo;m asking that if the pigeon_list[name] is already in use if it&rsquo;s not I create a new hasg through the use of Hash.new. If the name is new then I begin to add the attribute hashes that are connected to that name. I specified attribute == :color because that was a larger nested array than :gender or :lives. So whatever the attribute may be the attribute_specific (ie. the :purple, :male, or &ldquo;Subway&rdquo;) is being changed into a string and added to that name-attribute array.</p>
+
+<p>Very similarly the first if method is checking to see if that name is already a hash. If it is then it goes through the same process as the else that created a new hash.
+This is the complete code:</p>
+
+<figure class='code'><figcaption><span>[nyc_pigeon_organizer.rb]</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">def</span> <span class="nf">nyc_pigeon_organizer</span><span class="p">(</span><span class="n">pigeon_data</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">pigeon_list</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">pigeon_data</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">attribute</span><span class="p">,</span> <span class="n">att_description</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">att_description</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">attribute_specific</span><span class="p">,</span> <span class="n">name_array</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">name_array</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">]</span>
+</span><span class='line'>          <span class="k">if</span> <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span>
+</span><span class='line'>            <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span> <span class="o">&lt;&lt;</span> <span class="n">attribute_specific</span><span class="o">.</span><span class="n">to_s</span>
+</span><span class='line'>          <span class="k">else</span>
+</span><span class='line'>            <span class="k">if</span> <span class="n">attribute</span> <span class="o">==</span> <span class="ss">:color</span>
+</span><span class='line'>              <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span> <span class="o">=</span> <span class="o">[</span><span class="n">attribute_specific</span><span class="o">.</span><span class="n">to_s</span><span class="o">]</span>
+</span><span class='line'>            <span class="k">else</span>
+</span><span class='line'>              <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span> <span class="o">=</span> <span class="n">attribute_specific</span><span class="o">.</span><span class="n">to_s</span>
+</span><span class='line'>            <span class="k">end</span>
+</span><span class='line'>          <span class="k">end</span>
+</span><span class='line'>        <span class="k">else</span>
+</span><span class='line'>          <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>          <span class="k">if</span> <span class="n">attribute</span> <span class="o">==</span> <span class="ss">:color</span>
+</span><span class='line'>            <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span> <span class="o">=</span> <span class="o">[</span><span class="n">attribute_specific</span><span class="o">.</span><span class="n">to_s</span><span class="o">]</span>
+</span><span class='line'>          <span class="k">else</span>
+</span><span class='line'>            <span class="n">pigeon_list</span><span class="o">[</span><span class="nb">name</span><span class="o">][</span><span class="n">attribute</span><span class="o">]</span> <span class="o">=</span> <span class="n">attribute_specific</span><span class="o">.</span><span class="n">to_s</span>
+</span><span class='line'>          <span class="k">end</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">pigeon_list</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When I first checked out this lab and read through it I thought it was impossible. In retrospect is was moderately complicated but easier now that I&rsquo;ve gone through it and explained it to myself.</p>
+
+<p>Keep on being badass!</p>
 
 
         <hr class="divider-short"/>
+
         
+        <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </section>
         
       </div>
     </div>
@@ -116,7 +298,7 @@ So if you ever find yourself walking past me and you hear me talking to myself w
         
 
         
-          <a class="pull-right" href="/blog/2014/09/04/an-unexpected-adventure-my-flatiron-experience/" title="Next Post: An Unexpected Adventure: My Flatiron Experience">Next: An Unexpected Adventure: My Flatiron Experience &raquo;</a>
+          <a class="pull-right" href="/blog/2014/09/04/an-unexpected-adventure/" title="Next Post: An Unexpected Adventure: My Flatiron Experience">Next: An Unexpected Adventure: My Flatiron Experience &raquo;</a>
         
       </div>
     </div>
@@ -132,12 +314,19 @@ So if you ever find yourself walking past me and you hear me talking to myself w
 
 <div class="col-md-2">
   <div class="social-icon-list">
+    <a href="https://twitter.com/ChristinaLeuci"><img src="/images/glyphicons_social_31_twitter.png"/></a>
     
 
     
-
+    <a href="https://github.com/christinaleuci"><img src="/images/glyphicons_social_21_github.png"/></a>
     
 
+    
+    <a href="https://linkedin.com/pub/christina-leuci/78/756/a57"><img src="/images/glyphicons_social_17_linked_in.png"/></a>
+    
+
+    
+    <a href="mailto:christinaleuci@gmail.com"><img src="/images/glyphicons_social_39_e-mail.png"/></a>
     
   </div>
 </div>
@@ -150,6 +339,20 @@ So if you ever find yourself walking past me and you hear me talking to myself w
     </div>
   </div>
 </footer>
-
+<script type="text/javascript">
+      var disqus_shortname = 'christinaleucigithubio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ChristinaLeuci.github.io/blog/2014/06/13/arrays-of-a-feather-flock-together/';
+        var disqus_url = 'http://ChristinaLeuci.github.io/blog/2014/06/13/arrays-of-a-feather-flock-together/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
   </body>
 </html>

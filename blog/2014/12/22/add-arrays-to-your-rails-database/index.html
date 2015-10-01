@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Add Arrays to Your Rails Database - Christina Leuci</title>
+  <meta name="author" content="Christina Leuci">
+
+  
+  <meta name="description" content="Add Arrays to Your Rails Database written in data structure, rails, technical Have you ever been looking at your database wondering how you can &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ChristinaLeuci.github.io/blog/2014/12/22/add-arrays-to-your-rails-database">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Christina Leuci" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+
+</head>
+
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
+
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Add Arrays to Your Rails Database</h1>
+        <div class="meta">
+          written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-12-22T13:38:32-05:00" pubdate data-updated="true"></time>
+          
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/data-structure/'>data structure</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/technical/'>technical</a>
+  
+</span>
+
+
+        </div>
+        <p>Have you ever been looking at your database wondering how you can change that string or integer into an array or a hash?</p>
+
+<!--more-->
+
+
+<p>Before we start with the code make sure you have a database and it&rsquo;s model created in your Rails app.</p>
+
+<p>I currently have it setup so that my Wardrobe is initiaized upon a User&rsquo;s creation. For a usual serialization you will only need two lines of code and optionally a method.</p>
+
+<figure class='code'><figcaption><span>[wardrobe.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">class</span> <span class="nc">Wardrobe</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>    <span class="n">belongs_to</span> <span class="ss">:user</span>
+</span><span class='line'>    <span class="n">serialize</span> <span class="ss">:wardrobe</span>
+</span><span class='line'>    <span class="n">after_create</span> <span class="ss">:serialize_wardrobe</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">serialize_wardrobe</span>
+</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">wardrobe</span> <span class="o">=</span> <span class="p">{</span><span class="ss">:tops</span> <span class="o">=&gt;</span> <span class="o">[]</span><span class="p">,</span> <span class="ss">:bottoms</span> <span class="o">=&gt;</span> <span class="o">[]</span><span class="p">}</span>
+</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">save!</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I used the serialize method that you can research more about <a href="http://apidock.com/rails/ActiveRecord/Base/serialize/class">here</a>. As a note although my class&rsquo;s name is Wardrobe I also have a param underneath that named wardrobe. You should use the param name you want to be serialized.</p>
+
+<p>After serializing the wardrobe, which happens upon initialization, I decided to specify what would be inside that serialized wardrobe param by using an <span style="font-style: italics">after_create</span> method. Inside my after_create method I described that the wardrobe param hash should contain two keys with their respective arrays and it should be saved.</p>
+
+<p>That&rsquo;s it! Keep on being badass programmers!</p>
+
+
+        <hr class="divider-short"/>
+
+        
+        <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </section>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+          <a class="pull-left" href="/blog/2014/12/19/setting-up-aws-with-your-rails-app/" title="Previous Post: Using AWS Image Hosting for Rails">&laquo; Previous: Using AWS Image Hosting for Rails</a>
+        
+
+        
+          <a class="pull-right" href="/blog/2015/01/14/uploading-javascript-or-html-to-content-manager/" title="Next Post: Uploading Javascript or HTML to Scala Content Manager">Next: Uploading Javascript or HTML to Scala Content Manager &raquo;</a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="/"><h4>Home</h4></a>
+</div>
+
+<div class="col-md-2">
+  <div class="social-icon-list">
+    
+    <a href="https://twitter.com/ChristinaLeuci"><img src="/images/glyphicons_social_31_twitter.png"/></a>
+    
+
+    
+    <a href="https://github.com/christinaleuci"><img src="/images/glyphicons_social_21_github.png"/></a>
+    
+
+    
+    <a href="https://linkedin.com/pub/christina-leuci/78/756/a57"><img src="/images/glyphicons_social_17_linked_in.png"/></a>
+    
+
+    
+    <a href="mailto:christinaleuci@gmail.com"><img src="/images/glyphicons_social_39_e-mail.png"/></a>
+    
+  </div>
+</div>
+
+<div class="pull-right">
+  <h4>Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+    
+      
+
+<script type="text/javascript">
+      var disqus_shortname = 'christinaleucigithubio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ChristinaLeuci.github.io/blog/2014/12/22/add-arrays-to-your-rails-database/';
+        var disqus_url = 'http://ChristinaLeuci.github.io/blog/2014/12/22/add-arrays-to-your-rails-database/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+    
+  </body>
+</html>

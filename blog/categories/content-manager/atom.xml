@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: content manager | Christina Leuci]]></title>
+  <link href="http://ChristinaLeuci.github.io/blog/categories/content-manager/atom.xml" rel="self"/>
+  <link href="http://ChristinaLeuci.github.io/"/>
+  <updated>2015-10-01T14:53:23-04:00</updated>
+  <id>http://ChristinaLeuci.github.io/</id>
+  <author>
+    <name><![CDATA[Christina Leuci]]></name>
+    <email><![CDATA[christinaleuci@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Uploading Javascript or HTML to Scala Content Manager]]></title>
+    <link href="http://ChristinaLeuci.github.io/blog/2015/01/14/uploading-javascript-or-html-to-content-manager/"/>
+    <updated>2015-01-14T12:09:49-05:00</updated>
+    <id>http://ChristinaLeuci.github.io/blog/2015/01/14/uploading-javascript-or-html-to-content-manager</id>
+    <content type="html"><![CDATA[<p>Step by step of uploading your Javascript or HTML files to the Scala Content Manager.</p>
+
+<!--more-->
+
+
+<p>To upload files like Javascript or HTML to the Scala Content Mangar you must create a widget. To do this your must put all your files into one folder as such</p>
+
+<p><img src="/images/widget/widget.jpg"/></p>
+
+<p>Once these files are all under the main folder you can then compress that folder, this creates a <span style="italics">.zip</span> file. Change the file extension to <span style="italics">.wgt</span>. Once this is done you can upload your widget to the Scala Content Manager.</p>
+
+<p>This file can then be uploaded to a player like an Intel Nook.</p>
+
+<p>Keep on being bad ass!</p>
+]]></content>
+  </entry>
+  
+</feed>

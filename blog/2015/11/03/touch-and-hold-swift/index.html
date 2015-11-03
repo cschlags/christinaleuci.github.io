@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Touch and Hold Swift - Christina Leuci</title>
+  <meta name="author" content="Christina Leuci">
+
+  
+  <meta name="description" content="Touch and Hold Swift written in ios, swift, technical Recently, at VID, I created a functional iPad application for a client&rsquo;s property &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ChristinaLeuci.github.io/blog/2015/11/03/touch-and-hold-swift">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Christina Leuci" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-69616812-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
+
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Touch and Hold Swift</h1>
+        <div class="meta">
+          written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-11-03T12:54:09-05:00" pubdate data-updated="true"></time>
+          
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>, <a class='category' href='/blog/categories/swift/'>swift</a>, <a class='category' href='/blog/categories/technical/'>technical</a>
+  
+</span>
+
+
+        </div>
+        <p>Recently, at VID, I created a functional iPad application for a client&rsquo;s property platform. One function was panning a 360 image on a Windows application.</p>
+
+<!--more-->
+
+
+<p>Prior to working on these Swift methods our team created a Windows launcher and API to connect with and show these images on the screen. One of the images that needed panoramic capability were the floor views. In the Main.storyboard file I created one View Controller for these API calls. As you can see each view has a left and right arrow which will repeat call the API to move left or right.</p>
+
+<p><img src="/images/touch-hold/General.png"/></p>
+
+<p>To be brief, here is one variable of the first right button on the Main.storyboard as well as the leftTimer and rightTimer variables that will be used in the future &ldquo;touch and hold&rdquo; methods.</p>
+
+<figure class='code'><figcaption><span>[game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="vi">@IBOutlet</span> <span class="n">weak</span> <span class="n">var</span> <span class="ss">right1Button</span><span class="p">:</span> <span class="no">UIButton</span><span class="o">!</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">var</span> <span class="n">leftTimer</span> <span class="p">:</span> <span class="no">NSTimer</span><span class="p">?</span> <span class="o">=</span> <span class="kp">nil</span>
+</span><span class='line'>  <span class="n">var</span> <span class="n">rightTimer</span> <span class="p">:</span> <span class="no">NSTimer</span><span class="p">?</span> <span class="o">=</span> <span class="kp">nil</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>leftButtonDown</code> and <code>rightButtonDown</code> methods repeatedly call the <code>moveLeft</code> or <code>moveRight</code> methods every 0.1 second while the user continues to press the view button. Once the user lifts their finger up which is considered a <code>Touch Up</code> type of Swift method the timer becomes invalid and panoramic capability ceases.</p>
+
+<figure class='code'><figcaption><span>[game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="sr">//</span>  <span class="no">PANORAMIC</span> <span class="no">CAPABILITY</span>
+</span><span class='line'>    <span class="vi">@IBAction</span> <span class="n">func</span> <span class="n">leftButtonDown</span><span class="p">(</span><span class="ss">sender</span><span class="p">:</span> <span class="no">UIButton</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">leftTimer</span> <span class="o">=</span> <span class="no">NSTimer</span><span class="o">.</span><span class="n">scheduledTimerWithTimeInterval</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="ss">target</span><span class="p">:</span> <span class="nb">self</span><span class="p">,</span> <span class="ss">selector</span><span class="p">:</span> <span class="s2">&quot;moveLeft&quot;</span><span class="p">,</span> <span class="ss">userInfo</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span> <span class="ss">repeats</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="vi">@IBAction</span> <span class="n">func</span> <span class="n">leftButtonUp</span><span class="p">(</span><span class="ss">sender</span><span class="p">:</span> <span class="no">UIButton</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">leftTimer!</span><span class="o">.</span><span class="n">invalidate</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="vi">@IBAction</span> <span class="n">func</span> <span class="n">rightButtonDown</span><span class="p">(</span><span class="ss">sender</span><span class="p">:</span> <span class="no">UIButton</span><span class="p">){</span>
+</span><span class='line'>        <span class="n">rightTimer</span> <span class="o">=</span> <span class="no">NSTimer</span><span class="o">.</span><span class="n">scheduledTimerWithTimeInterval</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="ss">target</span><span class="p">:</span> <span class="nb">self</span><span class="p">,</span> <span class="ss">selector</span><span class="p">:</span> <span class="s2">&quot;moveRight&quot;</span><span class="p">,</span> <span class="ss">userInfo</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span> <span class="ss">repeats</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="vi">@IBAction</span> <span class="n">func</span> <span class="n">rightButtonUp</span><span class="p">(</span><span class="ss">sender</span><span class="p">:</span> <span class="no">UIButton</span><span class="p">){</span>
+</span><span class='line'>        <span class="n">rightTimer!</span><span class="o">.</span><span class="n">invalidate</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>moveLeft</code> and <code>moveRight</code> methods are simple HTTP GET requests using a Swift NSMutableURLRequest(). In the Windows API this URL call will move the image a small percentage to the left or right, together with the panoramic capability methods this ensures a panoramic view without breaks.</p>
+
+<figure class='code'><figcaption><span>[game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="sr">//</span>    <span class="no">VIEW</span> <span class="no">URL</span> <span class="no">CALL</span>
+</span><span class='line'>    <span class="n">func</span> <span class="n">moveLeft</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">request</span> <span class="o">=</span> <span class="no">NSMutableURLRequest</span><span class="p">(</span><span class="ss">URL</span><span class="p">:</span> <span class="no">NSURL</span><span class="p">(</span><span class="ss">string</span><span class="p">:</span> <span class="s2">&quot;http://\(url!)/BuildingViewer/rest/MoveLeft&quot;</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">request</span><span class="o">.</span><span class="n">HTTPMethod</span> <span class="o">=</span> <span class="s2">&quot;GET&quot;</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">task</span> <span class="o">=</span> <span class="no">NSURLSession</span><span class="o">.</span><span class="n">sharedSession</span><span class="p">()</span><span class="o">.</span><span class="n">dataTaskWithRequest</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kp">nil</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error=\(error)&quot;</span><span class="p">)</span>
+</span><span class='line'>                <span class="k">return</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;response = \(response)&quot;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">let</span> <span class="n">responseString</span> <span class="o">=</span> <span class="no">NSString</span><span class="p">(</span><span class="ss">data</span><span class="p">:</span> <span class="n">data!</span><span class="p">,</span> <span class="ss">encoding</span><span class="p">:</span> <span class="no">NSUTF8StringEncoding</span><span class="p">)</span>
+</span><span class='line'>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;responseString = \(responseString)&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="n">task</span><span class="o">.</span><span class="n">resume</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">moveRight</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">request</span> <span class="o">=</span> <span class="no">NSMutableURLRequest</span><span class="p">(</span><span class="ss">URL</span><span class="p">:</span> <span class="no">NSURL</span><span class="p">(</span><span class="ss">string</span><span class="p">:</span> <span class="s2">&quot;http://\(url!)/BuildingViewer/rest/MoveRight&quot;</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">request</span><span class="o">.</span><span class="n">HTTPMethod</span> <span class="o">=</span> <span class="s2">&quot;GET&quot;</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">task</span> <span class="o">=</span> <span class="no">NSURLSession</span><span class="o">.</span><span class="n">sharedSession</span><span class="p">()</span><span class="o">.</span><span class="n">dataTaskWithRequest</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+</span><span class='line'>            <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kp">nil</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error=\(error)&quot;</span><span class="p">)</span>
+</span><span class='line'>                <span class="k">return</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;response = \(response)&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">let</span> <span class="n">responseString</span> <span class="o">=</span> <span class="no">NSString</span><span class="p">(</span><span class="ss">data</span><span class="p">:</span> <span class="n">data!</span><span class="p">,</span> <span class="ss">encoding</span><span class="p">:</span> <span class="no">NSUTF8StringEncoding</span><span class="p">)</span>
+</span><span class='line'>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;responseString = \(responseString)&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="n">task</span><span class="o">.</span><span class="n">resume</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>All that&rsquo;s left is to connect the buttons with the methods we just created. Again, to be brief I only am showing the first right button but were we to look at all the buttons, the right buttons would look exactly like this while the left buttons would connect to the <code>leftButtonUp</code> and <code>leftButtonDown</code> methods.</p>
+
+<p><img src="/images/touch-hold/RightButton.png"/></p>
+
+<p>Keep on being badass programmers!</p>
+
+
+        <hr class="divider-short"/>
+
+        
+        <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </section>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+          <a class="pull-left" href="/blog/2015/11/02/solving-ref-spec-error/" title="Previous Post: Solving Ref-Spec Error">&laquo; Previous: Solving Ref-Spec Error</a>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="/"><h4>Home</h4></a>
+</div>
+
+<div class="col-md-2">
+  <div class="social-icon-list">
+    
+    <a href="https://twitter.com/ChristinaLeuci"><img src="/images/glyphicons_social_31_twitter.png"/></a>
+    
+
+    
+    <a href="https://github.com/christinaleuci"><img src="/images/glyphicons_social_21_github.png"/></a>
+    
+
+    
+    <a href="https://linkedin.com/in/christinaleuci"><img src="/images/glyphicons_social_17_linked_in.png"/></a>
+    
+
+    
+    <a href="mailto:christinaleuci@gmail.com"><img src="/images/glyphicons_social_39_e-mail.png"/></a>
+    
+  </div>
+</div>
+
+<div class="pull-right">
+  <h4>Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+    
+      
+
+<script type="text/javascript">
+      var disqus_shortname = 'christinaleucigithubio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ChristinaLeuci.github.io/blog/2015/11/03/touch-and-hold-swift/';
+        var disqus_url = 'http://ChristinaLeuci.github.io/blog/2015/11/03/touch-and-hold-swift/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+    
+  </body>
+</html>

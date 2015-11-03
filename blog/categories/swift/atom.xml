@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: swift | Christina Leuci]]></title>
+  <link href="http://ChristinaLeuci.github.io/blog/categories/swift/atom.xml" rel="self"/>
+  <link href="http://ChristinaLeuci.github.io/"/>
+  <updated>2015-11-03T14:18:41-05:00</updated>
+  <id>http://ChristinaLeuci.github.io/</id>
+  <author>
+    <name><![CDATA[Christina Leuci]]></name>
+    <email><![CDATA[christinaleuci@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Touch And Hold Swift]]></title>
+    <link href="http://ChristinaLeuci.github.io/blog/2015/11/03/touch-and-hold-swift/"/>
+    <updated>2015-11-03T12:54:09-05:00</updated>
+    <id>http://ChristinaLeuci.github.io/blog/2015/11/03/touch-and-hold-swift</id>
+    <content type="html"><![CDATA[<p>Recently, at VID, I created a functional iPad application for a client&rsquo;s property platform. One function was panning a 360 image on a Windows application.</p>
+
+<!--more-->
+
+
+<p>Prior to working on these Swift methods our team created a Windows launcher and API to connect with and show these images on the screen. One of the images that needed panoramic capability were the floor views. In the Main.storyboard file I created one View Controller for these API calls. As you can see each view has a left and right arrow which will repeat call the API to move left or right.</p>
+
+<p><img src="/images/touch-hold/General.png"/></p>
+
+<p>To be brief, here is one variable of the first right button on the Main.storyboard as well as the leftTimer and rightTimer variables that will be used in the future &ldquo;touch and hold&rdquo; methods.</p>
+
+<p><figure class='code'><figcaption><span>[game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="vi">@IBOutlet</span> <span class="n">weak</span> <span class="n">var</span> <span class="ss">right1Button</span><span class="p">:</span> <span class="no">UIButton</span><span class="o">!&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  var leftTimer : NSTimer? = nil</span>
+</span><span class='line'><span class="sr">  var rightTimer : NSTimer? = nil</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The <code>leftButtonDown</code> and <code>rightButtonDown</code> methods repeatedly call the <code>moveLeft</code> or <code>moveRight</code> methods every 0.1 second while the user continues to press the view button. Once the user lifts their finger up which is considered a <code>Touch Up</code> type of Swift method the timer becomes invalid and panoramic capability ceases.</p>
+
+<p><figure class='code'><figcaption><span>[game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="sr">//</span>  <span class="no">PANORAMIC</span> <span class="no">CAPABILITY</span>
+</span><span class='line'>    <span class="vi">@IBAction</span> <span class="n">func</span> <span class="n">leftButtonDown</span><span class="p">(</span><span class="ss">sender</span><span class="p">:</span> <span class="no">UIButton</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">leftTimer</span> <span class="o">=</span> <span class="no">NSTimer</span><span class="o">.</span><span class="n">scheduledTimerWithTimeInterval</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="ss">target</span><span class="p">:</span> <span class="nb">self</span><span class="p">,</span> <span class="ss">selector</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">moveLeft</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="ss">userInfo</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span> <span class="ss">repeats</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@IBAction func leftButtonUp(sender: UIButton) {</span>
+</span><span class='line'><span class="sr">    leftTimer!.invalidate()</span>
+</span><span class='line'><span class="sr">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">@IBAction func rightButtonDown(sender: UIButton){</span>
+</span><span class='line'><span class="sr">    rightTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: &quot;moveRight&quot;, userInfo: nil, repeats: true)</span>
+</span><span class='line'><span class="sr">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">@IBAction func rightButtonUp(sender: UIButton){</span>
+</span><span class='line'><span class="sr">    rightTimer!.invalidate()</span>
+</span><span class='line'><span class="sr">}</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The <code>moveLeft</code> and <code>moveRight</code> methods are simple HTTP GET requests using a Swift NSMutableURLRequest(). In the Windows API this URL call will move the image a small percentage to the left or right, together with the panoramic capability methods this ensures a panoramic view without breaks.</p>
+
+<p><figure class='code'><figcaption><span>[game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="sr">//</span>    <span class="no">VIEW</span> <span class="no">URL</span> <span class="no">CALL</span>
+</span><span class='line'>    <span class="n">func</span> <span class="n">moveLeft</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">request</span> <span class="o">=</span> <span class="no">NSMutableURLRequest</span><span class="p">(</span><span class="ss">URL</span><span class="p">:</span> <span class="no">NSURL</span><span class="p">(</span><span class="ss">string</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;http://(url!&quot;</span><span class="o">&gt;</span><span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="p">(</span><span class="n">url!</span><span class="o">&lt;</span><span class="sr">/a&gt;)/</span><span class="no">BuildingViewer</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="no">MoveLeft</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;)</span><span class="o">!</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">request</span><span class="o">.</span><span class="n">HTTPMethod</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">GET</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">task</span> <span class="o">=</span> <span class="no">NSURLSession</span><span class="o">.</span><span class="n">sharedSession</span><span class="p">()</span><span class="o">.</span><span class="n">dataTaskWithRequest</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;        if error != nil {</span>
+</span><span class='line'><span class="sr">            print(&quot;error=\(error)&quot;)</span>
+</span><span class='line'><span class="sr">            return</span>
+</span><span class='line'><span class="sr">        }</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">        print(&quot;response = \(response)&quot;)</span>
+</span><span class='line'><span class="sr">        let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)</span>
+</span><span class='line'><span class="sr">        print(&quot;responseString = \(responseString)&quot;)</span>
+</span><span class='line'><span class="sr">    }</span>
+</span><span class='line'><span class="sr">    task.resume()</span>
+</span><span class='line'><span class="sr">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">func moveRight() {</span>
+</span><span class='line'><span class="sr">    let request = NSMutableURLRequest(URL: NSURL(string: &quot;http:/</span><span class="o">/</span><span class="p">\(</span><span class="n">url!</span><span class="p">)</span><span class="o">/</span><span class="no">BuildingViewer</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="no">MoveRight</span><span class="s2">&quot;)!)</span>
+</span><span class='line'><span class="s2">    request.HTTPMethod = &quot;</span><span class="no">GET</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="s2">    let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {</span>
+</span><span class='line'><span class="s2">        data, response, error in</span>
+</span><span class='line'><span class="s2">        if error != nil {</span>
+</span><span class='line'><span class="s2">            print(&quot;</span><span class="n">error</span><span class="o">=</span><span class="p">\(</span><span class="n">error</span><span class="p">)</span><span class="s2">&quot;)</span>
+</span><span class='line'><span class="s2">            return</span>
+</span><span class='line'><span class="s2">        }</span>
+</span><span class='line'><span class="s2">        print(&quot;</span><span class="n">response</span> <span class="o">=</span> <span class="p">\(</span><span class="n">response</span><span class="p">)</span><span class="s2">&quot;)</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">        let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)</span>
+</span><span class='line'><span class="s2">        print(&quot;</span><span class="n">responseString</span> <span class="o">=</span> <span class="p">\(</span><span class="n">responseString</span><span class="p">)</span><span class="s2">&quot;)</span>
+</span><span class='line'><span class="s2">    }</span>
+</span><span class='line'><span class="s2">    task.resume()</span>
+</span><span class='line'><span class="s2">}</span>
+</span><span class='line'><span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>All that&rsquo;s left is to connect the buttons with the methods we just created. Again, to be brief I only am showing the first right button but were we to look at all the buttons, the right buttons would look exactly like this while the left buttons would connect to the <code>leftButtonUp</code> and <code>leftButtonDown</code> methods.</p>
+
+<p><img src="/images/touch-hold/RightButton.png"/></p>
+
+<p>Keep on being badass programmers!</p>
+]]></content>
+  </entry>
+  
+</feed>

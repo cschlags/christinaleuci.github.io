@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://ChristinaLeuci.github.io/blog/2015/11/02/solving-ref-spec-error/</loc>
+    <lastmod>2015-11-02T15:53:05-05:00</lastmod>
+  </url>
+  <url>
+    <loc>http://ChristinaLeuci.github.io/blog/2015/10/15/easy-peasy-and-medium-rare/</loc>
+    <lastmod>2015-10-15T12:47:10-04:00</lastmod>
+  </url>
+  <url>
     <loc>http://ChristinaLeuci.github.io/blog/2015/09/30/when-ruby-sends-you-some-xs-and-os/</loc>
     <lastmod>2015-09-30T15:37:10-04:00</lastmod>
   </url>
@@ -90,5 +98,11 @@
   </url>
   <url>
     <loc>http://ChristinaLeuci.github.io/blog/categories/content-manager/</loc>
+  </url>
+  <url>
+    <loc>http://ChristinaLeuci.github.io/blog/categories/terminal/</loc>
+  </url>
+  <url>
+    <loc>http://ChristinaLeuci.github.io/blog/categories/git/</loc>
   </url>
 </urlset>

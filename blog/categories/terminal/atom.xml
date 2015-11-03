@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: terminal | Christina Leuci]]></title>
+  <link href="http://ChristinaLeuci.github.io/blog/categories/terminal/atom.xml" rel="self"/>
+  <link href="http://ChristinaLeuci.github.io/"/>
+  <updated>2015-11-03T12:18:48-05:00</updated>
+  <id>http://ChristinaLeuci.github.io/</id>
+  <author>
+    <name><![CDATA[Christina Leuci]]></name>
+    <email><![CDATA[christinaleuci@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Solving Ref-Spec Error]]></title>
+    <link href="http://ChristinaLeuci.github.io/blog/2015/11/02/solving-ref-spec-error/"/>
+    <updated>2015-11-02T15:53:05-05:00</updated>
+    <id>http://ChristinaLeuci.github.io/blog/2015/11/02/solving-ref-spec-error</id>
+    <content type="html"><![CDATA[<p>Notice: This worked for me but your problem may have a different solution.</p>
+
+<!--more-->
+
+
+<p>For some reason when I made some changes to my Octopress blog and git added, git committed, and git pushed to my origin/master branch I got this error:</p>
+
+<p><img src="/images/ref-spec/error.png"/></p>
+
+<p>At first I tried <code>git push -u origin master</code> or <code>git push origin master -f</code> to try and force a push to the &lsquo;origin/master&rsquo; branch but I was matched with the same error. After looking at Stack Overflow questions like <a href="http://stackoverflow.com/questions/21264738/error-src-refspec-master-does-not-match-any">error: src refspec master does not match any</a> I attempted some of the solutions. First I used <code>git push origin HEAD:master</code> which worked perfectly but I felt that was a cheap solution and wanted the answer not a cop-out.</p>
+
+<p><img src="/images/ref-spec/show-ref.png"/></p>
+
+<p>I then tried <code>git branch -mv origin master</code> which told me the origin ref was missing which I thought very strange since I could push to the &ldquo;origin/master&rdquo; branch. Let me check the git branches, voilà, there was no master branch. Now, I don&rsquo;t know how or why my master branch disappeared but that&rsquo;s for another day.</p>
+
+<p><img src="/images/ref-spec/test.png"/></p>
+
+<p>I re-intialized the git repository for good measure and created a branch called &lsquo;master&rsquo;. No erroneous alerts so I must be doing something right. When I checked the git branches again, there it was. So, I checked out into master and did my business. I think I held my breath when I entered <code>git push origin master</code>.</p>
+
+<p><img src="/images/ref-spec/success.png"/></p>
+
+<h2>TL;DR</h2>
+
+<p>Step 0. Re-initialize the git repo</p>
+
+<p>Step 1. <code>git branch master</code> and <code>git checkout master</code></p>
+
+<p>Step 2. ???</p>
+
+<p>Step 3. Profit</p>
+
+<p>Keep on being badass programmers!</p>
+]]></content>
+  </entry>
+  
+</feed>

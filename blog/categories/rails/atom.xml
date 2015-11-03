@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2015-10-01T15:43:42-04:00</updated>
+  <updated>2015-11-03T12:18:48-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -14,11 +14,266 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Easy Peasy and Medium Rare]]></title>
+    <link href="http://ChristinaLeuci.github.io/blog/2015/10/15/easy-peasy-and-medium-rare/"/>
+    <updated>2015-10-15T12:47:10-04:00</updated>
+    <id>http://ChristinaLeuci.github.io/blog/2015/10/15/easy-peasy-and-medium-rare</id>
+    <content type="html"><![CDATA[<p>Creating the easy and medium difficulty methods for the ruby tic tac toe game.</p>
+
+<!--more-->
+
+
+<p>Last post I left off with a simple tic tac toe game that had no difficulty settings. For difficulty to be fully integrated into the current game we need to do the simplest thing first, ask the user what difficulty they would like to play at. I chose to place the &ldquo;choose_difficulty&rdquo; method at the beginning of the &ldquo;random_start&rdquo; method. I chose this for future revisions when I create an extreme difficulty that may take time to finish and may only be used in a 3x3 board.</p>
+
+<p><figure class='code'><figcaption><span>[game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:board</span><span class="p">,</span> <span class="ss">:slots</span><span class="p">,</span> <span class="ss">:difficulty</span><span class="p">,</span> <span class="ss">:boards</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def random_start</span>
+</span><span class='line'><span class="sr">    # there should only be a difficulty setting when playing against computer</span>
+</span><span class='line'><span class="sr">    choose_difficulty&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def choose_difficulty</span>
+</span><span class='line'><span class="sr">    puts &amp;ldquo;What difficulty would you like to play at? &amp;lt; beginner /</span> <span class="n">medium</span> <span class="o">&gt;&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="vi">@difficulty</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">chomp</span><span class="o">.</span><span class="n">downcase</span>
+</span><span class='line'>    <span class="c1"># if difficulty is none of the options then recursion</span>
+</span><span class='line'>    <span class="c1"># if @difficulty != &amp;ldquo;beginner&amp;rdquo; &amp;amp;&amp;amp; @difficulty != &amp;ldquo;medium&amp;rdquo; &amp;amp;&amp;amp; @difficulty != &amp;ldquo;hard&amp;rdquo; &amp;amp;&amp;amp; @difficulty != &amp;ldquo;extreme&amp;rdquo;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="vi">@difficulty</span> <span class="o">!=</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">beginner</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="vi">@difficulty</span> <span class="o">!=</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">medium</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Invalid</span> <span class="n">input</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">choose_difficulty</span>
+</span><span class='line'>    <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>As you can see I&rsquo;ve asked the user which difficulty level they&rsquo;re like to play at and set that to an instance variable called difficulty. As a side-note this means we must now add difficulty to the attr_accessor list of variables. Additionally, we need to check if @difficulty is valid, if not then through recursion call the &ldquo;choose_difficulty&rdquo; method again.</p>
+
+<p>Since difficulty only needs to used for a game against a computer the difficulty methods only need to be used in the computer class. Under the &ldquo;play_move&rdquo; method is the best place to call the difficulty methods. You could use any type of test on the difficulty variable to call a specific difficulty method.</p>
+
+<p><figure class='code'><figcaption><span>[computer.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="c1">#from player</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">play_move</span><span class="p">(</span><span class="n">mark</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1">#take the symbol &amp;ldquo;x&amp;rdquo; or &amp;ldquo;o&amp;rdquo;</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">The</span> <span class="n">computer</span> <span class="n">is</span> <span class="n">moving</span><span class="o">&amp;</span><span class="n">hellip</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="nb">sleep</span> <span class="mi">2</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;if @game.difficulty == &quot;beginner&quot;</span>
+</span><span class='line'><span class="sr">  move = beginner_move</span>
+</span><span class='line'><span class="sr"># else</span>
+</span><span class='line'><span class="sr">elsif @game.difficulty == &quot;medium&quot;</span>
+</span><span class='line'><span class="sr">  move = medium_move</span>
+</span><span class='line'><span class="sr">elsif @game.difficulty == &quot;hard&quot;</span>
+</span><span class='line'><span class="sr">  move = hard_move</span>
+</span><span class='line'><span class="sr">else</span>
+</span><span class='line'><span class="sr">  move = extreme_move</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">#the index of the game board gets that mark</span>
+</span><span class='line'><span class="sr">@game.board[move-1] = mark</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The computer&rsquo;s move in a beginner game should choose a space randomly. We can copy a line from our previous code and use it in our beginner_move method.</p>
+
+<p><figure class='code'><figcaption><span>[computer.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">beginner_move</span>
+</span><span class='line'>    <span class="vi">@game</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">i</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span> <span class="p">}</span><span class="o">.</span><span class="n">sample</span> <span class="o">-</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>For the &ldquo;medium_move&rdquo; method and any following methods we need to take the size of the board into consideration. If the amount of slots%2 == 0 then the number is even, which means there is no finite center on the board. If there is a center slot then we want to take that and the corners first, from there we can take a random spot.</p>
+
+<p>If there is no specific center then we want to take two diagonal slots from the center four slots. From there we can take the corners and then a random slot.</p>
+
+<p><figure class='code'><figcaption><span>[computer.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">medium_move</span>
+</span><span class='line'>    <span class="c1"># if @slots%2 = 0 then the number is even so there is no center</span>
+</span><span class='line'>    <span class="k">if</span> <span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span class='line'>      <span class="c1"># check first center.first</span>
+</span><span class='line'>      <span class="k">if</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">[</span><span class="p">(</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="p">(</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">].</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>      <span class="c1"># check second center.second</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">[</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="o">][</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="o">].</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>      <span class="c1"># check first center.second</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">[</span><span class="p">(</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="o">].</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>      <span class="c1"># check second center.first</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">[</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="o">][</span><span class="p">(</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">].</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>      <span class="c1"># check top left</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">first</span>
+</span><span class='line'>      <span class="c1"># check bottom right</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">last</span>
+</span><span class='line'>      <span class="c1"># check top right</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">last</span>
+</span><span class='line'>      <span class="c1"># check bottom left</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">first</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">i</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span> <span class="p">}</span><span class="o">.</span><span class="n">sample</span> <span class="o">-</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>    <span class="c1"># if @slots%2 != 0 then the number is odd so there is a center</span>
+</span><span class='line'>      <span class="c1"># check center</span>
+</span><span class='line'>      <span class="k">if</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">[</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="o">][</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="o">].</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">[</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="o">][</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="o">]</span>
+</span><span class='line'>      <span class="c1"># check top left</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">first</span>
+</span><span class='line'>      <span class="c1"># check bottom right</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">last</span>
+</span><span class='line'>      <span class="c1"># check top right</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">last</span>
+</span><span class='line'>      <span class="c1"># check bottom left</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">first</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">i</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span> <span class="p">}</span><span class="o">.</span><span class="n">sample</span> <span class="o">-</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>I wanted to put the more complicated logic that actively fights against the human user in the &ldquo;hard_move&rdquo; method and unbeatable logic in the &ldquo;extreme_move&rdquo; method.</p>
+
+<p><figure class='code'><figcaption><span>[computer.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">hard_move</span>
+</span><span class='line'>    <span class="c1"># use center, then block user, then corners, then block user, then try to win a line</span>
+</span><span class='line'>    <span class="c1"># this should be kind of similar to my original-original code</span>
+</span><span class='line'>    <span class="c1"># should incoporate for all board sizes</span>
+</span><span class='line'>    <span class="c1"># if @slots%2 = 0 then the number is even so there is no center</span>
+</span><span class='line'>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def extreme_move</span>
+</span><span class='line'><span class="sr">    # use unbeatable code</span>
+</span><span class='line'><span class="sr">  end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Look for another update on finished logic for the hard and extreme difficulties.</p>
+
+<p>Keep on being badass programmers!</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[When Ruby sends you some X's and O's]]></title>
     <link href="http://ChristinaLeuci.github.io/blog/2015/09/30/when-ruby-sends-you-some-xs-and-os/"/>
     <updated>2015-09-30T15:37:10-04:00</updated>
     <id>http://ChristinaLeuci.github.io/blog/2015/09/30/when-ruby-sends-you-some-xs-and-os</id>
-    <content type="html"><![CDATA[<p>New and improved Tic Tac Toe program! Now with Rails! Call now and receive a second one for 50% off!</p>
+    <content type="html"><![CDATA[<p>New and improved Tic Tac Toe program! Now with more classes! Call now and receive a second one for 50% off!</p>
 
 <!--more-->
 

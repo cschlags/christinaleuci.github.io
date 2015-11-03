@@ -4,7 +4,7 @@
   <title><![CDATA[Category: technical | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/technical/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2015-10-01T15:43:42-04:00</updated>
+  <updated>2015-11-03T12:18:48-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -14,11 +14,306 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Solving Ref-Spec Error]]></title>
+    <link href="http://ChristinaLeuci.github.io/blog/2015/11/02/solving-ref-spec-error/"/>
+    <updated>2015-11-02T15:53:05-05:00</updated>
+    <id>http://ChristinaLeuci.github.io/blog/2015/11/02/solving-ref-spec-error</id>
+    <content type="html"><![CDATA[<p>Notice: This worked for me but your problem may have a different solution.</p>
+
+<!--more-->
+
+
+<p>For some reason when I made some changes to my Octopress blog and git added, git committed, and git pushed to my origin/master branch I got this error:</p>
+
+<p><img src="/images/ref-spec/error.png"/></p>
+
+<p>At first I tried <code>git push -u origin master</code> or <code>git push origin master -f</code> to try and force a push to the &lsquo;origin/master&rsquo; branch but I was matched with the same error. After looking at Stack Overflow questions like <a href="http://stackoverflow.com/questions/21264738/error-src-refspec-master-does-not-match-any">error: src refspec master does not match any</a> I attempted some of the solutions. First I used <code>git push origin HEAD:master</code> which worked perfectly but I felt that was a cheap solution and wanted the answer not a cop-out.</p>
+
+<p><img src="/images/ref-spec/show-ref.png"/></p>
+
+<p>I then tried <code>git branch -mv origin master</code> which told me the origin ref was missing which I thought very strange since I could push to the &ldquo;origin/master&rdquo; branch. Let me check the git branches, voilà, there was no master branch. Now, I don&rsquo;t know how or why my master branch disappeared but that&rsquo;s for another day.</p>
+
+<p><img src="/images/ref-spec/test.png"/></p>
+
+<p>I re-intialized the git repository for good measure and created a branch called &lsquo;master&rsquo;. No erroneous alerts so I must be doing something right. When I checked the git branches again, there it was. So, I checked out into master and did my business. I think I held my breath when I entered <code>git push origin master</code>.</p>
+
+<p><img src="/images/ref-spec/success.png"/></p>
+
+<h2>TL;DR</h2>
+
+<p>Step 0. Re-initialize the git repo</p>
+
+<p>Step 1. <code>git branch master</code> and <code>git checkout master</code></p>
+
+<p>Step 2. ???</p>
+
+<p>Step 3. Profit</p>
+
+<p>Keep on being badass programmers!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Easy Peasy and Medium Rare]]></title>
+    <link href="http://ChristinaLeuci.github.io/blog/2015/10/15/easy-peasy-and-medium-rare/"/>
+    <updated>2015-10-15T12:47:10-04:00</updated>
+    <id>http://ChristinaLeuci.github.io/blog/2015/10/15/easy-peasy-and-medium-rare</id>
+    <content type="html"><![CDATA[<p>Creating the easy and medium difficulty methods for the ruby tic tac toe game.</p>
+
+<!--more-->
+
+
+<p>Last post I left off with a simple tic tac toe game that had no difficulty settings. For difficulty to be fully integrated into the current game we need to do the simplest thing first, ask the user what difficulty they would like to play at. I chose to place the &ldquo;choose_difficulty&rdquo; method at the beginning of the &ldquo;random_start&rdquo; method. I chose this for future revisions when I create an extreme difficulty that may take time to finish and may only be used in a 3x3 board.</p>
+
+<p><figure class='code'><figcaption><span>[game.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:board</span><span class="p">,</span> <span class="ss">:slots</span><span class="p">,</span> <span class="ss">:difficulty</span><span class="p">,</span> <span class="ss">:boards</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def random_start</span>
+</span><span class='line'><span class="sr">    # there should only be a difficulty setting when playing against computer</span>
+</span><span class='line'><span class="sr">    choose_difficulty&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def choose_difficulty</span>
+</span><span class='line'><span class="sr">    puts &amp;ldquo;What difficulty would you like to play at? &amp;lt; beginner /</span> <span class="n">medium</span> <span class="o">&gt;&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="vi">@difficulty</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">chomp</span><span class="o">.</span><span class="n">downcase</span>
+</span><span class='line'>    <span class="c1"># if difficulty is none of the options then recursion</span>
+</span><span class='line'>    <span class="c1"># if @difficulty != &amp;ldquo;beginner&amp;rdquo; &amp;amp;&amp;amp; @difficulty != &amp;ldquo;medium&amp;rdquo; &amp;amp;&amp;amp; @difficulty != &amp;ldquo;hard&amp;rdquo; &amp;amp;&amp;amp; @difficulty != &amp;ldquo;extreme&amp;rdquo;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="vi">@difficulty</span> <span class="o">!=</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">beginner</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="vi">@difficulty</span> <span class="o">!=</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">medium</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Invalid</span> <span class="n">input</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">choose_difficulty</span>
+</span><span class='line'>    <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>As you can see I&rsquo;ve asked the user which difficulty level they&rsquo;re like to play at and set that to an instance variable called difficulty. As a side-note this means we must now add difficulty to the attr_accessor list of variables. Additionally, we need to check if @difficulty is valid, if not then through recursion call the &ldquo;choose_difficulty&rdquo; method again.</p>
+
+<p>Since difficulty only needs to used for a game against a computer the difficulty methods only need to be used in the computer class. Under the &ldquo;play_move&rdquo; method is the best place to call the difficulty methods. You could use any type of test on the difficulty variable to call a specific difficulty method.</p>
+
+<p><figure class='code'><figcaption><span>[computer.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="c1">#from player</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">play_move</span><span class="p">(</span><span class="n">mark</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1">#take the symbol &amp;ldquo;x&amp;rdquo; or &amp;ldquo;o&amp;rdquo;</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">The</span> <span class="n">computer</span> <span class="n">is</span> <span class="n">moving</span><span class="o">&amp;</span><span class="n">hellip</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="nb">sleep</span> <span class="mi">2</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;if @game.difficulty == &quot;beginner&quot;</span>
+</span><span class='line'><span class="sr">  move = beginner_move</span>
+</span><span class='line'><span class="sr"># else</span>
+</span><span class='line'><span class="sr">elsif @game.difficulty == &quot;medium&quot;</span>
+</span><span class='line'><span class="sr">  move = medium_move</span>
+</span><span class='line'><span class="sr">elsif @game.difficulty == &quot;hard&quot;</span>
+</span><span class='line'><span class="sr">  move = hard_move</span>
+</span><span class='line'><span class="sr">else</span>
+</span><span class='line'><span class="sr">  move = extreme_move</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">#the index of the game board gets that mark</span>
+</span><span class='line'><span class="sr">@game.board[move-1] = mark</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The computer&rsquo;s move in a beginner game should choose a space randomly. We can copy a line from our previous code and use it in our beginner_move method.</p>
+
+<p><figure class='code'><figcaption><span>[computer.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">beginner_move</span>
+</span><span class='line'>    <span class="vi">@game</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">i</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span> <span class="p">}</span><span class="o">.</span><span class="n">sample</span> <span class="o">-</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>For the &ldquo;medium_move&rdquo; method and any following methods we need to take the size of the board into consideration. If the amount of slots%2 == 0 then the number is even, which means there is no finite center on the board. If there is a center slot then we want to take that and the corners first, from there we can take a random spot.</p>
+
+<p>If there is no specific center then we want to take two diagonal slots from the center four slots. From there we can take the corners and then a random slot.</p>
+
+<p><figure class='code'><figcaption><span>[computer.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">medium_move</span>
+</span><span class='line'>    <span class="c1"># if @slots%2 = 0 then the number is even so there is no center</span>
+</span><span class='line'>    <span class="k">if</span> <span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span class='line'>      <span class="c1"># check first center.first</span>
+</span><span class='line'>      <span class="k">if</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">[</span><span class="p">(</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="p">(</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">].</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>      <span class="c1"># check second center.second</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">[</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="o">][</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="o">].</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>      <span class="c1"># check first center.second</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">[</span><span class="p">(</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="o">].</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>      <span class="c1"># check second center.first</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">[</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="o">][</span><span class="p">(</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">].</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>      <span class="c1"># check top left</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">first</span>
+</span><span class='line'>      <span class="c1"># check bottom right</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">last</span>
+</span><span class='line'>      <span class="c1"># check top right</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">last</span>
+</span><span class='line'>      <span class="c1"># check bottom left</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">first</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">i</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span> <span class="p">}</span><span class="o">.</span><span class="n">sample</span> <span class="o">-</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>    <span class="c1"># if @slots%2 != 0 then the number is odd so there is a center</span>
+</span><span class='line'>      <span class="c1"># check center</span>
+</span><span class='line'>      <span class="k">if</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">[</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="o">][</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="o">].</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">[</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="o">][</span><span class="vi">@game</span><span class="o">.</span><span class="n">slots</span><span class="o">/</span><span class="mi">2</span><span class="o">]</span>
+</span><span class='line'>      <span class="c1"># check top left</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">first</span>
+</span><span class='line'>      <span class="c1"># check bottom right</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">last</span>
+</span><span class='line'>      <span class="c1"># check top right</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">last</span>
+</span><span class='line'>      <span class="c1"># check bottom left</span>
+</span><span class='line'>      <span class="k">elsif</span> <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">boards</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">first</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>        <span class="vi">@game</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">i</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span> <span class="p">}</span><span class="o">.</span><span class="n">sample</span> <span class="o">-</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>I wanted to put the more complicated logic that actively fights against the human user in the &ldquo;hard_move&rdquo; method and unbeatable logic in the &ldquo;extreme_move&rdquo; method.</p>
+
+<p><figure class='code'><figcaption><span>[computer.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">hard_move</span>
+</span><span class='line'>    <span class="c1"># use center, then block user, then corners, then block user, then try to win a line</span>
+</span><span class='line'>    <span class="c1"># this should be kind of similar to my original-original code</span>
+</span><span class='line'>    <span class="c1"># should incoporate for all board sizes</span>
+</span><span class='line'>    <span class="c1"># if @slots%2 = 0 then the number is even so there is no center</span>
+</span><span class='line'>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def extreme_move</span>
+</span><span class='line'><span class="sr">    # use unbeatable code</span>
+</span><span class='line'><span class="sr">  end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Look for another update on finished logic for the hard and extreme difficulties.</p>
+
+<p>Keep on being badass programmers!</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[When Ruby sends you some X's and O's]]></title>
     <link href="http://ChristinaLeuci.github.io/blog/2015/09/30/when-ruby-sends-you-some-xs-and-os/"/>
     <updated>2015-09-30T15:37:10-04:00</updated>
     <id>http://ChristinaLeuci.github.io/blog/2015/09/30/when-ruby-sends-you-some-xs-and-os</id>
-    <content type="html"><![CDATA[<p>New and improved Tic Tac Toe program! Now with Rails! Call now and receive a second one for 50% off!</p>
+    <content type="html"><![CDATA[<p>New and improved Tic Tac Toe program! Now with more classes! Call now and receive a second one for 50% off!</p>
 
 <!--more-->
 
@@ -761,227 +1056,6 @@
 <p>After serializing the wardrobe, which happens upon initialization, I decided to specify what would be inside that serialized wardrobe param by using an <span style="font-style: italics">after_create</span> method. Inside my after_create method I described that the wardrobe param hash should contain two keys with their respective arrays and it should be saved.</p>
 
 <p>That&rsquo;s it! Keep on being badass programmers!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Using AWS Image Hosting for Rails]]></title>
-    <link href="http://ChristinaLeuci.github.io/blog/2014/12/19/setting-up-aws-with-your-rails-app/"/>
-    <updated>2014-12-19T12:17:11-05:00</updated>
-    <id>http://ChristinaLeuci.github.io/blog/2014/12/19/setting-up-aws-with-your-rails-app</id>
-    <content type="html"><![CDATA[<p>If you&rsquo;re using only a couple of photos with your Rails application then it&rsquo;s pretty simple. If you&rsquo;re going to be using hundreds of thousands of photos you&rsquo;ll need a hosting site like Amazon S3.</p>
-
-<!--more-->
-
-
-<h2>Step 1 &ndash; Have An Account</h2>
-
-<p>If you don&rsquo;t have an account with Amazon&rsquo;s S3 hosting service this step is for you. If you already have an account already please go to <span style="font-style: italics"> Step 2 </a>. Fortunately <a href="http://aws.amazon.com/s3/">Amazon</a>&rsquo;s hosting services are free for the first 12-months. You will need to sign up for an account with your Amazon email and password. And that&rsquo;s it you&rsquo;re finished! You can now start integrating your Amazon S3 console with buckets and files. <span style="font-style: italics">A word to the wise: if you&rsquo;re new to Amazon S3 you should manually create a bucket inside your Amazon S3 account before accessing the AWS Client!</span></p>
-
-<h2>Step 3 &ndash; Create A Pretty Access Key</h2>
-
-<p>As with any API you will need an account access key and an account password. You will be able to access your Security Credentials by going to the nav bar on the top and clicking either on your name or &ldquo;My Account&rdquo; depending on what page you&rsquo;re on and selecting Security Credentials. Click &ldquo;Create New Key Access&rdquo;, this will show both your new access key and secret. You should download the Key and Secret file since your secret will no longer be available after you close the pop-up.</p>
-
-<p>Awesome, now you have your access key and secret! Almost done!</p>
-
-<h2>Step 2 &ndash; Client Interface Dawg</h2>
-
-<p>After much trial and error I found the best approach to accessing Amazon S3 was to download the <a href="http://docs.aws.amazon.com/cli/latest/userguide/installing.html">AWS Client Line Interface</a> and the add a Bucket Policy Editor to the bucket&rsquo;s properties. The AWS CLI has two installations options which covers Windows, Unix, and Unix clone systems and it&rsquo;s pretty straight forward. Once that is installed you will need to type &ldquo;aws configure&rdquo; in your terminal while you are inside your application&rsquo;s main folder. I&rsquo;m using Mac OSx so it may be alittle different for Windows based systems. This will prompt you for your access key, secret, region, and output format. I have found that the region and output format are not all too important for simple calls to the hosting site.</p>
-
-<h2>Step 3 &ndash; Super Cool Policy Creator</h2>
-
-<p>At this point your application now recognizes that AWS key and secret with it&rsquo;s config file. What you will now need to do is change the S3&rsquo;s bucket policy. By going into your Amazon S3 console and clicking on your bucket, the right side options <span style="font-style: italics">Properties</span> should light up. Click on this and click again on <span style="font-style: italics">Permissions</span>. Here you can see who has access to this bucket, if you haven&rsquo;t changed anything you should see only your username with all the following radio boxes checked.</p>
-
-<p>Right underneath your name is a button called <span style="font-style:italics">Edit Bucket Policy</span>, click that. Here you can describe what actions people accessing your bucket will be able to perform. You can choose to use the <span style="font-style:italics">AWS Policy Generator</span> button but I have found that process to be convoluted and it ended up not giving me the policy I wanted.</p>
-
-<p>Since this Bucket will only be used for the Curate Analytics site and no one else has access to the access key and secret I thought it best to allow all actions by placing a &ldquo;*&rdquo; for the AWS and Action lines. I may change this in the future but feel free to play around with actions. These Amazon S3 <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html">docs</a> are really great.</p>
-
-<p>Don&rsquo;t forget to add YOUR bucketname down there!
-<figure class='code'><figcaption><span>[AWS Bucket Policy] </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{
-</span><span class='line'>    &ldquo;Version&rdquo;: &ldquo;2008-10-17&rdquo;,
-</span><span class='line'>    &ldquo;Statement&rdquo;: [
-</span><span class='line'>      {
-</span><span class='line'>        &ldquo;Sid&rdquo;: &ldquo;Stmt1418573913031&rdquo;,
-</span><span class='line'>        &ldquo;Effect&rdquo;: &ldquo;Allow&rdquo;,
-</span><span class='line'>        &ldquo;Principal&rdquo;: {
-</span><span class='line'>          &ldquo;AWS&rdquo;: &ldquo;&lt;em>&rdquo;
-</span><span class='line'>        },
-</span><span class='line'>        &ldquo;Action&rdquo;: &ldquo;s3:&lt;/em>&rdquo;,
-</span><span class='line'>        &ldquo;Resource&rdquo;: &ldquo;arn:aws:s3:::&lt;bucket name>/*&rdquo;
-</span><span class='line'>      }
-</span><span class='line'>    ]
-</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure></p>
-
-<h2>Step 4 &ndash; All About That Code</h2>
-
-<p>You can finally start adding code to your Rails app. Inside the models you want the bucket to be accessed through you can write this line of code</p>
-
-<p><figure class='code'><figcaption><span>[AWS Access Code] </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>s3 = AWS::S3.new
-</span><span class='line'>    bucket = s3.buckets[&lsquo;&lt;bucket name>&rsquo;]
-</span><span class='line'>    bucket.objects.each do |obj|
-</span><span class='line'>      if obj =~ /swipe batches/i &amp;&amp; obj =~ /jpg/i
-</span><span class='line'>        self.sort_objs(obj.key)
-</span><span class='line'>      end
-</span><span class='line'>    end</span></code></pre></td></tr></table></div></figure></p>
-
-<p>Like with any class you&rsquo;ve initialized a new connection to the Amazon S3. Since your AWS account keys and secrets are hooked to this application&rsquo;s config you can call your S3 bucket.</p>
-
-<p>Here I&rsquo;ve gone through each obj which will start with the top folders and travel down to the actual file. An example of some json feed would be <span style="font-style: italics">tops, tops/collars, tops/collar/image.jpg</span> It&rsquo;s a big of a hassle but you should be able to use regex like I used above to find all files with a certai word in it. The objects in the json feed are a little odd but this works for my purposes, you&rsquo;ll need to play around with loops and functions to see what works for your bucket.</p>
-
-<p>And you should have access to your S3 bucket and images inside it.</p>
-
-<p>Keep on being badass programmers!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Setting Up An API On An Existing Rails Application]]></title>
-    <link href="http://ChristinaLeuci.github.io/blog/2014/12/18/setting-up-an-api-on-an-existing-rails-application/"/>
-    <updated>2014-12-18T12:48:34-05:00</updated>
-    <id>http://ChristinaLeuci.github.io/blog/2014/12/18/setting-up-an-api-on-an-existing-rails-application</id>
-    <content type="html"><![CDATA[<p>Hey y&#8217;all it&rsquo;s been a long time! Life has been a bit busy at the moment and I&rsquo;ll write a blog all about that in the non-technical session ASAP.</p>
-
-<!--more-->
-
-
-<p>Today I&rsquo;m going to talk about setting up your current Rails application with an API. This is assuming that you have a working Rails application, preferably with data to see in the browser when you have it up and running through the rails server.</p>
-
-<h2>The Pre-Coding Code</h2>
-
-<p>So before we do any serious setup the first thing we will need to do is access the rails-api gem. To do this put this line inside your Gemfile file</p>
-
-<p><figure class='code'><figcaption><span>[Gemfile] </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem &lsquo;rails-api&rsquo; , require: &lsquo;rails-api/action_controller/api&rsquo;</span></code></pre></td></tr></table></div></figure></p>
-
-<p>and bundle install.</p>
-
-<h2>Ain&rsquo;t No Basic Controller</h2>
-
-<p>At this point you will have access to the API Action Controller which I suggest you read up on in the <a href="http://api.rubyonrails.org/">Ruby on Rails API docs</a>. So now that your application is ready for API goodness you&rsquo;ll want to create a sub-folder underneath your <span font-style="italics">app/controllers</span> titled <span style="font-weight: 500"> api </a>.</p>
-
-<p>At this point underneath <span font-style="italics">app/controllers</span> you should have your main controllers, ie. application_controller or user_controller, and your <span font-style="italics">api</span> folder.</p>
-
-<p>Now inside this api folder you will want to add an <span font-style="italics">api_controller.rb</span> file and an optional <span font-style="italics">v1</span> folder.</p>
-
-<p>The <span font-style="italics">api_controller.rb</span> will be your API controller, this is essentially the application controller for your API. Inside your api_controller you will want to set it up similarly to the application_controller <figure class='code'><figcaption><span>[api_controller.rb] </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">class</span> <span class="nc">Api</span><span class="o">::</span><span class="no">ApiController</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">API</span>
-</span><span class='line'>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>As you can see we are no longer using the Base Action Controller, instead we&rsquo;re using the API Action Controller. This will be one of the sub controllers that will inherit from the Base Action Controller. If in the future you want to implement an API sign in option with a username and secret as many api&rsquo;s have now-a-days this if the file you would do this in.</p>
-
-<p>At this point you should have the <span font-style="italics">api_controller.rb</span> setup and hopefully, but not required, the <span font-style="italics">v1</span> folder setup.</p>
-
-<p>I suggest implement the <span font-style="italics">v1</span> folder incase you decide to create multiple versions of the api in the future.</p>
-
-<p>So let&rsquo;s say you have the <span font-style="italics">v1</span> setup. Inside this folder you will have all of the controllers you&rsquo;re find in the main controllers folder. Currently I am using an api user_controller to allow api users to access the users in the system.</p>
-
-<h2>Get The Data You Want</h2>
-
-<p>Inside the <span font-style="italics">user_controller.rb</span> you will want to set it up depending on which information you want to be shown. Let&rsquo;s say that your application user_controller has both index and show methods, this will mean your API user_controller will also have index and show methods.</p>
-
-<p><figure class='code'><figcaption><span>[api/v1/user_controller.rb]</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">class</span> <span class="nc">Api</span><span class="o">::</span><span class="no">V1</span><span class="o">::</span><span class="no">UserController</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">Api</span><span class="o">::</span><span class="no">ApiController</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">MimeResponds</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">index</span>
-</span><span class='line'>      <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
-</span><span class='line'>        <span class="vi">@users</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">all</span>
-</span><span class='line'>        <span class="nb">format</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json</span><span class="p">:</span><span class="vi">@users</span> <span class="p">}</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">show</span>
-</span><span class='line'>      <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
-</span><span class='line'>        <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
-</span><span class='line'>        <span class="nb">format</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json</span><span class="p">:</span><span class="vi">@user</span> <span class="p">}</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>Here I have set it up so that when the api user goes to <span font-style="italics">example.com/api/v1/users.json</span> they will see all the users in the database. As you can see I put &ldquo;.json&rdquo; at the end of the html address, this is because inside the api user_controller I specified the format I want to respond to. I you wanted the api to respond to an xml call then you would put</p>
-
-<p><figure class='code'><figcaption><span>[user_controller.rb] </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="nb">format</span><span class="o">.</span><span class="n">xml</span> <span class="p">{</span><span class="n">render</span> <span class="ss">xml</span><span class="p">:</span><span class="vi">@user</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p> or even allowing access to both json and xml calls</p>
-
-<p> <figure class='code'><figcaption><span>[user_controller.rb] </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'>    <span class="k">if</span> <span class="nb">format</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span><span class="n">render</span> <span class="ss">json</span><span class="p">:</span><span class="vi">@user</span><span class="p">}</span>
-</span><span class='line'>    <span class="k">if</span> <span class="nb">format</span><span class="o">.</span><span class="n">xml</span> <span class="p">{</span><span class="n">render</span> <span class="ss">xml</span><span class="p">:</span><span class="vi">@user</span><span class="p">}</span>
-</span><span class='line'>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p> I setup the user.show api call similarly. When an api user calls <span font-style="italics">example.com/api/v1/users/1.json</span> this will show that specific user&rsquo;s data.</p>
-
-<h2>Almost Done</h2>
-
-<p>Awesome, you&rsquo;re almost done. Just like any other controller you will need to set up the routes.
-<figure class='code'><figcaption><span>[config/routes.rb] </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="n">namespace</span> <span class="ss">:api</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">namespace</span> <span class="ss">:v1</span> <span class="k">do</span>
-</span><span class='line'>      <span class="n">resources</span> <span class="ss">:user</span> <span class="k">do</span>
-</span><span class='line'>        <span class="n">resources</span> <span class="ss">:other_controllers</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>I chose to organize my api groups of controllers under a namespace and again under a v1 namespace. This allows me to organize my routes instead of searching for them through the document. Optionally I chose to make my <span font-style="italics">api/user_controller.rb</span> also a namespace. This requires me to access my other api controllers based on the user api controller.</p>
-
-<p>And that&rsquo;s it! Keep on being badass! &lt;3</p>
 ]]></content>
   </entry>
   

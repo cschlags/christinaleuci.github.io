@@ -9,11 +9,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Uploading Javascript or HTML to Scala Content Manager - Christina Leuci</title>
+  <title>Solving Ref-Spec Error - Christina Leuci</title>
   <meta name="author" content="Christina Leuci">
 
   
-  <meta name="description" content="Uploading Javascript or HTML to Scala Content Manager written in content manager, html, javascript, technical Step by step of uploading your &hellip;">
+  <meta name="description" content="Solving Ref-Spec Error written in git, technical, terminal Notice: This worked for me but your problem may have a different solution. For some &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -22,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ChristinaLeuci.github.io/blog/2015/01/14/uploading-javascript-or-html-to-content-manager">
+  <link rel="canonical" href="http://ChristinaLeuci.github.io/blog/2015/11/02/solving-ref-spec-error">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Christina Leuci" type="application/atom+xml">
@@ -55,7 +55,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <h1>Uploading Javascript or HTML to Scala Content Manager</h1>
+        <h1>Solving Ref-Spec Error</h1>
         <div class="meta">
           written 
 
@@ -70,32 +70,50 @@
 
 
 
-<time datetime="2015-01-14T12:09:49-05:00" pubdate data-updated="true"></time>
+<time datetime="2015-11-02T15:53:05-05:00" pubdate data-updated="true"></time>
           
 
 in
 <span class="categories">
   
-    <a class='category' href='/blog/categories/content-manager/'>content manager</a>, <a class='category' href='/blog/categories/html/'>html</a>, <a class='category' href='/blog/categories/javascript/'>javascript</a>, <a class='category' href='/blog/categories/technical/'>technical</a>
+    <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/technical/'>technical</a>, <a class='category' href='/blog/categories/terminal/'>terminal</a>
   
 </span>
 
 
         </div>
-        <p>Step by step of uploading your Javascript or HTML files to the Scala Content Manager.</p>
+        <p>Notice: This worked for me but your problem may have a different solution.</p>
 
 <!--more-->
 
 
-<p>To upload files like Javascript or HTML to the Scala Content Mangar you must create a widget. To do this your must put all your files into one folder as such</p>
+<p>For some reason when I made some changes to my Octopress blog and git added, git committed, and git pushed to my origin/master branch I got this error:</p>
 
-<p><img src="/images/widget/widget.jpg"/></p>
+<p><img src="/images/ref-spec/error.png"/></p>
 
-<p>Once these files are all under the main folder you can then compress that folder, this creates a <span style="italics">.zip</span> file. Change the file extension to <span style="italics">.wgt</span>. Once this is done you can upload your widget to the Scala Content Manager.</p>
+<p>At first I tried <code>git push -u origin master</code> or <code>git push origin master -f</code> to try and force a push to the &lsquo;origin/master&rsquo; branch but I was matched with the same error. After looking at Stack Overflow questions like <a href="http://stackoverflow.com/questions/21264738/error-src-refspec-master-does-not-match-any">error: src refspec master does not match any</a> I attempted some of the solutions. First I used <code>git push origin HEAD:master</code> which worked perfectly but I felt that was a cheap solution and wanted the answer not a cop-out.</p>
 
-<p>This file can then be uploaded to a player like an Intel Nook.</p>
+<p><img src="/images/ref-spec/show-ref.png"/></p>
 
-<p>Keep on being bad ass!</p>
+<p>I then tried <code>git branch -mv origin master</code> which told me the origin ref was missing which I thought very strange since I could push to the &ldquo;origin/master&rdquo; branch. Let me check the git branches, voilà, there was no master branch. Now, I don&rsquo;t know how or why my master branch disappeared but that&rsquo;s for another day.</p>
+
+<p><img src="/images/ref-spec/test.png"/></p>
+
+<p>I re-intialized the git repository for good measure and created a branch called &lsquo;master&rsquo;. No erroneous alerts so I must be doing something right. When I checked the git branches again, there it was. So, I checked out into master and did my business. I think I held my breath when I entered <code>git push origin master</code>.</p>
+
+<p><img src="/images/ref-spec/success.png"/></p>
+
+<h2>TL;DR</h2>
+
+<p>Step 0. Re-initialize the git repo</p>
+
+<p>Step 1. <code>git branch master</code> and <code>git checkout master</code></p>
+
+<p>Step 2. ???</p>
+
+<p>Step 3. Profit</p>
+
+<p>Keep on being badass programmers!</p>
 
 
         <hr class="divider-short"/>
@@ -119,11 +137,9 @@ in
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         
-          <a class="pull-left" href="/blog/2014/12/22/add-arrays-to-your-rails-database/" title="Previous Post: Add Arrays To Your Rails Database">&laquo; Previous: Add Arrays To Your Rails Database</a>
+          <a class="pull-left" href="/blog/2015/10/15/easy-peasy-and-medium-rare/" title="Previous Post: Easy Peasy and Medium Rare">&laquo; Previous: Easy Peasy and Medium Rare</a>
         
 
-        
-          <a class="pull-right" href="/blog/2015/09/30/when-ruby-sends-you-some-xs-and-os/" title="Next Post: When Ruby sends you some X's and O's">Next: When Ruby sends you some X&#8217;s and O&#8217;s &raquo;</a>
         
       </div>
     </div>
@@ -174,8 +190,8 @@ in
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ChristinaLeuci.github.io/blog/2015/01/14/uploading-javascript-or-html-to-content-manager/';
-        var disqus_url = 'http://ChristinaLeuci.github.io/blog/2015/01/14/uploading-javascript-or-html-to-content-manager/';
+        var disqus_identifier = 'http://ChristinaLeuci.github.io/blog/2015/11/02/solving-ref-spec-error/';
+        var disqus_url = 'http://ChristinaLeuci.github.io/blog/2015/11/02/solving-ref-spec-error/';
         var disqus_script = 'embed.js';
       
     (function () {

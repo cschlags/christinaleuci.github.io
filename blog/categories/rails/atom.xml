@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2015-11-04T11:06:53-05:00</updated>
+  <updated>2015-11-24T01:24:11-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -12,6 +12,114 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[An Introduction to RSpec]]></title>
+    <link href="http://ChristinaLeuci.github.io/blog/2015/11/06/an-introduction-to-rspec/"/>
+    <updated>2015-11-06T14:51:36-05:00</updated>
+    <id>http://ChristinaLeuci.github.io/blog/2015/11/06/an-introduction-to-rspec</id>
+    <content type="html"><![CDATA[<p>Learn how to setup RSpec and how to write the best tests.</p>
+
+<!--more-->
+
+
+<p>RSpec is a testing framework used solely for Ruby and Ruby on Rails. The &ldquo;R&rdquo; stands for Ruby and the &ldquo;Spec&rdquo; stands for specifications, which basically means does this Ruby code exhibit the expected behavior in a controlled context. You can use RSpec testing on any script difficulty, from printing a string to the terminal to financial web applications. Generally, tests are used on more complex logic but let&rsquo;s go over that later. <strong>First, what is a test?</strong></p>
+
+<p>Let&rsquo;s say, you create a tic tac toe game and want to see how your position will change if you select a certain slot. This is testing. Testing is also when you submit a form on your web application using a hundred character email address knowing full well that you&rsquo;ve set the email character limit to 25.</p>
+
+<p>The difference between those tests and RSpec is that those tests are manual, RSpec is automatic. For simpler scripts you may be fine doing manual testing but for those complex web applications automatic testing is vital. Without testing you would need to go through each manual test every single time you make a small change anywhere to ensure your application didn&rsquo;t fall apart. That&rsquo;s a ton of wasted time right there.</p>
+
+<h2>Need to Knows</h2>
+
+<p>First thing to know about RSpec is that it tests in three steps: &ldquo;given&rdquo;, &ldquo;when&rdquo;, and &ldquo;then&rdquo;. Let&rsquo;s say we&rsquo;re testing the following <code>print_string</code> method.</p>
+
+<p>  <figure class='code'><figcaption><span>[print.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>    <span class="k">def</span> <span class="nf">print_string</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">return</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Hello</span> <span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">+</span> <span class="n">arg</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>  <blockquote><p>Given that the <code>print_string(arg)</code> method is run&hellip;<br/>  When arg is equal to &ldquo;World&rdquo;&hellip;<br/>  Then we should expect &ldquo;Hello World&rdquo; to be returned</p></blockquote></p>
+
+<p><figure class='code'><figcaption><span>[print_spec.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="n">describe</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="c1">#print_string&amp;rsquo; do</span>
+</span><span class='line'>    <span class="n">it</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">returns</span> <span class="no">Hello</span> <span class="no">World</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">print_string</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">World</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;))</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">Hello</span> <span class="no">World</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The second fact to know about RSpec is that it is a Domain-Specific-Language. This means that although RSpec is Ruby it may not be exactly like the Ruby used in your Controllers or Models. Read more about DSL&rsquo;s <a target="_blank" href="https://en.wikipedia.org/wiki/Domain-specific_language">here</a>!</p>
+
+<h2>Why Should You Test?</h2>
+
+<p>Before I tell you why testing is important I&rsquo;ll disclose a reason not to test. Testing, if done extensively, can take up a lot of time and as the age old saying is &ldquo;time is money&rdquo;. So, if you need to desperately get that initial application out the door then you may choose to forego testing temporarily. But remember, do it soon or it will bite you in the ass!</p>
+
+<h3>Now, why you should actually test</h3>
+
+<p>  &#9675; Testing finds bugs</p>
+
+<p>  &#9675; Makes you actually think about your code</p>
+
+<p>  &#9675; Covers edge cases (like that hundred char email form submission)</p>
+
+<p>  &#9675; Exposes crappy code</p>
+
+<p>  &#9675; Makes refactoring and improving code loads easier</p>
+
+<p>  &#9675; Saves development time (oh a bug? write a test for it! &hellip; Boom, time and money saved!)</p>
+
+<h2>Not All Tests Are Created Equal</h2>
+
+<p>  <blockquote><p>“If you don’t care about quality, you can meet any other requirement”</p><footer><strong>Gerald M. Weinberg</strong></footer></blockquote></p>
+
+<p>  Your whole code needs to work but some tests are more important than others. From most important to least important:</p>
+
+<p>  &#9675; Really complex logic is SUPER IMPORTANT! For instance, comparing the air-speed velocity of an unladen African swallow to that of a European swallow.</p>
+
+<p>  &#9675; Priorities, test your code that is most important to your project succeeding, such as keeping your user&rsquo;s password private.</p>
+
+<p>  &#9675; The Happy Path, what should happen when your user succeeds in logging in.</p>
+
+<p>  &#9675; The Unhappy Path, what should happen when your user forgets their password.</p>
+
+<p>  &#9675; Edge cases</p>
+
+<p>  &#9675; Extraneous bugs</p>
+
+<h2>What you should not test is rather simple&hellip;</h2>
+
+<p>  &#9675; Don&rsquo;t test basic code like &ldquo;Hello World&rdquo;.downcase(), Rails and it&rsquo;s libraries and gems have their own built-in tests.</p>
+
+<p>  &#9675; Third-party APIs, they also have their own tests</p>
+
+<p>  &#9675; Already tested code</p>
+
+<h3>Words of Warning</h3>
+
+<p>  &#9675; Bad, partial, or broken tests are worse than no tests. If you know it won&rsquo;t work don&rsquo;t use it!</p>
+
+<p>  &#9675; Keep test suites fast, you shouldn&rsquo;t run tests and have it complete 24 hours later.</p>
+
+<p>  &#9675; Run tests often, every time you make a change</p>
+
+<p>  &#9675; Run test before pushing code</p>
+
+<p>  &#9675; Brittle tests suck, make them hard as nails</p>
+
+<p>Keep on being badass programmers!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Easy Peasy and Medium Rare]]></title>
@@ -1087,134 +1195,6 @@
 <p>And you should have access to your S3 bucket and images inside it.</p>
 
 <p>Keep on being badass programmers!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Setting Up An API On An Existing Rails Application]]></title>
-    <link href="http://ChristinaLeuci.github.io/blog/2014/12/18/setting-up-an-api-on-an-existing-rails-application/"/>
-    <updated>2014-12-18T12:48:34-05:00</updated>
-    <id>http://ChristinaLeuci.github.io/blog/2014/12/18/setting-up-an-api-on-an-existing-rails-application</id>
-    <content type="html"><![CDATA[<p>Hey y&#8217;all it&rsquo;s been a long time! Life has been a bit busy at the moment and I&rsquo;ll write a blog all about that in the non-technical session ASAP.</p>
-
-<!--more-->
-
-
-<p>Today I&rsquo;m going to talk about setting up your current Rails application with an API. This is assuming that you have a working Rails application, preferably with data to see in the browser when you have it up and running through the rails server.</p>
-
-<h2>The Pre-Coding Code</h2>
-
-<p>So before we do any serious setup the first thing we will need to do is access the rails-api gem. To do this put this line inside your Gemfile file</p>
-
-<p><figure class='code'><figcaption><span>[Gemfile] </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem &lsquo;rails-api&rsquo; , require: &lsquo;rails-api/action_controller/api&rsquo;</span></code></pre></td></tr></table></div></figure></p>
-
-<p>and bundle install.</p>
-
-<h2>Ain&rsquo;t No Basic Controller</h2>
-
-<p>At this point you will have access to the API Action Controller which I suggest you read up on in the <a href="http://api.rubyonrails.org/">Ruby on Rails API docs</a>. So now that your application is ready for API goodness you&rsquo;ll want to create a sub-folder underneath your <span font-style="italics">app/controllers</span> titled <span style="font-weight: 500"> api </a>.</p>
-
-<p>At this point underneath <span font-style="italics">app/controllers</span> you should have your main controllers, ie. application_controller or user_controller, and your <span font-style="italics">api</span> folder.</p>
-
-<p>Now inside this api folder you will want to add an <span font-style="italics">api_controller.rb</span> file and an optional <span font-style="italics">v1</span> folder.</p>
-
-<p>The <span font-style="italics">api_controller.rb</span> will be your API controller, this is essentially the application controller for your API. Inside your api_controller you will want to set it up similarly to the application_controller <figure class='code'><figcaption><span>[api_controller.rb] </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">class</span> <span class="nc">Api</span><span class="o">::</span><span class="no">ApiController</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">API</span>
-</span><span class='line'>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>As you can see we are no longer using the Base Action Controller, instead we&rsquo;re using the API Action Controller. This will be one of the sub controllers that will inherit from the Base Action Controller. If in the future you want to implement an API sign in option with a username and secret as many api&rsquo;s have now-a-days this if the file you would do this in.</p>
-
-<p>At this point you should have the <span font-style="italics">api_controller.rb</span> setup and hopefully, but not required, the <span font-style="italics">v1</span> folder setup.</p>
-
-<p>I suggest implement the <span font-style="italics">v1</span> folder incase you decide to create multiple versions of the api in the future.</p>
-
-<p>So let&rsquo;s say you have the <span font-style="italics">v1</span> setup. Inside this folder you will have all of the controllers you&rsquo;re find in the main controllers folder. Currently I am using an api user_controller to allow api users to access the users in the system.</p>
-
-<h2>Get The Data You Want</h2>
-
-<p>Inside the <span font-style="italics">user_controller.rb</span> you will want to set it up depending on which information you want to be shown. Let&rsquo;s say that your application user_controller has both index and show methods, this will mean your API user_controller will also have index and show methods.</p>
-
-<p><figure class='code'><figcaption><span>[api/v1/user_controller.rb]</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">class</span> <span class="nc">Api</span><span class="o">::</span><span class="no">V1</span><span class="o">::</span><span class="no">UserController</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">Api</span><span class="o">::</span><span class="no">ApiController</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">MimeResponds</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">index</span>
-</span><span class='line'>      <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
-</span><span class='line'>        <span class="vi">@users</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">all</span>
-</span><span class='line'>        <span class="nb">format</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json</span><span class="p">:</span><span class="vi">@users</span> <span class="p">}</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">show</span>
-</span><span class='line'>      <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
-</span><span class='line'>        <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
-</span><span class='line'>        <span class="nb">format</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json</span><span class="p">:</span><span class="vi">@user</span> <span class="p">}</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>Here I have set it up so that when the api user goes to <span font-style="italics">example.com/api/v1/users.json</span> they will see all the users in the database. As you can see I put &ldquo;.json&rdquo; at the end of the html address, this is because inside the api user_controller I specified the format I want to respond to. I you wanted the api to respond to an xml call then you would put</p>
-
-<p><figure class='code'><figcaption><span>[user_controller.rb] </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="nb">format</span><span class="o">.</span><span class="n">xml</span> <span class="p">{</span><span class="n">render</span> <span class="ss">xml</span><span class="p">:</span><span class="vi">@user</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p> or even allowing access to both json and xml calls</p>
-
-<p> <figure class='code'><figcaption><span>[user_controller.rb] </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'>    <span class="k">if</span> <span class="nb">format</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span><span class="n">render</span> <span class="ss">json</span><span class="p">:</span><span class="vi">@user</span><span class="p">}</span>
-</span><span class='line'>    <span class="k">if</span> <span class="nb">format</span><span class="o">.</span><span class="n">xml</span> <span class="p">{</span><span class="n">render</span> <span class="ss">xml</span><span class="p">:</span><span class="vi">@user</span><span class="p">}</span>
-</span><span class='line'>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p> I setup the user.show api call similarly. When an api user calls <span font-style="italics">example.com/api/v1/users/1.json</span> this will show that specific user&rsquo;s data.</p>
-
-<h2>Almost Done</h2>
-
-<p>Awesome, you&rsquo;re almost done. Just like any other controller you will need to set up the routes.
-<figure class='code'><figcaption><span>[config/routes.rb] </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="n">namespace</span> <span class="ss">:api</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">namespace</span> <span class="ss">:v1</span> <span class="k">do</span>
-</span><span class='line'>      <span class="n">resources</span> <span class="ss">:user</span> <span class="k">do</span>
-</span><span class='line'>        <span class="n">resources</span> <span class="ss">:other_controllers</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>I chose to organize my api groups of controllers under a namespace and again under a v1 namespace. This allows me to organize my routes instead of searching for them through the document. Optionally I chose to make my <span font-style="italics">api/user_controller.rb</span> also a namespace. This requires me to access my other api controllers based on the user api controller.</p>
-
-<p>And that&rsquo;s it! Keep on being badass! &lt;3</p>
 ]]></content>
   </entry>
   

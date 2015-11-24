@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: testing | Christina Leuci]]></title>
+  <link href="http://ChristinaLeuci.github.io/blog/categories/testing/atom.xml" rel="self"/>
+  <link href="http://ChristinaLeuci.github.io/"/>
+  <updated>2015-11-24T01:24:11-05:00</updated>
+  <id>http://ChristinaLeuci.github.io/</id>
+  <author>
+    <name><![CDATA[Christina Leuci]]></name>
+    <email><![CDATA[christinaleuci@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[An Introduction to RSpec]]></title>
+    <link href="http://ChristinaLeuci.github.io/blog/2015/11/06/an-introduction-to-rspec/"/>
+    <updated>2015-11-06T14:51:36-05:00</updated>
+    <id>http://ChristinaLeuci.github.io/blog/2015/11/06/an-introduction-to-rspec</id>
+    <content type="html"><![CDATA[<p>Learn how to setup RSpec and how to write the best tests.</p>
+
+<!--more-->
+
+
+<p>RSpec is a testing framework used solely for Ruby and Ruby on Rails. The &ldquo;R&rdquo; stands for Ruby and the &ldquo;Spec&rdquo; stands for specifications, which basically means does this Ruby code exhibit the expected behavior in a controlled context. You can use RSpec testing on any script difficulty, from printing a string to the terminal to financial web applications. Generally, tests are used on more complex logic but let&rsquo;s go over that later. <strong>First, what is a test?</strong></p>
+
+<p>Let&rsquo;s say, you create a tic tac toe game and want to see how your position will change if you select a certain slot. This is testing. Testing is also when you submit a form on your web application using a hundred character email address knowing full well that you&rsquo;ve set the email character limit to 25.</p>
+
+<p>The difference between those tests and RSpec is that those tests are manual, RSpec is automatic. For simpler scripts you may be fine doing manual testing but for those complex web applications automatic testing is vital. Without testing you would need to go through each manual test every single time you make a small change anywhere to ensure your application didn&rsquo;t fall apart. That&rsquo;s a ton of wasted time right there.</p>
+
+<h2>Need to Knows</h2>
+
+<p>First thing to know about RSpec is that it tests in three steps: &ldquo;given&rdquo;, &ldquo;when&rdquo;, and &ldquo;then&rdquo;. Let&rsquo;s say we&rsquo;re testing the following <code>print_string</code> method.</p>
+
+<p>  <figure class='code'><figcaption><span>[print.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>    <span class="k">def</span> <span class="nf">print_string</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">return</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Hello</span> <span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">+</span> <span class="n">arg</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>  <blockquote><p>Given that the <code>print_string(arg)</code> method is run&hellip;<br/>  When arg is equal to &ldquo;World&rdquo;&hellip;<br/>  Then we should expect &ldquo;Hello World&rdquo; to be returned</p></blockquote></p>
+
+<p><figure class='code'><figcaption><span>[print_spec.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="n">describe</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="c1">#print_string&amp;rsquo; do</span>
+</span><span class='line'>    <span class="n">it</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">returns</span> <span class="no">Hello</span> <span class="no">World</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">print_string</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">World</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;))</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">Hello</span> <span class="no">World</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The second fact to know about RSpec is that it is a Domain-Specific-Language. This means that although RSpec is Ruby it may not be exactly like the Ruby used in your Controllers or Models. Read more about DSL&rsquo;s <a target="_blank" href="https://en.wikipedia.org/wiki/Domain-specific_language">here</a>!</p>
+
+<h2>Why Should You Test?</h2>
+
+<p>Before I tell you why testing is important I&rsquo;ll disclose a reason not to test. Testing, if done extensively, can take up a lot of time and as the age old saying is &ldquo;time is money&rdquo;. So, if you need to desperately get that initial application out the door then you may choose to forego testing temporarily. But remember, do it soon or it will bite you in the ass!</p>
+
+<h3>Now, why you should actually test</h3>
+
+<p>  &#9675; Testing finds bugs</p>
+
+<p>  &#9675; Makes you actually think about your code</p>
+
+<p>  &#9675; Covers edge cases (like that hundred char email form submission)</p>
+
+<p>  &#9675; Exposes crappy code</p>
+
+<p>  &#9675; Makes refactoring and improving code loads easier</p>
+
+<p>  &#9675; Saves development time (oh a bug? write a test for it! &hellip; Boom, time and money saved!)</p>
+
+<h2>Not All Tests Are Created Equal</h2>
+
+<p>  <blockquote><p>“If you don’t care about quality, you can meet any other requirement”</p><footer><strong>Gerald M. Weinberg</strong></footer></blockquote></p>
+
+<p>  Your whole code needs to work but some tests are more important than others. From most important to least important:</p>
+
+<p>  &#9675; Really complex logic is SUPER IMPORTANT! For instance, comparing the air-speed velocity of an unladen African swallow to that of a European swallow.</p>
+
+<p>  &#9675; Priorities, test your code that is most important to your project succeeding, such as keeping your user&rsquo;s password private.</p>
+
+<p>  &#9675; The Happy Path, what should happen when your user succeeds in logging in.</p>
+
+<p>  &#9675; The Unhappy Path, what should happen when your user forgets their password.</p>
+
+<p>  &#9675; Edge cases</p>
+
+<p>  &#9675; Extraneous bugs</p>
+
+<h2>What you should not test is rather simple&hellip;</h2>
+
+<p>  &#9675; Don&rsquo;t test basic code like &ldquo;Hello World&rdquo;.downcase(), Rails and it&rsquo;s libraries and gems have their own built-in tests.</p>
+
+<p>  &#9675; Third-party APIs, they also have their own tests</p>
+
+<p>  &#9675; Already tested code</p>
+
+<h3>Words of Warning</h3>
+
+<p>  &#9675; Bad, partial, or broken tests are worse than no tests. If you know it won&rsquo;t work don&rsquo;t use it!</p>
+
+<p>  &#9675; Keep test suites fast, you shouldn&rsquo;t run tests and have it complete 24 hours later.</p>
+
+<p>  &#9675; Run tests often, every time you make a change</p>
+
+<p>  &#9675; Run test before pushing code</p>
+
+<p>  &#9675; Brittle tests suck, make them hard as nails</p>
+
+<p>Keep on being badass programmers!</p>
+]]></content>
+  </entry>
+  
+</feed>

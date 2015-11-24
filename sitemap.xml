@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://ChristinaLeuci.github.io/blog/2015/11/06/an-introduction-to-rspec/</loc>
+    <lastmod>2015-11-06T14:51:36-05:00</lastmod>
+  </url>
+  <url>
     <loc>http://ChristinaLeuci.github.io/blog/2015/11/03/touch-and-hold-swift/</loc>
     <lastmod>2015-11-03T12:54:09-05:00</lastmod>
   </url>
@@ -116,6 +120,9 @@
     <loc>http://ChristinaLeuci.github.io/blog/categories/ios/</loc>
   </url>
   <url>
-    <loc>http://ChristinaLeuci.github.io/blog/posts/2/</loc>
+    <loc>http://ChristinaLeuci.github.io/blog/categories/rspec/</loc>
+  </url>
+  <url>
+    <loc>http://ChristinaLeuci.github.io/blog/categories/testing/</loc>
   </url>
 </urlset>

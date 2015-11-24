@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>An Introduction to RSpec - Christina Leuci</title>
+  <meta name="author" content="Christina Leuci">
+
+  
+  <meta name="description" content="An Introduction to RSpec written in rails, rspec, ruby, technical, testing Learn how to setup RSpec and how to write the best tests. RSpec is a &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ChristinaLeuci.github.io/blog/2015/11/06/an-introduction-to-rspec">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Christina Leuci" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-69616812-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
+
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>An Introduction to RSpec</h1>
+        <div class="meta">
+          written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-11-06T14:51:36-05:00" pubdate data-updated="true"></time>
+          
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/rspec/'>rspec</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/technical/'>technical</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+  
+</span>
+
+
+        </div>
+        <p>Learn how to setup RSpec and how to write the best tests.</p>
+
+<!--more-->
+
+
+<p>RSpec is a testing framework used solely for Ruby and Ruby on Rails. The &ldquo;R&rdquo; stands for Ruby and the &ldquo;Spec&rdquo; stands for specifications, which basically means does this Ruby code exhibit the expected behavior in a controlled context. You can use RSpec testing on any script difficulty, from printing a string to the terminal to financial web applications. Generally, tests are used on more complex logic but let&rsquo;s go over that later. <strong>First, what is a test?</strong></p>
+
+<p>Let&rsquo;s say, you create a tic tac toe game and want to see how your position will change if you select a certain slot. This is testing. Testing is also when you submit a form on your web application using a hundred character email address knowing full well that you&rsquo;ve set the email character limit to 25.</p>
+
+<p>The difference between those tests and RSpec is that those tests are manual, RSpec is automatic. For simpler scripts you may be fine doing manual testing but for those complex web applications automatic testing is vital. Without testing you would need to go through each manual test every single time you make a small change anywhere to ensure your application didn&rsquo;t fall apart. That&rsquo;s a ton of wasted time right there.</p>
+
+<h2>Need to Knows</h2>
+
+<p>First thing to know about RSpec is that it tests in three steps: &ldquo;given&rdquo;, &ldquo;when&rdquo;, and &ldquo;then&rdquo;. Let&rsquo;s say we&rsquo;re testing the following <code>print_string</code> method.</p>
+
+<p>  <figure class='code'><figcaption><span>[print.rb] </span></figcaption></p>
+
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>    <span class="k">def</span> <span class="nf">print_string</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">return</span> <span class="s2">&quot;Hello &quot;</span> <span class="o">+</span> <span class="n">arg</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div>
+
+
+<p></figure></p>
+
+<p>  <blockquote><p>Given that the <code>print_string(arg)</code> method is run&hellip;<br/>  When arg is equal to &ldquo;World&rdquo;&hellip;<br/>  Then we should expect &ldquo;Hello World&rdquo; to be returned</p></blockquote></p>
+
+<figure class='code'><figcaption><span>[print_spec.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="n">describe</span> <span class="s1">&#39;#print_string&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;returns Hello World&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">print_string</span><span class="p">(</span><span class="s1">&#39;World&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span> <span class="s1">&#39;Hello World&#39;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The second fact to know about RSpec is that it is a Domain-Specific-Language. This means that although RSpec is Ruby it may not be exactly like the Ruby used in your Controllers or Models. Read more about DSL&rsquo;s <a target="_blank" href="https://en.wikipedia.org/wiki/Domain-specific_language">here</a>!</p>
+
+<h2>Why Should You Test?</h2>
+
+<p>Before I tell you why testing is important I&rsquo;ll disclose a reason not to test. Testing, if done extensively, can take up a lot of time and as the age old saying is &ldquo;time is money&rdquo;. So, if you need to desperately get that initial application out the door then you may choose to forego testing temporarily. But remember, do it soon or it will bite you in the ass!</p>
+
+<h3>Now, why you should actually test</h3>
+
+<p>  &#9675; Testing finds bugs</p>
+
+<p>  &#9675; Makes you actually think about your code</p>
+
+<p>  &#9675; Covers edge cases (like that hundred char email form submission)</p>
+
+<p>  &#9675; Exposes crappy code</p>
+
+<p>  &#9675; Makes refactoring and improving code loads easier</p>
+
+<p>  &#9675; Saves development time (oh a bug? write a test for it! &hellip; Boom, time and money saved!)</p>
+
+<h2>Not All Tests Are Created Equal</h2>
+
+<p>  <blockquote><p>“If you don’t care about quality, you can meet any other requirement”</p><footer><strong>Gerald M. Weinberg</strong></footer></blockquote></p>
+
+<p>  Your whole code needs to work but some tests are more important than others. From most important to least important:</p>
+
+<p>  &#9675; Really complex logic is SUPER IMPORTANT! For instance, comparing the air-speed velocity of an unladen African swallow to that of a European swallow.</p>
+
+<p>  &#9675; Priorities, test your code that is most important to your project succeeding, such as keeping your user&rsquo;s password private.</p>
+
+<p>  &#9675; The Happy Path, what should happen when your user succeeds in logging in.</p>
+
+<p>  &#9675; The Unhappy Path, what should happen when your user forgets their password.</p>
+
+<p>  &#9675; Edge cases</p>
+
+<p>  &#9675; Extraneous bugs</p>
+
+<h2>What you should not test is rather simple&hellip;</h2>
+
+<p>  &#9675; Don&rsquo;t test basic code like &ldquo;Hello World&rdquo;.downcase(), Rails and it&rsquo;s libraries and gems have their own built-in tests.</p>
+
+<p>  &#9675; Third-party APIs, they also have their own tests</p>
+
+<p>  &#9675; Already tested code</p>
+
+<h3>Words of Warning</h3>
+
+<p>  &#9675; Bad, partial, or broken tests are worse than no tests. If you know it won&rsquo;t work don&rsquo;t use it!</p>
+
+<p>  &#9675; Keep test suites fast, you shouldn&rsquo;t run tests and have it complete 24 hours later.</p>
+
+<p>  &#9675; Run tests often, every time you make a change</p>
+
+<p>  &#9675; Run test before pushing code</p>
+
+<p>  &#9675; Brittle tests suck, make them hard as nails</p>
+
+<p>Keep on being badass programmers!</p>
+
+
+        <hr class="divider-short"/>
+
+        
+        <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </section>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+          <a class="pull-left" href="/blog/2015/11/03/touch-and-hold-swift/" title="Previous Post: Touch And Hold Swift">&laquo; Previous: Touch And Hold Swift</a>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="#"><h4></h4></a>
+</div>
+
+<div class="col-md-2">
+  <div class="social-icon-list">
+    
+    <a href="https://twitter.com/ChristinaLeuci"><img src="/images/glyphicons_social_31_twitter.png"/></a>
+    
+
+    
+    <a href="https://github.com/christinaleuci"><img src="/images/glyphicons_social_21_github.png"/></a>
+    
+
+    
+    <a href="https://linkedin.com/in/christinaleuci"><img src="/images/glyphicons_social_17_linked_in.png"/></a>
+    
+
+    
+    <a href="mailto:christinaleuci@gmail.com"><img src="/images/glyphicons_social_39_e-mail.png"/></a>
+    
+  </div>
+</div>
+
+<div class="pull-right">
+  <h4>Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://github.com/christinaleuci">Christina Leuci</a>.</h4>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+    
+      
+
+<script type="text/javascript">
+      var disqus_shortname = 'christinaleucigithubio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ChristinaLeuci.github.io/blog/2015/11/06/an-introduction-to-rspec/';
+        var disqus_url = 'http://ChristinaLeuci.github.io/blog/2015/11/06/an-introduction-to-rspec/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+    
+  </body>
+</html>

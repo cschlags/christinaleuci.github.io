@@ -4,7 +4,7 @@
   <title><![CDATA[Category: technical | Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/blog/categories/technical/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2015-11-24T01:24:11-05:00</updated>
+  <updated>2015-11-24T08:15:01-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -77,21 +77,21 @@
 
 <p>  &#9675; Makes refactoring and improving code loads easier</p>
 
-<p>  &#9675; Saves development time (oh a bug? write a test for it! &hellip; Boom, time and money saved!)</p>
+<p>  &#9675; Saves development time (oh a bug? write a test for it! &hellip; Boom, time and money well saved!)</p>
 
 <h2>Not All Tests Are Created Equal</h2>
 
 <p>  <blockquote><p>“If you don’t care about quality, you can meet any other requirement”</p><footer><strong>Gerald M. Weinberg</strong></footer></blockquote></p>
 
-<p>  Your whole code needs to work but some tests are more important than others. From most important to least important:</p>
+<p>  Yes, your whole code needs to work but some tests are more important than others.</p>
 
 <p>  &#9675; Really complex logic is SUPER IMPORTANT! For instance, comparing the air-speed velocity of an unladen African swallow to that of a European swallow.</p>
 
-<p>  &#9675; Priorities, test your code that is most important to your project succeeding, such as keeping your user&rsquo;s password private.</p>
+<p>  &#9675; Priorities, test the code that is most important to your project succeeding. For example, keeping your user&rsquo;s password private, a necessity for success.</p>
 
-<p>  &#9675; The Happy Path, what should happen when your user succeeds in logging in.</p>
+<p>  &#9675; The Happy Path, what should happen when your user succeeds in doing what they&rsquo;re doing.</p>
 
-<p>  &#9675; The Unhappy Path, what should happen when your user forgets their password.</p>
+<p>  &#9675; The Unhappy Path, what should happen when your user does not succeed.</p>
 
 <p>  &#9675; Edge cases</p>
 

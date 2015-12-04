@@ -4,7 +4,7 @@
   <title><![CDATA[Christina Leuci]]></title>
   <link href="http://ChristinaLeuci.github.io/atom.xml" rel="self"/>
   <link href="http://ChristinaLeuci.github.io/"/>
-  <updated>2015-11-24T08:15:01-05:00</updated>
+  <updated>2015-12-04T09:53:13-05:00</updated>
   <id>http://ChristinaLeuci.github.io/</id>
   <author>
     <name><![CDATA[Christina Leuci]]></name>
@@ -12,6 +12,118 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Optimizing a Manual String Reversal]]></title>
+    <link href="http://ChristinaLeuci.github.io/blog/2015/12/02/optimizing-a-manual-string-reversal/"/>
+    <updated>2015-12-02T08:27:43-05:00</updated>
+    <id>http://ChristinaLeuci.github.io/blog/2015/12/02/optimizing-a-manual-string-reversal</id>
+    <content type="html"><![CDATA[<p>Sometimes it&rsquo;s nice to figure out what the logic is behind Ruby&rsquo;s object classes.</p>
+
+<!--more-->
+
+
+<p>Last night I was working on a <code>string_reversal</code> method which as the name says is meant to return a reversed string. As always start by writing things out, how would I do this? Obvious first step create a suitably named method and take in an argument (optional), then retrieve the last element of the string and place it at the front until the entire string is reversed. Simple in writing but so many choices in how to code it!</p>
+
+<p>Let me post my original code, don&rsquo;t laugh it gets better I promise.</p>
+
+<figure class='code'><figcaption><span>[original.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">reverse_string</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">arg</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">String</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">new_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>      <span class="n">chars</span> <span class="o">=</span> <span class="n">arg</span><span class="o">.</span><span class="n">chars</span>
+</span><span class='line'>      <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">chars</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">new_str</span> <span class="o">+=</span> <span class="n">chars</span><span class="o">[</span><span class="n">chars</span><span class="o">.</span><span class="n">length</span><span class="o">-</span><span class="n">i</span><span class="o">]</span>
+</span><span class='line'>        <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="n">new_str</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="s2">&quot;Send a string next time!&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Let me explain this method, it takes in an argument and proceeds to check if the argument is a string before it proceeds. If it is a string then three new variables are initialized in the scope of the method, <code>new_str</code>, <code>chars</code>, and <code>i</code>. <code>new_str</code> will be used to hold the reversed string, <code>chars</code> is the return value of Ruby String method chars() that creates an array of characters from the string, [&ldquo;h&rdquo;,&ldquo;e&rdquo;,&ldquo;l&rdquo;,&ldquo;l&rdquo;,&ldquo;o&rdquo;], and lastly <code>i</code> is a counting variable. My first thought was to grab elements from the end of the array to the beginning, <code>chars.length - 1</code> would give me &ldquo;o&rdquo; so <code>i</code> was set to 1. I concatenated each element of the array, from the last element to the first, to the <code>new_str</code> variable. Afterwards, I incremented the <code>i</code> varibale by 1 and outside of the while loop I returned the new_str.</p>
+
+<p>Using my previous example of &ldquo;hello&rdquo;, if this string were to be sent to this method then we would receive &ldquo;olleh&rdquo;. Now, from just looking at the method you would assume that this is working to the best of it&rsquo;s abilities but there is one big flaw, the time. The way this method is written there are three logic points, &ldquo;is it a String?&rdquo;, calling upon chars to receive an array of characters, and comparing each element of the character array. Right now this method has a Big O Notation value of &lsquo;n&rsquo; as it needs to traverse each element of the array.</p>
+
+<p>The first alternate way to reverse a string can be seen in the following <code>first_alternate_reverse</code> method. Similarly to my previous <code>reverse_string</code> method this will receive a string as an argument and create an array of characters from the string. Then by using the Array pop() method we remove the last element from chars(self) and return it. This is runs as many times as the length of the character array.</p>
+
+<figure class='code'><figcaption><span>[first_method.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">def</span> <span class="nf">first_alternate_reverse</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">word</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>    <span class="n">chars</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">each_char</span><span class="o">.</span><span class="n">to_a</span>
+</span><span class='line'>    <span class="n">chars</span><span class="o">.</span><span class="n">size</span><span class="o">.</span><span class="n">times</span><span class="p">{</span><span class="n">word</span> <span class="o">&lt;&lt;</span> <span class="n">chars</span><span class="o">.</span><span class="n">pop</span><span class="p">}</span>
+</span><span class='line'>    <span class="n">word</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Like the original reversal method this first alternative method has a Big O Notation of &lsquo;n&rsquo;, the method must go through each element to of the array. We can optimize this logic further by bringing the Big O Notation down to &lsquo;n/2&rsquo;.</p>
+
+<p>The second alternate way to reverse a string can be seen in the following <code>second_alternate_reverse</code> method. From first glance this method seems different from the first two as it doesn&rsquo;t have an argument but it&rsquo;s quite similar. What is happening here is we are creating a reverse method that can be called on a string, exactly like the <code>reverse()</code> method Ruby has already defined.</p>
+
+<p>Let me walk you through this code. The <code>second_alternate_reverse</code> method is taking in the variable x in <code>test.rb</code> and this becomes &lsquo;self&rsquo;. At the beginning of the method self = &ldquo;hello&rdquo; and half_self = 2. Keep in mind <code>5/2 != 2.5</code>, Ruby rounds when it&rsquo;s dealing with integers (if you did want a float then you would need to make the &lsquo;2&rsquo; into a &lsquo;2.0&rsquo;).</p>
+
+<p>Looking at the next line you can see the code inside the curly brackets is only being run as many times as half_self is equal to, in this case it&rsquo;s &ldquo;2&rdquo;. Inside the curly brackets we are swapping mirrored characters in the string such as &ldquo;h&rdquo; and &ldquo;o&rdquo; or &ldquo;e&rdquo; and &ldquo;l&rdquo; until we reach the center of the string.</p>
+
+<figure class='code'><figcaption><span>[test.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+</span><span class='line'>  <span class="n">string</span><span class="o">.</span><span class="n">second_alternate_reverse</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>[second_method.rb] </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'>  <span class="k">class</span> <span class="nc">String</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">second_alternate_reverse</span>
+</span><span class='line'>      <span class="n">half_self</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">length</span> <span class="o">/</span> <span class="mi">2</span>
+</span><span class='line'>      <span class="n">half_self</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">self</span><span class="o">[</span><span class="n">x</span><span class="o">]</span><span class="p">,</span> <span class="nb">self</span><span class="o">[-</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="nb">self</span><span class="o">[-</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="nb">self</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="p">}</span>
+</span><span class='line'>      <span class="nb">self</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you wanted a permanent solution like reverse!() you could add an exclamation mark after the method name as such &ldquo;second_alternate_reverse!&rdquo;</p>
+
+<p>I hope you&rsquo;ve found this informative and useful in your programming endeavors!</p>
+
+<p>Keep on being badass programmers!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[An Introduction to RSpec]]></title>
